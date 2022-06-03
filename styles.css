@@ -1,0 +1,178 @@
+body {
+    background-color: #f9fafa;
+}
+#nav-current {
+    color: crimson;
+    font-weight: bold;
+}
+
+p {
+    font-family: 'avenir', sans-serif;
+}
+.nav-item {
+    font-family: 'avenir', sans-serif;
+    font-size: 17.5px;
+}
+.display-2:hover {
+    animation: animate 1s linear infinite;
+}
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.courselink {
+    background-color: transparent;
+    color: inherit;
+    text-decoration: none;
+    transition: background .30s cubic-bezier(.33,.66,.66,1);
+    border-bottom: 0.5px solid crimson;
+    box-shadow: inset 0 -2px 0 crimson;
+}
+.courselink:hover {
+    color: white;
+    background-color: crimson;
+    text-decoration: none;
+}
+.menu-items {
+    position: relative;
+    margin-left: 0;
+}
+button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-family: 'worksans-semibold', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+#about-me {
+    background-color: #eea302;
+    border: 1px solid black;
+    transition: background .30s cubic-bezier(.33,.66,.66,1);
+}
+#projects {
+    margin: 18px;
+    background-color: #ed7802;
+    border: 1px solid black;
+    transition: background .30s cubic-bezier(.33,.66,.66,1);
+}
+#contact-me {
+    background-color: #ff3b25;
+    border: 1px solid black;
+    transition: background .30s cubic-bezier(.33,.66,.66,1);
+}
+.card-deck{
+    margin: 3rem 5rem 2rem 5rem;
+    background-color: transparent;
+    padding-bottom: 7rem;
+}
+#about-me:hover,
+#projects:hover,
+#contact-me:hover
+{
+    background-color: transparent;
+}
+h1 {
+    font-family: 'work sans', sans-serif;
+    padding-bottom: 1rem;
+}
+.card-header{
+    line-height: 8px;
+    margin: 0;
+}
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 24px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+    margin-top: 5px;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    z-index: 400;
+    margin-top: 5px;
+}
+#timeline-personal > li:before{
+    border: 3px solid crimson;
+}
+#timeline-overall > li:before{
+    border: 3px solid #ffca00;
+}
+#timeline-science > li:before{
+    border: 3px solid blue;
+}
+#timeline-comm > li:before{
+    border: 3px solid #009900;
+}
+footer {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 4rem;
+}
+.footer-items {
+    padding-top: 1rem;
+}
+text {
+    font-size: 16px;
+}
+.footer-text {
+    font-size: 14px;
+    position: relative;
+}
+.card {
+    border-radius: 15px;
+}
+.main-card {
+    border-radius: 15px;
+    background-color: white;
+}
+#loader {
+    border: 12px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 12px solid crimson;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.center {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
