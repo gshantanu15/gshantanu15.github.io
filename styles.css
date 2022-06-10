@@ -131,11 +131,7 @@ ul.timeline > li:before {
 #timeline-comm > li:before{
     border: 3px solid #009900;
 }
-footer {
-    padding-left: 4rem;
-    padding-right: 4rem;
-    padding-bottom: 4rem;
-}
+
 .footer-items {
     padding-top: 1rem;
 }
