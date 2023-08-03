@@ -52,11 +52,16 @@
     text-align: justify;
   }
 }
+
 @media (max-width: 575px) {
   .circle-wrapper {
     flex-direction: column;
   }
+  .footer-items {
+    flex-wrap: wrap;
+  }
 }
+
 @media (max-width: 767px) {
   .prof-pic {
     width: 100%;
@@ -64,6 +69,9 @@
   }
   .circle-wrapper {
     justify-content: center;
+  }
+  .footer-items {
+    flex-wrap: wrap;
   }
 }
 
@@ -111,6 +119,11 @@
       object-fit: cover;
       border-radius: 100%;
       width: 100%;
+    }
+    .button-div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
 }
