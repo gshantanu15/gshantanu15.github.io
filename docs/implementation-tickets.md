@@ -30,7 +30,7 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-004 — Compatibility and discovery
 
-**Status:** Pending
+**Status:** Complete
 
 - Replace legacy pages with accessible redirects.
 - Add a useful `404.html`, `robots.txt`, and `sitemap.xml`.
