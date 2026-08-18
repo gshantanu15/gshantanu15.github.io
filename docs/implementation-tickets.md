@@ -13,7 +13,7 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-002 — Shared production foundation
 
-**Status:** Pending
+**Status:** Complete
 
 - Create the shared production stylesheet and minimal navigation script.
 - Add production-ready image and audio assets.
