@@ -28,6 +28,8 @@ node scripts/check-site.mjs
 
 The validator checks the public files, internal links, metadata, privacy constraints, approved content boundaries, and project-specific attribution rules without third-party dependencies.
 
+The same command runs through `.github/workflows/check-site.yml` on every push and pull request.
+
 ## Editing
 
 - `docs/site-content.md` is the editorial source of truth.

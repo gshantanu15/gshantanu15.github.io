@@ -8,6 +8,7 @@ const redirectPages = ["projects.html", "about-me.html", "contact-me.html"];
 const publicPages = [...corePages, ...redirectPages, "404.html"];
 const requiredFiles = [
   ...publicPages,
+  ".github/workflows/check-site.yml",
   "assets/css/site.css",
   "assets/js/site.js",
   "assets/images/profile.png",

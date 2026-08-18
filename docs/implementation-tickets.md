@@ -55,3 +55,11 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Document the zero-build preview and validation workflow in `README.md`.
 - Meet the approved Lighthouse targets on all three core pages.
 - Confirm the branch is clean, production-ready, and not deployed without explicit approval.
+
+## PORT-007 — Continuous static validation
+
+**Status:** Complete
+
+- Run `node scripts/check-site.mjs` on every GitHub push and pull request.
+- Use an explicit Node.js version and read-only repository permissions.
+- Keep the workflow dependency-free beyond official checkout and Node setup actions.
