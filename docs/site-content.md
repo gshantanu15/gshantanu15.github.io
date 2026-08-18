@@ -53,7 +53,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Summary:**
 
-> A consent-first bilingual voice-agent prototype for real-estate lead qualification. I designed its conversation flow, retrieval-backed knowledge behavior, safety guardrails, and network-free tests around a Python integration.
+> A consent-first bilingual voice-agent prototype for real-estate lead qualification. I designed its conversation flow, retrieval-backed knowledge behavior, and safety guardrails around a Python integration with Retell AI, with conversational evaluations recorded using Sarvam AI.
 
 **Action:** Read the project story
 
@@ -137,6 +137,10 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 > Outbound voice agents need to qualify leads without losing consent, conversational flexibility, or control over the facts they communicate.
 
+**Providers:**
+
+> Retell AI is used for the outbound-call Python integration. Sarvam AI was used for the published conversational evaluations; the demo recordings are evidence of the conversation design and are not recordings of the Retell integration.
+
 **My role:**
 
 > I developed a consent-first prototype and its conversation contract for bilingual English-Hindi real-estate lead qualification.
@@ -152,7 +156,9 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 > The repository provides an executable prototype and a set of consented evaluation recordings covering normal, bilingual, early-exit, knowledge-retrieval, and adversarial conversations.
 
-**Capabilities:** Python · Voice agents · Conversation design · Retrieval · Safety · Testing
+**Demo recording:** Bilingual English-Hindi evaluation recorded with Sarvam AI. The participant consented to publication.
+
+**Capabilities:** Python · Retell AI · Sarvam AI · Conversation design · Retrieval · Safety and testing
 
 **Link:** [View the Voice Agent Lab repository](https://github.com/gshantanu15/voice-agent-lab)
 
