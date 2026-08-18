@@ -156,6 +156,40 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .placeholder-note { max-width: 720px; margin-top: 32px; padding: 18px 20px; border-left: 3px solid var(--accent); background: var(--surface); }
 .placeholder-note p { margin: 0 !important; font-size: .92rem !important; }
 
+.about-hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr); gap: clamp(56px, 9vw, 120px); align-items: center; padding-block: 100px 112px; }
+.about-hero h1 { max-width: 850px; margin: 0; font-size: clamp(3.4rem, 6.5vw, 6.2rem); font-weight: 610; line-height: .98; letter-spacing: -.06em; }
+.about-intro { max-width: 760px; margin: 28px 0 0; color: #3e454a; font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.68; }
+.about-portrait { margin: 0; }
+.about-portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 28%; border: 10px solid var(--surface); border-radius: 50%; outline: 1px solid var(--line); box-shadow: 0 18px 46px rgba(23, 26, 29, .08); filter: saturate(.8); }
+.about-portrait figcaption { margin-top: 16px; color: var(--muted); font: 600 .67rem/1.4 var(--mono); text-align: center; text-transform: uppercase; }
+.about-section { display: grid; grid-template-columns: minmax(240px, .62fr) minmax(0, 1.38fr); gap: clamp(48px, 8vw, 100px); padding-block: 100px; border-top: 1px solid var(--line); }
+.about-section-label h2 { max-width: 360px; margin: 0; font-size: clamp(2rem, 3.8vw, 3.7rem); line-height: 1.05; letter-spacing: -.045em; }
+.experience-list { display: grid; gap: 52px; }
+.experience-entry { display: grid; grid-template-columns: 150px 1fr; gap: 28px; padding-bottom: 52px; border-bottom: 1px solid var(--line); }
+.experience-entry:last-child { padding-bottom: 0; border-bottom: 0; }
+.experience-entry .timeline-date { margin: 3px 0 0; color: var(--accent); font: 700 .7rem/1.5 var(--mono); text-transform: uppercase; }
+.experience-entry h3, .education-summary h3, .leadership-grid h3 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.7rem); line-height: 1.08; letter-spacing: -.035em; }
+.experience-entry p:not(.project-meta, .timeline-date), .education-summary p, .leadership-grid p, .activity-panel p { color: var(--muted); }
+.experience-entry .tag-list { margin-top: 24px; }
+.education-stack { display: grid; gap: 24px; }
+.education-summary { padding: 36px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.education-summary .education-year { color: var(--accent); }
+.education-minor { color: var(--ink) !important; font-weight: 680; }
+.thesis-card { scroll-margin-top: 28px; padding: 42px; border-radius: var(--radius); background: var(--accent); color: white; }
+.thesis-card .project-meta { color: #c8dce7; }
+.thesis-card h3 { max-width: 700px; margin: 0; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1.05; letter-spacing: -.045em; }
+.thesis-card > p:not(.project-meta) { max-width: 720px; margin-top: 24px; color: #e0e8ed; }
+.thesis-card .tag-list { margin-top: 28px; }
+.thesis-card .tag-list li { border-color: rgba(255,255,255,.36); background: transparent; color: white; }
+.leadership-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.leadership-grid article { padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.leadership-org { min-height: 48px; color: var(--ink) !important; font-weight: 680; }
+.activity-panel { padding: 38px; border-left: 3px solid var(--accent); background: var(--surface); }
+.activity-panel > p { margin-top: 0; font-size: 1.08rem; }
+.activity-list { display: grid; gap: 0; margin: 28px 0 0; padding: 0; list-style: none; }
+.activity-list li { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.activity-list span { color: var(--accent); font: 700 .68rem/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr .6fr; min-height: auto; padding-block: 72px; gap: 45px; }
   .hero h1 { font-size: clamp(3rem, 8vw, 5rem); }
@@ -163,6 +197,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .section-heading, .split-section, .education-layout, .contact-inner { grid-template-columns: 1fr; gap: 34px; }
   .star-grid { grid-template-columns: repeat(2, 1fr); }
   .case-footer { align-items: flex-start; flex-direction: column; }
+  .about-hero, .about-section { grid-template-columns: 1fr; }
+  .about-portrait { width: min(48%, 310px); justify-self: end; }
+  .about-section-label h2 { max-width: 600px; }
 }
 
 @media (max-width: 760px) {
@@ -205,6 +242,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .emphasis-block ul { grid-column: 1; }
   .visual-api { grid-template-columns: 74px 1fr; padding: 20px; }
   .contact-inner { padding-block: 68px; }
+  .about-hero { display: flex; flex-direction: column; align-items: stretch; padding-block: 68px 80px; }
+  .about-hero h1 { font-size: clamp(2.8rem, 13.5vw, 4.2rem); }
+  .about-portrait { width: min(76%, 300px); align-self: flex-end; }
+  .about-section { gap: 34px; padding-block: 76px; }
+  .experience-entry { grid-template-columns: 1fr; gap: 10px; }
+  .leadership-grid { grid-template-columns: 1fr; }
+  .leadership-org { min-height: 0; }
+  .thesis-card, .education-summary, .activity-panel { padding: 28px; }
+  .activity-list li { grid-template-columns: 1fr; gap: 5px; }
 }
 
 @media (max-width: 380px) {

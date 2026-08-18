@@ -21,7 +21,7 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-003 — Public content pages
 
-**Status:** Pending
+**Status:** Complete
 
 - Replace `index.html` with the approved Home page.
 - Add `work.html` with all five approved project stories.
