@@ -35,6 +35,8 @@ const htmlByPage = new Map(
   publicPages.filter(exists).map((page) => [page, read(page)]),
 );
 
+const thesisUrl = "https://trepo.tuni.fi/handle/10024/237688";
+
 for (const page of corePages) {
   const html = htmlByPage.get(page);
   if (!html) continue;
@@ -46,6 +48,12 @@ for (const page of corePages) {
   if (!/<link\s+rel="canonical"\s+href="https:\/\/gshantanu15\.github\.io\/[^"]*"/i.test(html)) fail(`${page} is missing its canonical URL`);
   if (!/<meta\s+property="og:title"\s+content="[^"]+"/i.test(html)) fail(`${page} is missing Open Graph title metadata`);
   if (!/<meta\s+property="og:description"\s+content="[^"]+"/i.test(html)) fail(`${page} is missing Open Graph description metadata`);
+}
+
+if (!htmlByPage.get("about.html")?.includes(thesisUrl)) {
+  fail("About page must link to the public Trepo thesis record");
+} else {
+  pass("public thesis link checked");
 }
 pass("core page titles, descriptions, canonical URLs, headings, and Open Graph metadata checked");
 

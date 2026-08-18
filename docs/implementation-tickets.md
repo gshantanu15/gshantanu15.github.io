@@ -63,3 +63,11 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Run `node scripts/check-site.mjs` on every GitHub push and pull request.
 - Use an explicit Node.js version and read-only repository permissions.
 - Keep the workflow dependency-free beyond official checkout and Node setup actions.
+
+## PORT-008 — About portrait and thesis access
+
+**Status:** Complete
+
+- Remove the repeated portrait from About and retain it only in the Home hero.
+- Link the thesis card to the public Tampere University Trepo record.
+- Extend static validation to protect the approved thesis URL.

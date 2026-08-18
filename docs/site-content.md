@@ -297,7 +297,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 > I am a Computer Science graduate from Tampere University with a minor in Machine Learning and Signal Processing. My experience spans web development, APIs, applied AI, collaborative product work, and student leadership. My interests include work involving AI and machine learning, as well as sustainability practices. I am currently exploring cybersecurity in an increasingly volatile AI era.
 
-**Editorial note:** Reuse the current portrait for launch. Keep it at a stable asset path so it can be replaced later without changing page markup.
+**Editorial note:** Do not repeat the portrait on the About page. The circular portrait remains on Home.
 
 ### Experience
 
@@ -339,6 +339,8 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 > An analytical, literature-based comparison of LangChain and AutoGen for supporting requirements-engineering tasks. The thesis considers how different agent structures, coordination approaches, and framework capabilities relate to the iterative and reliability-sensitive nature of requirements work.
 
 **Topics:** Requirements engineering · Multi-agent systems · Agentic AI · Framework comparison
+
+**Public link:** https://trepo.tuni.fi/handle/10024/237688
 
 ### Leadership
 
