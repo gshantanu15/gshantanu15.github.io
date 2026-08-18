@@ -38,11 +38,12 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-005 — Static validation and browser QA
 
-**Status:** Pending
+**Status:** Complete
 
 - Add `scripts/check-site.mjs` without runtime dependencies.
 - Validate links, assets, metadata, image alternatives, privacy rules, and the content exclusion list.
 - Test 320px, 390px, 768px, and 1440px layouts, keyboard behavior, audio loading, and console output.
+- Record the completed checks in `docs/qa-report.md`.
 
 ## PORT-006 — Deployment-ready audit
 
