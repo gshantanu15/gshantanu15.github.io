@@ -27,9 +27,11 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 ### Hero
 
-**Eyebrow:** Shantanu Garg
+**Eyebrow:** Computer Science · Tampere, Finland
 
-**Headline:** Graduate Professional from Tampere University.
+**Headline:** Shantanu Garg.
+
+**Subheading:** Graduate Professional from Tampere University.
 
 **Introduction:**
 
