@@ -71,3 +71,12 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Remove the repeated portrait from About and retain it only in the Home hero.
 - Link the thesis card to the public Tampere University Trepo record.
 - Extend static validation to protect the approved thesis URL.
+
+## PORT-009 — Early hardware content gate
+
+**Status:** Awaiting content approval
+
+- Recover the three hardware projects and their evidence from the legacy portfolio.
+- Draft concise, evidence-based card copy without presenting school work as professional experience.
+- After approval, restore and optimize only one legacy photograph per project.
+- Add the cards to About without expanding the five-project selected Work allowlist.

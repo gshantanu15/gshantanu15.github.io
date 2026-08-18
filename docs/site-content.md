@@ -364,6 +364,38 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Editorial note requiring confirmation:** Confirm the exact name and wording of the SDG-related activities before this paragraph is approved for production. The other statements preserve claims from the existing portfolio.
 
+### Early hardware work
+
+**Heading:** Early hardware work
+
+> Before university, I used school and summer projects to explore energy systems, electronics, and physical computing. These small builds helped me turn theory into hands-on experimentation.
+
+#### Solar-Powered Induction Cooktop
+
+> A school product concept combining solar energy with semiconductor-based induction cooking. I presented the prototype at the Innovision Product Launch event, where it received first place, and extended my learning through short industry exposure to solar-energy and semiconductor work.
+
+**Capabilities:** Product prototyping · Solar energy · Semiconductor concepts
+
+**Visual:** One approved photograph of the original prototype from the legacy portfolio.
+
+#### Full-Wave Bridge Rectifier
+
+> A physics project that converted alternating current to direct current using a PCB, diodes, a transformer, capacitor, switch, LED, and connecting terminals. I tested the circuit with a laboratory oscilloscope and compared the output waveform with and without capacitor filtering.
+
+**Capabilities:** Electronics · PCB assembly · Oscilloscope testing · AC/DC conversion
+
+**Visual:** One approved photograph of the original PCB build from the legacy portfolio.
+
+#### Raspberry Pi Robotic Car
+
+> A battery-powered robotic car programmed in Python and built around a Raspberry Pi 3, motors, a breadboard, sensors, and a buzzer. The sensor-driven behavior alerted when the car detected an obstacle, giving me an early introduction to physical computing and iterative prototyping.
+
+**Capabilities:** Python · Raspberry Pi · Sensors · Physical prototyping
+
+**Visual:** One approved photograph of the original car from the legacy portfolio.
+
+**Placement:** Present these as three compact cards on About after Earlier activities. Keep them separate from the selected professional Work page, and move Contact to section 06.
+
 ### Contact
 
 **Anchor:** `contact`
