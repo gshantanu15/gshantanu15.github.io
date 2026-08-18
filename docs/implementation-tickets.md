@@ -47,8 +47,11 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-006 — Deployment-ready audit
 
-**Status:** Pending
+**Status:** Complete
 
 - Compare production against the approved prototype and content source.
 - Remove the prototype from the publishing tree after its checkpoint is preserved in Git history.
+- Remove superseded, unreferenced legacy styles and images in the same Git-recoverable cleanup.
+- Document the zero-build preview and validation workflow in `README.md`.
+- Meet the approved Lighthouse targets on all three core pages.
 - Confirm the branch is clean, production-ready, and not deployed without explicit approval.

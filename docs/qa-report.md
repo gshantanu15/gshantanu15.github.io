@@ -22,6 +22,11 @@ Playwright tested Home, Work, About, and 404 at widths of 320, 390, 768, and 144
 - The standard browser matrix produced no console or page errors.
 - With reduced motion enabled, interactive transitions reduce to effectively zero duration.
 - With the site script intentionally blocked, the 390-pixel Home page remained readable and its navigation remained visible; the single logged network error was the intentional script abort.
+- Live navigation confirmed `projects.html` redirects to `work.html`, `about-me.html` to `about.html`, and `contact-me.html` to `about.html#contact`.
+
+## Lighthouse
+
+Lighthouse 13.4.1 reports 100 for Performance, Accessibility, Best Practices, and SEO on Home, Work, and About. The temporary portrait is served as a 34 KB WebP display asset while the original PNG remains available for Open Graph metadata and future replacement.
 
 ## Review evidence
 

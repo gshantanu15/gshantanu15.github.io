@@ -11,6 +11,7 @@ const requiredFiles = [
   "assets/css/site.css",
   "assets/js/site.js",
   "assets/images/profile.png",
+  "assets/images/profile.webp",
   "assets/images/flipoff.png",
   "assets/images/favicon.ico",
   "assets/media/voice-agent-bilingual-demo.wav",
