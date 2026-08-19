@@ -30,3 +30,27 @@ if (toggle && navigation) {
     if (window.innerWidth > 760) closeMenu();
   });
 }
+
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const slides = [...carousel.querySelectorAll("[data-slide]")];
+  const previous = carousel.querySelector("[data-carousel-prev]");
+  const next = carousel.querySelector("[data-carousel-next]");
+  const current = carousel.querySelector("[data-carousel-current]");
+  const controls = carousel.querySelector(".hardware-controls");
+
+  if (slides.length < 2 || !previous || !next || !current || !controls) return;
+
+  let activeIndex = 0;
+  controls.hidden = false;
+
+  const showSlide = (nextIndex) => {
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, index) => {
+      slide.hidden = index !== activeIndex;
+    });
+    current.textContent = String(activeIndex + 1);
+  };
+
+  previous.addEventListener("click", () => showSlide(activeIndex - 1));
+  next.addEventListener("click", () => showSlide(activeIndex + 1));
+});

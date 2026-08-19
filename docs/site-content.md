@@ -376,7 +376,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Capabilities:** Product prototyping · Solar energy · Semiconductor concepts
 
-**Visual:** One approved photograph of the original prototype from the legacy portfolio.
+**Visual:** A fixed-size manual carousel using all three original prototype photographs from the legacy portfolio.
 
 #### Full-Wave Bridge Rectifier
 
@@ -384,7 +384,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Capabilities:** Electronics · PCB assembly · Oscilloscope testing · AC/DC conversion
 
-**Visual:** One approved photograph of the original PCB build from the legacy portfolio.
+**Visual:** A fixed-size manual carousel using all seven original build, testing, and oscilloscope photographs from the legacy portfolio.
 
 #### Raspberry Pi Robotic Car
 
@@ -392,9 +392,9 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Capabilities:** Python · Raspberry Pi · Sensors · Physical prototyping
 
-**Visual:** One approved photograph of the original car from the legacy portfolio.
+**Visual:** A fixed-size manual carousel using all three original car photographs from the legacy portfolio.
 
-**Placement:** Present these as three compact cards on About after Earlier activities. Keep them separate from the selected professional Work page, and move Contact to section 06.
+**Placement:** Present these as three compact cards on About after Earlier activities. Keep them separate from the selected professional Work page, and move Contact to section 06. Each card and its 4:3 media frame must remain fixed in size while visitors manually cycle photographs; do not autoplay.
 
 ### Contact
 

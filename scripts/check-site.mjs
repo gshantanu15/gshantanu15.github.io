@@ -14,6 +14,19 @@ const requiredFiles = [
   "assets/images/profile.png",
   "assets/images/profile.webp",
   "assets/images/flipoff.png",
+  "assets/images/hardware/solar-side.webp",
+  "assets/images/hardware/solar-top.webp",
+  "assets/images/hardware/solar-angle.webp",
+  "assets/images/hardware/rectifier-back.webp",
+  "assets/images/hardware/rectifier-bridge.webp",
+  "assets/images/hardware/rectifier-multimeter.webp",
+  "assets/images/hardware/rectifier-pcb.webp",
+  "assets/images/hardware/rectifier-whole.webp",
+  "assets/images/hardware/rectifier-with-capacitor.webp",
+  "assets/images/hardware/rectifier-without-capacitor.webp",
+  "assets/images/hardware/robotic-front.webp",
+  "assets/images/hardware/robotic-side.webp",
+  "assets/images/hardware/robotic-top.webp",
   "assets/images/favicon.ico",
   "assets/media/voice-agent-bilingual-demo.wav",
   "robots.txt",
@@ -36,6 +49,11 @@ const htmlByPage = new Map(
 );
 
 const thesisUrl = "https://trepo.tuni.fi/handle/10024/237688";
+const hardwareProjects = [
+  "Solar-Powered Induction Cooktop",
+  "Full-Wave Bridge Rectifier",
+  "Raspberry Pi Robotic Car",
+];
 
 for (const page of corePages) {
   const html = htmlByPage.get(page);
@@ -54,6 +72,22 @@ if (!htmlByPage.get("about.html")?.includes(thesisUrl)) {
   fail("About page must link to the public Trepo thesis record");
 } else {
   pass("public thesis link checked");
+}
+
+for (const project of hardwareProjects) {
+  if (!htmlByPage.get("about.html")?.includes(project)) {
+    fail(`About page is missing approved early hardware project: ${project}`);
+  }
+  if (htmlByPage.get("work.html")?.includes(project)) {
+    fail(`Early hardware project must not appear on Work: ${project}`);
+  }
+}
+
+const hardwareCarouselCount = (htmlByPage.get("about.html")?.match(/data-carousel(?:\s|=|>)/g) || []).length;
+if (hardwareCarouselCount !== 3) {
+  fail(`About page must contain exactly three hardware carousels; found ${hardwareCarouselCount}`);
+} else {
+  pass("early hardware placement and carousel count checked");
 }
 pass("core page titles, descriptions, canonical URLs, headings, and Open Graph metadata checked");
 

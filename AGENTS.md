@@ -40,6 +40,9 @@ Approved leadership and earlier activities:
 
 - TaSciEn chairperson and treasurer
 - User-approved Fairtrade, SDG/sustainability, and service activities
+- Early hardware work: Solar-Powered Induction Cooktop, Full-Wave Bridge Rectifier, and Raspberry Pi Robotic Car
+
+The three early hardware projects belong only on About, not in the selected Work allowlist. Their image carousels may use only the original project photographs preserved in repository history.
 
 Never add or mention NBA Analysis, Finland Live, Beopardy, 2D-to-3D Generator, Personal Knowledge Assistant, Student Finance Tracker, the Tampere University research traineeship, or MGIRED in production pages.
 

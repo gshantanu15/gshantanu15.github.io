@@ -31,3 +31,12 @@ Lighthouse 13.4.1 reports 100 for Performance, Accessibility, Best Practices, an
 ## Review evidence
 
 Production desktop and mobile screenshots for Home, Work, and About are stored under the ignored `output/playwright/production/` directory for the final approval checkpoint.
+
+## Early hardware extension
+
+The approved About extension was tested at 320, 390, 768, and 1440 pixels.
+
+- All 13 original hardware photographs load across three manual carousels.
+- Cycling every photograph leaves both the 4:3 media frames and complete card dimensions unchanged.
+- Counters wrap correctly, no tested width has horizontal overflow, and no image is broken.
+- The grid resolves to one, two, and three columns at mobile, tablet, and desktop widths respectively.

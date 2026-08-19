@@ -74,9 +74,9 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 
 ## PORT-009 — Early hardware content gate
 
-**Status:** Awaiting content approval
+**Status:** Complete
 
 - Recover the three hardware projects and their evidence from the legacy portfolio.
 - Draft concise, evidence-based card copy without presenting school work as professional experience.
-- After approval, restore and optimize only one legacy photograph per project.
+- Restore and optimize every approved legacy photograph for fixed-size, manually controlled carousels.
 - Add the cards to About without expanding the five-project selected Work allowlist.
