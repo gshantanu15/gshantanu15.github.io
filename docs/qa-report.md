@@ -51,3 +51,13 @@ The approved `At a glance` panel was checked at 320, 390, 768, 1018, and 1440 pi
 - Reduced-motion transitions collapse to effectively zero duration and standard execution produces no console or page errors.
 - With JavaScript blocked, the panel remains readable, all three first carousel images remain visible, carousel controls remain hidden, and navigation wraps without overflow at 320, 390, and 768 pixels.
 - The final extended About page retains Lighthouse scores of 100 for Performance, Accessibility, Best Practices, and SEO.
+
+## PORT-011 copy and responsive portrait feedback
+
+The Home and Work feedback pass was checked at 320, 390, 759, 768, 980, 981, and 1440 pixels.
+
+- The Home portrait and caption are centered throughout the stacked layout up to and including 980 pixels; the two-column desktop composition resumes at 981 pixels.
+- No tested width has horizontal overflow or a broken image.
+- The Home contact invitation names both email and LinkedIn, and the FlipOff lead begins by identifying the project as a forked implementation.
+- At 390 pixels, the mobile menu still opens, closes with Escape, updates `aria-expanded`, and returns focus to its trigger.
+- The browser pass produced no console errors.

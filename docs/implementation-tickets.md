@@ -89,3 +89,12 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Reuse only approved profile, education, technical-interest, and sustainability content.
 - Keep the panel responsive without adding decorative imagery or unsupported claims.
 - Keep the no-JavaScript mobile navigation visible without horizontal overflow.
+
+## PORT-011 — Copy and responsive portrait feedback
+
+**Status:** Complete
+
+- Lead the FlipOff summary with its forked implementation status.
+- Name both email and LinkedIn in the Home contact invitation.
+- Center the Home portrait and caption when the hero stacks on tablet and mobile layouts.
+- Keep the header monogram unchanged until a separate visual choice is approved.

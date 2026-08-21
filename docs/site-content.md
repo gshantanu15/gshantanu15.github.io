@@ -109,7 +109,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Heading:** Let’s connect
 
-> If you would like to discuss a role, a project, or a shared technical interest, email is the best way to reach me.
+> If you would like to discuss a role, a project, or a shared technical interest, the best ways to reach me are by email or LinkedIn.
 
 **Actions:** Email me · LinkedIn · GitHub
 
@@ -245,6 +245,8 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 ### FlipOff
 
 **Label:** Enhanced open-source fork · Frontend
+
+**Lead:** A forked implementation to make a more realistic and interactive browser-based split-flap display.
 
 **Context:**
 

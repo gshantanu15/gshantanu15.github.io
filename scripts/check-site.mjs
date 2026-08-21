@@ -55,6 +55,8 @@ const hardwareProjects = [
   "Raspberry Pi Robotic Car",
 ];
 const atAGlanceLabels = ["Graduate", "Minor", "Building", "Exploring", "Interested in"];
+const approvedFlipOffLead = "A forked implementation to make a more realistic and interactive browser-based split-flap display.";
+const approvedHomeContact = "the best ways to reach me are by email or LinkedIn.";
 
 for (const page of corePages) {
   const html = htmlByPage.get(page);
@@ -97,6 +99,13 @@ if (!htmlByPage.get("about.html")?.includes('class="about-at-glance"')) {
   fail("About At a glance panel is missing an approved label");
 } else {
   pass("About At a glance panel checked");
+}
+
+if (!htmlByPage.get("work.html")?.includes(approvedFlipOffLead)) {
+  fail("FlipOff lead does not use the approved fork-first wording");
+}
+if (!htmlByPage.get("index.html")?.includes(approvedHomeContact)) {
+  fail("Home contact copy must identify both email and LinkedIn");
 }
 pass("core page titles, descriptions, canonical URLs, headings, and Open Graph metadata checked");
 
