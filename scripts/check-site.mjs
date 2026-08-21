@@ -54,6 +54,7 @@ const hardwareProjects = [
   "Full-Wave Bridge Rectifier",
   "Raspberry Pi Robotic Car",
 ];
+const atAGlanceLabels = ["Graduate", "Minor", "Building", "Exploring", "Interested in"];
 
 for (const page of corePages) {
   const html = htmlByPage.get(page);
@@ -88,6 +89,14 @@ if (hardwareCarouselCount !== 3) {
   fail(`About page must contain exactly three hardware carousels; found ${hardwareCarouselCount}`);
 } else {
   pass("early hardware placement and carousel count checked");
+}
+
+if (!htmlByPage.get("about.html")?.includes('class="about-at-glance"')) {
+  fail("About page is missing the approved At a glance panel");
+} else if (atAGlanceLabels.some((label) => !htmlByPage.get("about.html").includes(`<dt>${label}</dt>`))) {
+  fail("About At a glance panel is missing an approved label");
+} else {
+  pass("About At a glance panel checked");
 }
 pass("core page titles, descriptions, canonical URLs, headings, and Open Graph metadata checked");
 

@@ -299,6 +299,16 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Editorial note:** Do not repeat the portrait on the About page. The circular portrait remains on Home.
 
+#### At a glance
+
+Present a compact editorial fact panel beside the About introduction on desktop, without an additional portrait or decorative image.
+
+- **Graduate:** Computer Science · 2026
+- **Minor:** Machine Learning and Signal Processing
+- **Building:** Practical AI, web, and API products
+- **Exploring:** Cybersecurity in the AI era
+- **Interested in:** AI, machine learning, and sustainability
+
 ### Experience
 
 **Heading:** Experience

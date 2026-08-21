@@ -40,3 +40,14 @@ The approved About extension was tested at 320, 390, 768, and 1440 pixels.
 - Cycling every photograph leaves both the 4:3 media frames and complete card dimensions unchanged.
 - Counters wrap correctly, no tested width has horizontal overflow, and no image is broken.
 - The grid resolves to one, two, and three columns at mobile, tablet, and desktop widths respectively.
+
+## About information panel
+
+The approved `At a glance` panel was checked at 320, 390, 768, 1018, and 1440 pixels.
+
+- It uses two hero columns at the annotated 1018-pixel desktop width and stacks without overlap at narrower widths.
+- Every tested width has one `h1`, no broken images, no panel/content overlap, and no horizontal overflow.
+- Mobile navigation still opens, closes with Escape, updates `aria-expanded`, and returns focus to its trigger.
+- Reduced-motion transitions collapse to effectively zero duration and standard execution produces no console or page errors.
+- With JavaScript blocked, the panel remains readable, all three first carousel images remain visible, carousel controls remain hidden, and navigation wraps without overflow at 320, 390, and 768 pixels.
+- The final extended About page retains Lighthouse scores of 100 for Performance, Accessibility, Best Practices, and SEO.

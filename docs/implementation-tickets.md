@@ -80,3 +80,12 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Draft concise, evidence-based card copy without presenting school work as professional experience.
 - Restore and optimize every approved legacy photograph for fixed-size, manually controlled carousels.
 - Add the cards to About without expanding the five-project selected Work allowlist.
+
+## PORT-010 — About hero information panel
+
+**Status:** Complete
+
+- Fill the former portrait column with an approved `At a glance` editorial panel.
+- Reuse only approved profile, education, technical-interest, and sustainability content.
+- Keep the panel responsive without adding decorative imagery or unsupported claims.
+- Keep the no-JavaScript mobile navigation visible without horizontal overflow.
