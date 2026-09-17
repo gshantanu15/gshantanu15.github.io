@@ -1,0 +1,67 @@
+.featured-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+  grid-template-rows: auto 1fr;
+}
+
+.project-visual {
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+}
+
+.visual-satellites {
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.visual-satellites video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.project-card[href$="#satellites"] h3 {
+  font-size: clamp(1.55rem, 2.6vw, 2.2rem);
+}
+
+.satellites-demo {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ink);
+}
+
+.satellites-demo video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
+
+.satellites-demo figcaption {
+  padding: 18px 22px;
+  border-top: 1px solid #3e4245;
+  color: #d4d7d9;
+  font-size: .86rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-visual {
+    aspect-ratio: 16 / 10;
+  }
+
+  .satellites-demo figcaption {
+    padding: 16px;
+  }
+}
