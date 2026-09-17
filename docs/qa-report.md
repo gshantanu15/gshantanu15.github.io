@@ -1,6 +1,6 @@
 # Portfolio QA Report
 
-Validated locally on 18 August 2026 against the production files served by a static HTTP server.
+Validated locally on 17 September 2026 against the production files served by a static HTTP server.
 
 ## Automated static checks
 
@@ -8,8 +8,24 @@ Validated locally on 18 August 2026 against the production files served by a sta
 
 - required pages, assets, redirects, metadata, canonical URLs, `robots.txt`, and `sitemap.xml`;
 - internal links, fragment targets, referenced assets, image alternative text, and safe external-link attributes;
-- the approved project allowlist, content exclusions, privacy constraints, and absence of phone, contact-form, framework, and resume content;
+- the six-project Work allowlist in its approved order, four Home project cards, content exclusions, privacy constraints, and absence of phone, contact-form, framework, and resume content;
 - public-safe Counsel and Demola treatment, Voice Agent provider/demo evidence, and FlipOff fork attribution.
+- the Satellites fragment, starter-code attribution, private-source treatment, MP4 and poster references, and the distinct Home and Work playback behavior.
+
+## PORT-012 Satellites production extension
+
+The approved Satellites project was checked on the production Home and Work pages at 320, 390, 768, and 1440 pixels.
+
+- Work contains six case studies in the approved order; Satellites is item `06` and resolves at `work.html#satellites`.
+- Home contains four equally prominent project cards in a two-column desktop grid and a one-column mobile layout. Its section action uses the future-proof wording “View all projects.”
+- Every tested width has one `h1`, no horizontal overflow, and no broken local media reference.
+- The silent H.264 comparison is 8.53 seconds and approximately 535 KB; its WebP poster is approximately 35 KB.
+- Home starts the muted loop only near the viewport when reduced motion is not requested, pauses it off-screen, and returns to the poster at time zero when reduced motion is enabled.
+- Work exposes native playback controls and does not autoplay. With JavaScript disabled, Home remains readable, navigation remains visible, and the poster remains available without autoplay.
+- At 390 pixels, the mobile menu opens, closes with Escape, updates `aria-expanded`, and returns focus to its trigger.
+- Production screenshots for Home and Work at 390 and 1440 pixels are stored under the ignored `output/playwright/production/` directory.
+
+The media labels use results from three comparable local runs with seed 42, 64 satellites, and a 1920-by-1024 render size. Median total frame latency was 1,009 ms for the supplied sequential reference path and 88 ms for the OpenMP/OpenCL implementation. The OpenCL device was reported as `gfx90c`; the public caption identifies the device and notes that performance varies by hardware. The original parallel implementation also reported zero early-frame pixel-comparison errors during capture.
 
 ## Browser matrix
 
