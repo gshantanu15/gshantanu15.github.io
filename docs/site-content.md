@@ -77,7 +77,19 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Action:** Read the project story
 
-**Section action:** View all work
+### Featured project: Satellites - Parallel Programming Simulation
+
+**Label:** Tampere University coursework · Parallel computing
+
+**Summary:**
+
+> An individual course project that parallelizes a satellite simulation’s CPU-side orbital physics with OpenMP and moves its per-pixel rendering workload to OpenCL, targeting GPU execution when available.
+
+**Action:** Read the project story
+
+**Demo:** Show a silent, side-by-side comparison of the sequential reference and parallel implementation directly in the card. Use a static poster when JavaScript is unavailable or reduced motion is requested.
+
+**Section action:** View all projects
 
 ### Experience preview
 
@@ -119,7 +131,7 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 
 **Page title:** Work — Shantanu Garg
 
-**Description:** Selected AI, API, full-stack, AR, and frontend projects by Shantanu Garg.
+**Description:** Selected AI, parallel computing, API, full-stack, AR, and frontend projects by Shantanu Garg.
 
 ### Introduction
 
@@ -274,6 +286,41 @@ This document is the editorial source of truth for the portfolio rebuild. Text i
 **Links:** [Open the live project](https://gshantanu15.github.io/flipoff-forked/) · [View the enhanced fork](https://github.com/gshantanu15/flipoff-forked)
 
 **Attribution:** Enhanced fork of the original FlipOff project; the repository retains the original implementation and license information.
+
+### Satellites - Parallel Programming Simulation
+
+**Label:** Tampere University coursework · Parallel computing
+
+**Lead:** A satellite simulation that distributes computation-heavy orbital physics and pixel rendering across parallel CPU and OpenCL workloads.
+
+**Context:**
+
+> The supplied simulation models 64 satellites moving around a mouse-controlled black hole and calculates the colour of every pixel in a 1920-by-1024 display. Repeated physics updates and per-pixel colour calculations make both stages computationally demanding.
+
+**My role:**
+
+> I completed the exercise individually during a Parallel Computing course at Tampere University, working from university-provided starter code and implementing the parallelization and optimization work within that foundation.
+
+**What I did:**
+
+- Parallelized the satellite physics loop with OpenMP while keeping each satellite’s temporary position and velocity independent during an update.
+- Implemented the per-pixel rendering workload as a two-dimensional OpenCL kernel, targeting a GPU when available and retaining the program’s CPU-device fallback.
+- Reduced repeated work in the physics calculation by precomputing the time step and simplifying the distance and acceleration calculations.
+- Configured release-oriented compiler options including optimization, fast floating-point behavior, AVX2, and OpenMP support.
+- Used the supplied sequential reference routines and early-frame comparisons to check satellite state and rendered-pixel correctness.
+- Retained reporting for physics, rendering, and total frame latency so the sequential and parallel paths can be compared on the same machine.
+
+**Validation and result:**
+
+> The completed implementation combines OpenMP for CPU-side physics with OpenCL for per-pixel rendering and SDL2 for display. Its built-in checks compare the first frames with the supplied sequential reference before regular execution continues. Published performance wording must be limited to measurements reproduced with the same seed, scene settings, resolution, and hardware; do not claim a numerical speed-up unless that comparison has been verified.
+
+**Demo:** A silent, side-by-side comparison of the sequential reference and parallel implementation using the same deterministic seed and scene settings. Label both sides clearly. Show reproduced latency values only if the benchmark is stable and the OpenCL device is identified; otherwise omit numerical values and present the media as an implementation demonstration.
+
+**Capabilities:** C · OpenMP · OpenCL · SDL2 · Parallel computing · Performance optimization
+
+**Public link:** None at launch.
+
+**Attribution:** Individual course exercise built by parallelizing and optimizing Tampere University-provided starter code. Do not publish the starter-code authors’ email addresses, project source, or executable.
 
 ### Work page closing callout
 
