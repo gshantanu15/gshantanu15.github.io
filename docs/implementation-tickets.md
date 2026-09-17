@@ -24,7 +24,7 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 **Status:** Complete
 
 - Replace `index.html` with the approved Home page.
-- Add `work.html` with all five approved project stories.
+- Add `work.html` with all six approved project stories.
 - Add `about.html` with experience, education, thesis, leadership, earlier activities, and contact.
 - Use `docs/site-content.md` as the copy source of truth.
 
@@ -79,7 +79,7 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Recover the three hardware projects and their evidence from the legacy portfolio.
 - Draft concise, evidence-based card copy without presenting school work as professional experience.
 - Restore and optimize every approved legacy photograph for fixed-size, manually controlled carousels.
-- Add the cards to About without expanding the five-project selected Work allowlist.
+- Add the cards to About without expanding the six-project selected Work allowlist.
 
 ## PORT-010 — About hero information panel
 
@@ -98,3 +98,12 @@ These tickets keep the approved rebuild atomic and reviewable. Each production t
 - Name both email and LinkedIn in the Home contact invitation.
 - Center the Home portrait and caption when the hero stacks on tablet and mobile layouts.
 - Keep the header monogram unchanged until a separate visual choice is approved.
+
+## PORT-012 — Satellites parallel-computing case study
+
+**Status:** Complete
+
+- Add Satellites as the sixth approved Work story and fourth equal Home project card.
+- Attribute the individual course exercise to its Tampere University-provided starter-code foundation without publishing source or executables.
+- Publish a measured sequential-versus-parallel comparison with hardware-qualified wording, an H.264 demo, and a reduced-motion poster fallback.
+- Extend static validation and browser QA for the new content, assets, playback behavior, and project counts.

@@ -29,6 +29,8 @@ const requiredFiles = [
   "assets/images/hardware/robotic-top.webp",
   "assets/images/favicon.ico",
   "assets/media/voice-agent-bilingual-demo.wav",
+  "assets/media/satellites-comparison.mp4",
+  "assets/media/satellites-comparison-poster.webp",
   "robots.txt",
   "sitemap.xml",
 ];
@@ -118,7 +120,7 @@ for (const page of redirectPages) {
 }
 pass("legacy redirect metadata checked");
 
-const urlAttributePattern = /(?:href|src)="([^"]+)"/gi;
+const urlAttributePattern = /(?:href|src|poster)="([^"]+)"/gi;
 for (const [page, html] of htmlByPage) {
   for (const match of html.matchAll(urlAttributePattern)) {
     const reference = match[1];
@@ -180,19 +182,51 @@ if (/bootstrap|jquery/i.test(productionHtml)) fail("Legacy Bootstrap or jQuery r
 pass("content exclusions, privacy rules, and zero-framework constraint checked");
 
 const workHtml = htmlByPage.get("work.html") || "";
+const homeHtml = htmlByPage.get("index.html") || "";
 const section = (id, nextId) => {
   const end = nextId ? `(?=<article\\s+class="case-study[^>]*"\\s+id="${nextId}")` : "(?=</div>\\s*<section\\s+class=\"contact-band\")";
   return workHtml.match(new RegExp(`<article\\s+class="case-study[^>]*"\\s+id="${id}"[\\s\\S]*?${end}`, "i"))?.[0] || "";
 };
 const counsel = section("counsel", "demola-ar");
 const demola = section("demola-ar", "expense-api");
+const satellites = section("satellites");
 if (!counsel || !demola) fail("Could not locate Counsel and Demola project sections");
+if (!satellites) fail("Could not locate the Satellites project section");
 if (/github\.com|gitlab|private repository/i.test(counsel)) fail("Counsel exposes a repository or private implementation detail");
 if (/github\.com|gitlab|private repository/i.test(demola)) fail("Demola exposes a repository or private implementation detail");
+if (/github\.com|gitlab/i.test(satellites)) fail("Satellites exposes a public repository link");
+if (!/Tampere University-provided starter code/i.test(satellites)) fail("Satellites starter-code attribution is missing");
 if (!/Retell AI/i.test(workHtml) || !/Sarvam AI/i.test(workHtml)) fail("Voice Agent provider attribution is incomplete");
 if (!/voice-agent-bilingual-demo\.wav/i.test(workHtml)) fail("Voice Agent consented audio demo is missing");
 if (!/Enhanced open-source fork/i.test(workHtml) || !/original FlipOff project/i.test(workHtml)) fail("FlipOff fork attribution is incomplete");
-pass("project-specific privacy, provider, evidence, and attribution rules checked");
+
+const expectedWorkIds = ["voice-agent", "counsel", "demola-ar", "expense-api", "flipoff", "satellites"];
+const actualWorkIds = [...workHtml.matchAll(/<article\s+class="case-study[^"]*"\s+id="([^"]+)"/gi)].map((match) => match[1]);
+if (actualWorkIds.join("|") !== expectedWorkIds.join("|")) {
+  fail(`Work projects must match the six approved entries in order; found: ${actualWorkIds.join(", ")}`);
+}
+
+const homeProjectCount = (homeHtml.match(/<a\s+class="project-card"\s+href="work\.html#/gi) || []).length;
+if (homeProjectCount !== 4) fail(`Home must contain exactly four selected-work cards; found ${homeProjectCount}`);
+if (!/>View all projects\s*</i.test(homeHtml)) fail('Home selected-work action must say "View all projects"');
+if (/Selected work\s*·\s*2025—2026/i.test(workHtml)) fail("Work eyebrow contains the stale date range");
+
+const homeSatellitesVideo = homeHtml.match(/<video\b[^>]*data-satellites-preview[^>]*>/i)?.[0] || "";
+if (!homeSatellitesVideo || !/muted/i.test(homeSatellitesVideo) || !/loop/i.test(homeSatellitesVideo) || /\sautoplay(?:\s|=|>)/i.test(homeSatellitesVideo)) {
+  fail("Home Satellites preview must be muted and looping without HTML autoplay");
+}
+if (!/<video\b[^>]*controls[^>]*poster="assets\/media\/satellites-comparison-poster\.webp"/i.test(satellites)) {
+  fail("Work Satellites demo must expose controls and its poster");
+}
+if (!/satellites-comparison\.mp4/i.test(homeHtml) || !/satellites-comparison\.mp4/i.test(satellites)) {
+  fail("Satellites comparison video is not referenced from both Home and Work");
+}
+
+const sharedScript = exists("assets/js/site.js") ? read("assets/js/site.js") : "";
+if (!/prefers-reduced-motion/i.test(sharedScript) || !/IntersectionObserver/i.test(sharedScript)) {
+  fail("Shared script is missing reduced-motion or viewport-aware Satellites playback");
+}
+pass("six-project placement, privacy, media behavior, provider evidence, and attribution rules checked");
 
 const sitemap = exists("sitemap.xml") ? read("sitemap.xml") : "";
 for (const url of [

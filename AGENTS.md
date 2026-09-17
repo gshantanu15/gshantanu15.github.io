@@ -28,6 +28,7 @@ Approved Work entries:
 3. AI-assisted Object Recognition in AR (Demola)
 4. Smart Expense Tracker API
 5. FlipOff
+6. Satellites - Parallel Programming Simulation
 
 The bachelor's thesis belongs under Education, not Work.
 
@@ -53,6 +54,7 @@ Never add or mention NBA Analysis, Finland Live, Beopardy, 2D-to-3D Generator, P
 - Keep Counsel and Demola descriptions high-level. Do not expose their internal architecture or implementation details.
 - Describe Demola as a team project and limit Shantanu's contribution to the approved Tripo3D API integration, manual end-to-end testing, teamwork, and delivery language.
 - Describe FlipOff as an enhanced fork and retain clear attribution.
+- Describe Satellites as an individual Tampere University course exercise built from university-provided starter code. Do not publish its source or executable, and qualify local performance measurements by hardware.
 - Do not publish a resume link in the launch version.
 - Do not invent metrics, dates, roles, technologies, client names, awards, or project outcomes.
 

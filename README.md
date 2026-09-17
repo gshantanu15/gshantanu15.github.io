@@ -5,7 +5,7 @@ A minimal, accessible portfolio for Shantanu Garg, published as a zero-build Git
 ## Public routes
 
 - `index.html` — homepage and selected work
-- `work.html` — five approved project stories
+- `work.html` — six approved project stories
 - `about.html` — experience, education, leadership, earlier activities, and contact
 
 The former `projects.html`, `about-me.html`, and `contact-me.html` routes remain as redirects.
