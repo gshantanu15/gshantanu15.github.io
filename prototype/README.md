@@ -38,6 +38,8 @@ Hallmark’s source lint and browser render results are saved in `review/hallmar
 
 Hallmark’s final source and browser sweeps report zero FAIL and zero WARN. Gate 77 is waived for the compact, complete real-world records; original wording and document length remain copy notes. Independent final visual review returned ship. External destinations are preserved but their remote availability was not retested.
 
+Expanded-project regression checks also cover heading separation, distinct tag boundaries and wrapping at all four widths. Colored tags meet at least 11:1 text contrast in the saved browser measurement (`review/tag-contrast.json`). Close-up screenshots of Voice Agent Lab and Demola and full expanded desktop/mobile records are in `review/`.
+
 ## Font
 
 Martian Mono is self-hosted under the [SIL Open Font License](https://raw.githubusercontent.com/google/fonts/main/ofl/martianmono/OFL.txt). The original license accompanies the font in `assets/fonts/`. No third-party font service is contacted by visitors.

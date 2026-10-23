@@ -55,13 +55,46 @@ const checkLegacyCopy = async (page, name) => {
   for (const paragraph of copy) assert(updated.includes(paragraph), `${name}: substantive legacy copy missing: ${paragraph.slice(0, 90)}`);
   await original.close();
 };
-const layout = async (page, name, width) => {
+const layout = async (page, name, width, state = "") => {
   await page.setViewport({ width, height: width < 500 ? 844 : 900 });
   const result = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > innerWidth, broken: [...document.images].filter((i) => !i.complete || !i.naturalWidth).map((i) => i.src), outside: [...document.querySelectorAll('main h1,main h2,main h3,main p,main li,main a,main img')].filter((e) => { const r = e.getBoundingClientRect(); return r.width && (r.right > innerWidth + 1 || r.left < -1); }).length, wrappedNav: [...document.querySelectorAll('.page-navigation a,#directory nav a')].filter((e) => { if (!e.getClientRects().length || getComputedStyle(e).visibility === 'hidden' || getComputedStyle(e).display === 'none') return false; const range = document.createRange(); range.selectNodeContents(e); return range.getClientRects().length > 1; }).map((e) => e.textContent.trim()) }));
   assert(!result.overflow, `${name} ${width}: horizontal overflow`); assert.deepEqual(result.broken, [], `${name} ${width}: broken image`); assert.equal(result.outside, 0, `${name} ${width}: clipped content`); assert.deepEqual(result.wrappedNav, [], `${name} ${width}: navigation text wraps`);
-  if ([390, 1440].includes(width)) { await page.screenshot({ path: path.join(review, `${name}-${width}.png`) }); await page.screenshot({ path: path.join(review, `${name}-${width}-full.png`), fullPage: true }); }
-  reports.push(`${name} ${width}px: layout and media passed`);
+  if ([390, 1440].includes(width)) { await page.screenshot({ path: path.join(review, `${name}${state}-${width}.png`) }); await page.screenshot({ path: path.join(review, `${name}${state}-${width}-full.png`), fullPage: true }); }
+  reports.push(`${name}${state} ${width}px: layout and media passed`);
 };
+const expandedProjects = async (page) => {
+  await page.$$eval('.record-details', (details) => details.forEach((detail) => { detail.open = true; }));
+  for (const width of [320, 390, 768, 1440]) {
+    await layout(page, 'work', width, '-expanded');
+    const problems = await page.evaluate(() => {
+      const failures = [];
+      for (const record of document.querySelectorAll('.project-record')) {
+        for (const heading of record.querySelectorAll('.record-body h3')) {
+          const previous = heading.previousElementSibling;
+          if (previous && heading.getBoundingClientRect().top - previous.getBoundingClientRect().bottom < 24) failures.push(record.id + ': crowded ' + heading.textContent);
+        }
+        for (const list of record.querySelectorAll('.tech-list')) {
+          const tags = [...list.children];
+          for (const tag of tags) {
+            const style = getComputedStyle(tag);
+            if (parseFloat(style.paddingInlineStart) < 8 || parseFloat(style.borderTopWidth) < 1 || style.backgroundColor === 'rgba(0, 0, 0, 0)') failures.push(record.id + ': indistinct tag ' + tag.textContent);
+            const box = tag.getBoundingClientRect();
+            if (box.width < tag.scrollWidth || box.height < tag.scrollHeight) failures.push(record.id + ': clipped tag ' + tag.textContent);
+          }
+          for (let index = 1; index < tags.length; index++) {
+            const before = tags[index - 1].getBoundingClientRect();
+            const after = tags[index].getBoundingClientRect();
+            if (Math.abs(after.top - before.top) < 2 && after.left - before.right < 6) failures.push(record.id + ': touching tags');
+          }
+        }
+      }
+      return failures;
+    });
+    assert.deepEqual(problems, [], `expanded projects ${width}px: spacing and tags`);
+  }
+  reports.push('All six expanded project records: heading separation and tag boundaries passed at four widths');
+};
+
 const interaction = async (page, name) => {
   await page.setViewport({ width: 390, height: 844 });
   await page.click('.menu-toggle'); assert.equal(await page.$eval('.menu-toggle', (e) => e.getAttribute('aria-expanded')), 'true', `${name}: menu opens`);
@@ -82,7 +115,7 @@ try {
     for (const width of [320, 390, 768, 1440]) await layout(page, name, width);
     await interaction(page, name); await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]); assert.equal(await page.$$eval('video[autoplay],audio[autoplay]', (e) => e.length), 0, `${name}: autoplay media`); assert.equal(await page.$$eval('*', (els) => els.filter((e) => parseFloat(getComputedStyle(e).transitionDuration) > 0.01 || parseFloat(getComputedStyle(e).animationDuration) > 0.01).length), 0, `${name}: reduced motion disables transitions`); assert(await page.$eval('body', (e) => getComputedStyle(e).backgroundImage === 'none'), `${name}: gradient background`);
     if (name === 'index') { for (const id of commands) assert(await page.$(`#${id}`), `home: missing #${id}`); const body = await page.$eval('body', (e) => `${e.textContent} ${[...e.querySelectorAll('a[href]')].map((a) => a.href).join(' ')}`); for (const fact of ['Shantanu Garg', 'Tampere University', '2026', 'Computer Science', 'Machine Learning and Signal Processing', 'Voice Agent Lab', 'Counsel', 'AI-assisted Object Recognition in AR', 'Smart Expense Tracker API', 'FlipOff', 'Satellites', 'LinkedIn', 'GitHub', 'Chairperson', 'Treasurer', 'Comparative Analysis of Multi-Agent Frameworks for Requirements Engineering', 'https://trepo.tuni.fi/handle/10024/237688']) assert(body.includes(fact), `home: missing approved fact ${fact}`); }
-    if (name === 'work') { assert.deepEqual(await page.$$eval('article[id]', (e) => e.map((x) => x.id)), workIds, 'work: six ordered projects'); assert.equal(await page.$$eval('article details', (e) => e.length), 6, 'work: native details'); assert(await page.$eval('#demola-ar', (e) => /Tripo3D API|manual end-to-end testing|team/i.test(e.textContent)), 'work: Demola approved scope'); }
+    if (name === 'work') { assert.deepEqual(await page.$$eval('article[id]', (e) => e.map((x) => x.id)), workIds, 'work: six ordered projects'); assert.equal(await page.$$eval('article details', (e) => e.length), 6, 'work: native details'); await expandedProjects(page); assert(await page.$eval('#demola-ar', (e) => /Tripo3D API|manual end-to-end testing|team/i.test(e.textContent)), 'work: Demola approved scope'); }
     if (name === 'about') { assert.equal(await page.$$eval('[data-carousel]', (e) => e.length), 3, 'about: three carousels'); await page.$$eval('.archive-details', (details) => details.forEach((detail) => { detail.open = true; })); for (const c of await page.$$('[data-carousel]')) { for (const s of ['[data-slide]', '[data-carousel-prev]', '[data-carousel-next]', '[data-carousel-current]']) assert(await c.$(s), `about: carousel ${s}`); const before = await c.$eval('[data-carousel-current]', (e) => e.textContent); await c.$eval('[data-carousel-next]', (e) => e.click()); assert.notEqual(await c.$eval('[data-carousel-current]', (e) => e.textContent), before, 'about: carousel advances'); } }
     await page.setJavaScriptEnabled(false); await load(page, `${name}.html`); assert(await page.$eval('#directory', (e) => getComputedStyle(e).display !== 'none'), `${name}: no-JS directory`); await page.keyboard.press('Tab'); assert(await page.evaluate(() => document.activeElement.matches('.skip-link')), `${name}: skip link first`); await page.close(); reports.push(`${name}: contract, behavior, accessibility, no-JS, and content checks passed`);
   }

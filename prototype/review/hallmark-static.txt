@@ -3,6 +3,6 @@ prototype\about.html
   NOTE 58 :1 606 visible words on the page (450 at most) | fix: Cut copy: one idea per screen, sections become objects
   NOTE 58 :54 hero paragraph runs 32 words | fix: One sentence, twelve words or fewer
 prototype\work.html
-  NOTE 19 :72 dash "–" in copy
+  NOTE 19 :70 dash "–" in copy
   NOTE 58 :1 967 visible words on the page (450 at most)
 sloplint: 0 FAIL, 0 WARN, 5 NOTE across 6 file(s).
