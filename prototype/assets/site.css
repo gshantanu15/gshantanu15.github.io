@@ -121,6 +121,12 @@ summary:hover { color: var(--color-ink); }
 .experience-record ul { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); padding: 0; list-style: none; color: var(--color-muted); font-size: 12px; }
 .experience-record li { margin: 0; }
 .archive-details { border-bottom: 1px solid var(--color-rule); padding-block: var(--space-xs); }
+/* Keep activity subjects distinct from their descriptions. */
+.activity-records { margin: var(--space-lg) 0 0; }
+.activity-records > div { padding-block: var(--space-md); border-top: 1px solid var(--color-rule); }
+.activity-records dt { color: var(--color-ink); font-weight: 500; font-size: 15px; }
+.activity-records dd { margin: var(--space-xs) 0 0; color: var(--color-ink-2); font-size: 15px; max-width: 65ch; }
+
 .hardware-record + .hardware-record { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--color-rule); }
 .hardware-record h3 { margin-top: var(--space-lg); }
 .hardware-record ul { font-size: var(--text-sm); }
