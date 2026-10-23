@@ -1,6 +1,28 @@
 [
  {
   "date": "2026-10-23",
+  "mode": "refine",
+  "scope": "prototype identity and command reference",
+  "theme": "terminal (by request)",
+  "shape": "Session Ledger",
+  "hero": "Approved glyph portrait beside semantic whoami output and fixed-map command navigation",
+  "signature": "Original approved portrait printed in 130 columns of self-hosted Martian Mono",
+  "entry": "prototype/index.html",
+  "imagery": "Original profile.webp converted locally to a static glyph WebP; no third-party processing",
+  "prompt": "Prioritize glyph imagery, stronger identity session and command-reference layout, with accessible responsive static fallback and brief motion",
+  "kept": "All verified facts, original portrait source, shared buildless runtime, production unchanged",
+  "adaptations": [
+   "180ms single dim-to-full row reveal in place of noise and repeated blinking",
+   "Static image and descriptive links available without scripts",
+   "Reduced motion and save-data skip animation; errors and preference changes preserve static image"
+  ],
+  "reviews": {
+   "finish": "subagent: ship; no required fixes"
+  },
+  "checks": "Identity fallback, motion, keyboard, privacy and responsive checks passed; full portfolio checks and Hallmark sweep recorded in prototype/review"
+ },
+ {
+  "date": "2026-10-23",
   "mode": "redesign",
   "depth": "full",
   "scope": "site",

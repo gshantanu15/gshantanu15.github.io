@@ -41,8 +41,9 @@ if (form && input && message && help) {
     const command = input.value.trim().toLowerCase();
     input.removeAttribute("aria-invalid");
     if (command === "help") {
-      help.hidden = false;
       message.textContent = "Available commands: whoami, education, projects, experience, tascien, contact.";
+      help.focus({ preventScroll: true });
+      help.scrollIntoView({ block: "start" });
       return;
     }
     // The command field resolves only this fixed navigation map.
@@ -96,3 +97,52 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   previous.addEventListener("click", () => show(activeIndex - 1));
   next.addEventListener("click", () => show(activeIndex + 1));
 });
+
+// The static portrait survives disabled scripts, failed decoding, or missing canvas support.
+const portrait = document.querySelector("[data-glyph-portrait]");
+if (portrait) {
+  const image = portrait.querySelector("img");
+  const canvas = portrait.querySelector("canvas");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let frame = 0;
+  const restorePortrait = () => {
+    cancelAnimationFrame(frame);
+    portrait.removeAttribute("data-rendered");
+    canvas.hidden = true;
+  };
+  const revealPortrait = async () => {
+    if (reducedMotion.matches || navigator.connection?.saveData || document.hidden) return;
+    try {
+      await image.decode();
+      const context = canvas.getContext("2d");
+      if (!context || reducedMotion.matches || document.hidden) return;
+      const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--dur-short"));
+      if (!Number.isFinite(duration) || duration <= 0) return;
+      const draw = (progress) => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.globalAlpha = .45;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        context.globalAlpha = 1;
+        const rows = Math.ceil(progress * 70);
+        const height = Math.min(canvas.height, rows * canvas.height / 70);
+        if (height > 0) context.drawImage(image, 0, 0, image.naturalWidth, height, 0, 0, canvas.width, height);
+      };
+      draw(0);
+      canvas.hidden = false;
+      portrait.setAttribute("data-rendered", "");
+      let start;
+      const reveal = (now) => {
+        if (reducedMotion.matches || document.hidden) { restorePortrait(); return; }
+        start ??= now;
+        const progress = Math.min(1, (now - start) / duration);
+        try { draw(progress); } catch { restorePortrait(); return; }
+        if (progress < 1) frame = requestAnimationFrame(reveal);
+        else restorePortrait();
+      };
+      frame = requestAnimationFrame(reveal);
+    } catch { restorePortrait(); }
+  };
+  reducedMotion.addEventListener("change", restorePortrait);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) restorePortrait(); });
+  revealPortrait();
+}
