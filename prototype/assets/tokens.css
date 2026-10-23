@@ -9,6 +9,8 @@
   --font-display: "Martian Mono", ui-monospace, monospace; --font-body: var(--font-display); --font-outlier: var(--font-display);
   --radius-card: 0; --radius-pill: 0; --rule-hair: 1px; --shadow-card: none;
   --tracking-display: -0.02em; --display-weight: 500; --stretch-display: 112.5%; --stretch-body: 87.5%;
+  --color-tag-tool: oklch(85% 0.08 235); --color-tag-tool-bg: oklch(21% 0.025 235); --color-tag-tool-rule: oklch(42% 0.05 235);
+  --color-tag-practice: oklch(87% 0.11 85); --color-tag-practice-bg: oklch(22% 0.025 85); --color-tag-practice-rule: oklch(43% 0.05 85);
   --color-clear: transparent;
   --text-md: 1rem; --text-sm: .8125rem;
   --text-display: clamp(2.1rem, 4.1vw, 3.5rem);

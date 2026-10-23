@@ -95,16 +95,20 @@ summary { min-height: 48px; padding-block: var(--space-sm); color: var(--color-a
 summary:hover { color: var(--color-ink); }
 .record-body { padding-block: var(--space-lg) var(--space-md); }
 .record-body h3 { margin-block: 32px var(--space-md); }
-.record-body h3:first-child { margin-top: 0; }
+.record-body > h3:first-child { margin-top: 0; }
 .record-body p, .record-body li { font-size: 15px; color: var(--color-ink-2); }
 .record-body p + p { margin-top: var(--space-md); }
-.record-body > div, .record-body > figure { margin-block: 32px; }
+.record-body > figure { margin-block: 32px; }
 .record-body a { display: inline-block; max-width: 100%; padding-block: var(--space-xs); font-size: var(--text-sm); overflow-wrap: anywhere; }
 .record-body audio { margin-block: var(--space-lg); }
 .record-body figure { margin-inline: 0; }
 .record-body figcaption { margin-top: var(--space-md); color: var(--color-muted); font-size: 12px; }
-.tech-list { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); padding: 0; list-style: none; margin-block: var(--space-lg); }
-.tech-list li { margin: 0; font-size: 12px; }
+.tech-list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); padding: 0; list-style: none; margin-block: var(--space-lg); }
+.tech-list li { margin: 0; padding: var(--space-2xs) var(--space-xs); border: 1px solid var(--color-tag-tool-rule); background: var(--color-tag-tool-bg); color: var(--color-tag-tool); font-size: 12px; line-height: 1.5; }
+.tech-list [data-tag="practice"] { border-color: var(--color-tag-practice-rule); background: var(--color-tag-practice-bg); color: var(--color-tag-practice); }
+.tech-list [data-tag="principle"] { border-color: var(--color-rule-2); background: var(--color-accent-wash); color: var(--color-accent); }
+.record-links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); margin-top: var(--space-lg); }
+.record-links a { display: inline-flex; align-items: center; min-height: 44px; }
 .prose p { margin-top: var(--space-lg); color: var(--color-ink-2); }
 #education > div > div > p { margin-top: var(--space-md); color: var(--color-ink-2); }
 #education > div > div > h3 { font-size: 24px; }

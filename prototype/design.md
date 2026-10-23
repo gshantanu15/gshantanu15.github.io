@@ -24,6 +24,8 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Signal and focus: `oklch(87% 0.2 142)`; paired dark signal ink.
 - Type: self-hosted Martian Mono, variable width and weight. Its SIL Open Font License is retained in `assets/fonts/OFL.txt`.
 - Content width: 1120px, centered and capped. A 176px desktop directory sits beside the document.
+- Tags: blue tool/platform chips, amber practice chips, and green principle chips. These restrained secondary hues were added at the user’s request; labels remain meaningful without color.
+- Project detail headings use consistent spacing across flat content groups; public actions have a separate link row.
 - Corners: square. No shadows, gradients, decorative browser windows, scanlines, or blinking text.
 
 ## Interaction
