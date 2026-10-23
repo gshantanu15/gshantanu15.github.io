@@ -1,36 +1,47 @@
-# Hallmark Studio showcase
+# Terminal portfolio prototype
 
-Branch: `showcase/hallmark-studio`.
+Branch: `showcase/hallmark-studio` (retained as requested).
 
-This is a complete three-page design prototype for the existing static portfolio. It changes presentation while preserving the current portfolio's substantive text, headings, link destinations, metadata, project media, attribution, and hardware photographs. No production page or source content document was changed.
+The earlier editorial design has been replaced with a terminal-style portfolio: dark phosphor colours, locally served monospace type, a command directory, a working command field, and expandable project records. There are no remaining Studio layout classes, serif type rules, portrait hero, card grid, or editorial bands in the redesigned pages.
 
 ## Preview
 
-From the repository root:
+From the repository root, run:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Open `http://127.0.0.1:8000/prototype/` for the interactive site, or `http://127.0.0.1:8000/prototype/review.html` for the before/after comparison. These are local previews, not published URLs.
+Open `http://127.0.0.1:8000/prototype/`. The review page is `prototype/review.html`.
 
-## Design
+## Information architecture
 
-Cool paper, large serif display typography, blue-black ink, orange actions, open project entries, and a readable professional record. The shared system is documented in `design.md`; the site remains semantic HTML, CSS, and minimal vanilla JavaScript, with no build step.
+The overview conveys the six requested subjects directly: Shantanu’s identity; Tampere University graduation in 2026; all six projects; email, LinkedIn and GitHub; TaSciEn chairperson and treasurer roles with their responsibilities; and the published thesis alongside education.
 
-Presentation-only changes include moving labels below headings, normalizing decorative punctuation and casing, removing placeholder drawings, framing the existing portrait, and replacing automatic video playback with native controls. All substantive details remain present.
+Project and Background pages retain the complete public-safe records, media, attribution, professional experience, earlier activities, and original hardware galleries. The thesis stays under Education. No new personal facts or unverified dates were added.
 
 ## Verification
 
-- `node scripts/check-site.mjs` passes for the unchanged production site.
-- `scripts/check-prototype.mjs` verifies preserved content, headings, metadata, links and media; local resources and fragments; all three layouts at 320px, 390px, 768px and 1440px; image loading; menu Escape and focus restoration; no-JavaScript access; reduced motion; and all three hardware carousels.
-- Browser verification uses temporary `puppeteer-core` tooling outside this repository. It is not a website dependency. Set `HALLMARK_PUPPETEER` to its install directory and run `node prototype/scripts/check-prototype.mjs` from the repository root. Override `CHROME_PATH` when needed.
-- Hallmark's full static and render sweep: zero FAIL, zero WARN. Gate 77 is waived for the real six-article Work index and compact two-role leadership section. Preserved copy length and original dash punctuation are notes under `copy: verbatim`.
-- Independent hero review: mobile portrait placement corrected. Independent finish review: ship, with no required fixes.
-- Desktop and mobile screenshots for all three pages are in `review/`. `review/checks.json` contains the browser-check results.
+The browser checker runs with temporary Puppeteer tooling outside the repository:
 
-External destinations were preserved but their remote availability was not tested. The system font may vary slightly between operating systems. No material slots or replacement images are required.
+```powershell
+$env:HALLMARK_PUPPETEER = 'C:\path\to\tool-install'
+$env:BASE_URL = 'http://127.0.0.1:8000/prototype/'
+node prototype/scripts/check-prototype.mjs
+```
+
+Override `CHROME_PATH` if Chrome is installed elsewhere. The website itself has no package manager, build step, framework, or third-party runtime dependency.
+
+Checks cover all three pages at 320px, 390px, 768px, and 1440px; overflow and image loading; local links and fragments; metadata and safe external links; known commands, help, invalid input and focus; mobile Escape behavior; reduced motion; no-JavaScript access; native project disclosures; hardware galleries; and retained substantive records.
+
+Hallmark’s source lint and browser render results are saved in `review/hallmark-static.txt` and `review/hallmark.txt`. Browser results and screenshots are in `review/`. Studio screenshots retained there are historical comparison evidence only.
+
+Hallmark’s final source and browser sweeps report zero FAIL and zero WARN. Gate 77 is waived for the compact, complete real-world records; original wording and document length remain copy notes. Independent final visual review returned ship. External destinations are preserved but their remote availability was not retested.
+
+## Font
+
+Martian Mono is self-hosted under the [SIL Open Font License](https://raw.githubusercontent.com/google/fonts/main/ofl/martianmono/OFL.txt). The original license accompanies the font in `assets/fonts/`. No third-party font service is contacted by visitors.
 
 ## Approval boundary
 
-The repository's `AGENTS.md`, under “Approval gates,” requires a functional prototype and screenshots followed by user approval before root production pages are changed. This branch stops at that concrete review point. Nothing was pushed or deployed, and GitHub Pages settings were not changed.
+The repository requires prototype approval before root production edits. This revision stays under `prototype/`, apart from Hallmark’s design log and preflight cache. Nothing was pushed or deployed, and GitHub Pages settings were not changed.

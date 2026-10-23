@@ -1,17 +1,11 @@
-prototype\about.html
-  WAIVED 77 :1 [1440px] 1 thin section: "Student leadership" (99% wide, no mass)
-  NOTE 19 :17 dash "—" in copy | fix: A comma, a colon, a full stop or parentheses; never a dash
-  NOTE 58 :1 650 visible words on the page (450 at most) | fix: Cut copy: one idea per screen, sections become objects
-  NOTE 58 :1 [1440px] 149 words on one screen (from y=450) | fix: One idea per screen: cut to about 80 words, make the section an object
-  NOTE 58 :1 [1440px] hero carries 6 text blocks before its actions | fix: Headline, one sentence, actions; delete the rest
-  NOTE 58 :40 h1 runs 9 words ("I learn by building, testing, and worki…") | fix: Seven words or fewer, 50 characters or fewer
-prototype\work.html
+http://127.0.0.1:8001/prototype/about.html
+  WAIVED 77 :1 [1440px] 2 thin sections: "TaSciEn" (99% wide, no mass); "Earlier work & activities" (83% wide, no mass)
+  NOTE 58 :1 [1440px] 139 words on one screen (from y=250) | fix: One idea per screen: cut to about 80 words, make the section an object
+  NOTE 58 :1 [1440px] hero carries 3 text blocks before its actions | fix: Headline, one sentence, actions; delete the rest
+http://127.0.0.1:8001/prototype/index.html
+  WAIVED 77 :1 [1440px] 3 thin sections: "Experience" (97% wide, no mass); "TaSciEn" (99% wide, no mass); "Contact" (61% wide)
+  NOTE 58 :1 [1440px] 86 words on one screen (from y=2300) | fix: Close to the 80-word screen budget
+http://127.0.0.1:8001/prototype/work.html
   WAIVED 77 :1 [1440px] 4 sections, hero and footer included
-  NOTE 19 :17 dash "—" in copy
-  NOTE 58 :1 977 visible words on the page (450 at most)
-  NOTE 58 :1 [1440px] 208 words on one screen (from y=7800)
   NOTE 58 :1 [1440px] hero carries 3 text blocks before its actions
-prototype\index.html
-  NOTE 19 :17 dash "—" in copy
-  NOTE 58 :1 [1440px] 127 words on one screen (from y=800)
-sloplint: 0 FAIL, 0 WARN, 2 WAIVED, 11 NOTE across 6 file(s).
+sloplint: 0 FAIL, 0 WARN, 3 WAIVED, 4 NOTE across 3 file(s) and 3 URL(s).

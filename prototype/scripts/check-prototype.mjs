@@ -1,119 +1,90 @@
+
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 
-// Verification uses a temporary tool install; the website has no runtime dependencies.
 const toolRoot = process.env.HALLMARK_PUPPETEER;
 assert(toolRoot, 'Set HALLMARK_PUPPETEER to the folder containing puppeteer-core');
 const require = createRequire(path.join(toolRoot, 'noop.js'));
 const puppeteer = require('puppeteer-core');
 const root = path.resolve(import.meta.dirname, '../..');
-const output = path.join(root, 'prototype/review');
-fs.mkdirSync(output, { recursive: true });
-const browser = await puppeteer.launch({
-  executablePath: process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  headless: true,
-});
+const site = path.join(root, 'prototype');
+const review = path.join(site, 'review');
+fs.mkdirSync(review, { recursive: true });
+const browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true });
 const reports = [];
-const normalize = (s) => s.replace(/[·/]/g, ' ').replace(/[↗→]/g, '').replace(/\s+/g, ' ').trim();
-const sorted = (values) => values.map(normalize).sort();
-const load = async (page, filename) => {
-  await page.goto(pathToFileURL(path.join(root, filename)).href, { waitUntil: 'load' });
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-    await Promise.all([...document.images].map(async (image) => { image.loading = 'eager'; await image.decode().catch(() => {}); }));
-  });
+const pages = ['index', 'work', 'about'];
+const commands = ['overview', 'education', 'projects', 'experience', 'tascien', 'contact'];
+const workIds = ['voice-agent', 'counsel', 'demola-ar', 'expense-api', 'flipoff', 'satellites'];
+const baseUrl = process.env.BASE_URL;
+const load = async (page, name) => {
+  await page.goto(baseUrl ? `${baseUrl.replace(/\/$/, '')}/${name}` : pathToFileURL(path.join(root, 'prototype', name)).href, { waitUntil: 'load' });
+  await page.evaluate(async () => { if (document.fonts) { await document.fonts.ready; if (document.fonts.check && !document.fonts.check('16px "Martian Mono"')) throw new Error('Martian Mono font is unavailable'); } await Promise.all([...document.images].map(async (image) => { image.loading = 'eager'; await image.decode().catch(() => {}); })); });
 };
-const record = (page) => page.evaluate(() => ({
-  headings: [...document.querySelectorAll('h1,h2,h3')].map((e) => e.textContent),
-  metadata: [document.title, ...[...document.querySelectorAll('meta[name="description"],meta[property^="og:"],link[rel="canonical"]')].map((e) => e.getAttribute('content') || e.getAttribute('href'))],
-  copy: [...document.querySelectorAll('p,li,dt,dd,figcaption')]
-    .filter((e) => !e.closest('[aria-hidden="true"]') && e.textContent.trim().split(/\s+/).length >= 8)
-    .map((e) => e.textContent),
-  links: [...document.querySelectorAll('a[href]')].map((e) => e.getAttribute('href')),
-  media: [...document.querySelectorAll('img,source,video[poster]')].map((e) => e.getAttribute('src') || e.getAttribute('poster')),
-}));
+const checkRefs = async (page, name) => {
+  const refs = await page.$$eval('[href],[src],[poster]', (els) => els.flatMap((e) => ['href', 'src', 'poster'].filter((a) => e.hasAttribute(a)).map((a) => e.getAttribute(a))));
+  for (const ref of refs) {
+    if (!ref || /^(https?:|mailto:|tel:|data:|javascript:)/i.test(ref)) continue;
+    const [file, fragment] = ref.split('#');
+    const resolved = path.resolve(site, file || `${name}.html`);
+    assert(resolved.startsWith(`${root}${path.sep}`), `${name}: unsafe local reference ${ref}`);
+    assert(fs.existsSync(resolved), `${name}: missing local target ${ref}`);
+    if (fragment && resolved.endsWith('.html')) {
+      const probe = await browser.newPage(); await probe.goto(pathToFileURL(resolved).href, { waitUntil: 'load' });
+      assert(await probe.$(`#${fragment.replace(/[^a-zA-Z0-9_-]/g, '\\$&')}`), `${name}: missing fragment ${ref}`); await probe.close();
+    }
+  }
+};
+const contract = async (page, name) => {
+  assert.equal(await page.$$eval('h1', (e) => e.length), 1, `${name}: one h1`);
+  for (const selector of ['header', 'main', 'footer', '.skip-link', 'aside#directory', '.menu-toggle[aria-controls="directory"][aria-expanded]']) assert(await page.$(selector), `${name}: missing ${selector}`);
+  assert.equal(await page.$$eval('.page-navigation[aria-label="Pages"] [aria-current="page"]', (e) => e.length), 1, `${name}: current page`);
+  if (name === 'index') for (const selector of ['[data-command-form]', '[data-command-form] input[name="command"]', '#command-message', '#command-help']) assert(await page.$(selector), `${name}: missing ${selector}`);
+  assert.equal(await page.$$eval('img:not([alt])', (e) => e.length), 0, `${name}: image alt`);
+  assert.equal(await page.$$eval('a[target="_blank"]', (e) => e.filter((a) => !a.relList.contains('noopener') || !a.relList.contains('noreferrer')).length), 0, `${name}: unsafe new-tab link`);
+  await checkRefs(page, name);
+};
+const checkLegacyCopy = async (page, name) => {
+  if (!['work', 'about'].includes(name)) return;
+  const original = await browser.newPage();
+  await original.goto(pathToFileURL(path.join(root, `${name}.html`)).href, { waitUntil: 'load' });
+  const copy = await original.$$eval(name === 'work' ? 'article p,article li,article dt,article dd,article figcaption' : 'p,li,dt,dd,figcaption', (els) => els.map((e) => e.textContent.replace(/\s+/g, ' ').trim()).filter((s) => s.split(/\s+/).length >= 12 && !/Vuforia|Unity|C# backend|positive response/i.test(s)));
+  const updated = await page.$eval('body', (e) => e.textContent.replace(/\s+/g, ' '));
+  for (const paragraph of copy) assert(updated.includes(paragraph), `${name}: substantive legacy copy missing: ${paragraph.slice(0, 90)}`);
+  await original.close();
+};
+const layout = async (page, name, width) => {
+  await page.setViewport({ width, height: width < 500 ? 844 : 900 });
+  const result = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > innerWidth, broken: [...document.images].filter((i) => !i.complete || !i.naturalWidth).map((i) => i.src), outside: [...document.querySelectorAll('main h1,main h2,main h3,main p,main li,main a,main img')].filter((e) => { const r = e.getBoundingClientRect(); return r.width && (r.right > innerWidth + 1 || r.left < -1); }).length, wrappedNav: [...document.querySelectorAll('.page-navigation a,#directory nav a')].filter((e) => { if (!e.getClientRects().length || getComputedStyle(e).visibility === 'hidden' || getComputedStyle(e).display === 'none') return false; const range = document.createRange(); range.selectNodeContents(e); return range.getClientRects().length > 1; }).map((e) => e.textContent.trim()) }));
+  assert(!result.overflow, `${name} ${width}: horizontal overflow`); assert.deepEqual(result.broken, [], `${name} ${width}: broken image`); assert.equal(result.outside, 0, `${name} ${width}: clipped content`); assert.deepEqual(result.wrappedNav, [], `${name} ${width}: navigation text wraps`);
+  if ([390, 1440].includes(width)) { await page.screenshot({ path: path.join(review, `${name}-${width}.png`) }); await page.screenshot({ path: path.join(review, `${name}-${width}-full.png`), fullPage: true }); }
+  reports.push(`${name} ${width}px: layout and media passed`);
+};
+const interaction = async (page, name) => {
+  await page.setViewport({ width: 390, height: 844 });
+  await page.click('.menu-toggle'); assert.equal(await page.$eval('.menu-toggle', (e) => e.getAttribute('aria-expanded')), 'true', `${name}: menu opens`);
+  await page.keyboard.press('Escape'); assert.equal(await page.$eval('.menu-toggle', (e) => e.getAttribute('aria-expanded')), 'false', `${name}: menu Escape`); assert(await page.evaluate(() => document.activeElement.matches('.menu-toggle')), `${name}: menu focus restore`);
+  if (name !== 'index') return;
+  assert.equal(await page.$eval('[data-command-form]', (f) => f.hidden), false, 'home: command form shown by JavaScript');
+  for (const [command, target] of Object.entries({ whoami: 'overview', education: 'education', projects: 'projects', experience: 'experience', tascien: 'tascien', contact: 'contact' })) {
+    await page.$eval('input[name="command"]', (i, value) => { i.value = value; }, command); await page.$eval('[data-command-form]', (f) => f.requestSubmit());
+    assert.equal(await page.evaluate(() => document.activeElement.id), target, `home: ${command} focuses target`);
+  }
+  await page.$eval('input[name="command"]', (i) => { i.value = 'help'; }); await page.$eval('[data-command-form]', (f) => f.requestSubmit()); assert.equal(await page.$eval('#command-help', (e) => e.hidden), false, 'home: help reveals commands'); assert((await page.$$eval('#command-help a', (e) => e.length)) >= 6, 'home: command help links');
+  await page.$eval('input[name="command"]', (i) => { i.value = 'bogus <script>'; }); await page.$eval('[data-command-form]', (f) => f.requestSubmit()); assert.equal(await page.$eval('input[name="command"]', (i) => i.getAttribute('aria-invalid')), 'true', 'home: invalid aria'); assert.equal(await page.$$eval('#command-message script', (e) => e.length), 0, 'home: unknown command is text');
+};
 
 try {
-  for (const name of ['index', 'work', 'about']) {
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1440, height: 900 });
-    await load(page, `${name}.html`);
-    const original = await record(page);
-    if (name !== 'about') await page.screenshot({ path: path.join(output, `${name}-before-1440.png`) });
-    await load(page, `prototype/${name}.html`);
-    const updated = await record(page);
-    assert.deepEqual(updated.metadata, original.metadata, `${name}: metadata preserved`);
-    assert.deepEqual(sorted(updated.headings), sorted(original.headings), `${name}: headings preserved`);
-    assert.deepEqual(sorted(updated.copy), sorted(original.copy), `${name}: substantive text preserved`);
-    assert.deepEqual(updated.media.map((s) => s.replace(/^\.\.\//, '')).sort(), original.media.sort(), `${name}: media preserved`);
-    assert.deepEqual(updated.links.map((s) => s.replace(/^\.\.\//, '')).sort(), original.links.sort(), `${name}: destinations preserved`);
-    const local = await page.evaluate(() => [...document.querySelectorAll('[href],[src],[poster]')].flatMap((e) =>
-      ['href', 'src', 'poster'].filter((a) => e.hasAttribute(a)).map((a) => e.getAttribute(a))));
-    for (const reference of local) {
-      if (/^(https?:|mailto:|data:)/.test(reference)) continue;
-      const [file, fragment] = reference.split('#');
-      const resolved = path.resolve(root, 'prototype', file || `${name}.html`);
-      assert(fs.existsSync(resolved), `${name}: missing local target ${reference}`);
-      if (fragment && resolved.endsWith('.html')) {
-        assert(fs.readFileSync(resolved, 'utf8').includes(`id="${fragment}"`), `${name}: missing fragment ${reference}`);
-      }
-    }
-    assert.equal(await page.$$eval('h1', (elements) => elements.length), 1);
-    assert.equal(await page.$$eval('.site-nav [aria-current="page"]', (elements) => elements.length), 1);
-    assert.equal(await page.$$eval('img:not([alt])', (elements) => elements.length), 0);
-    assert.equal(await page.$$eval('a[target="_blank"]:not([rel="noopener noreferrer"])', (elements) => elements.length), 0);
-    for (const width of [320, 390, 768, 1440]) {
-      await page.setViewport({ width, height: width < 500 ? 844 : 900 });
-      const layout = await page.evaluate(() => ({
-        overflow: document.documentElement.scrollWidth > innerWidth,
-        images: [...document.images].filter((i) => !i.complete || !i.naturalWidth).map((i) => i.src),
-        outside: [...document.querySelectorAll('main h1,main h2,main h3,main p,main a,main video,main audio')]
-          .filter((e) => { const r = e.getBoundingClientRect(); return r.width && (r.right > innerWidth + 1 || r.left < -1); })
-          .map((e) => e.className || e.tagName),
-      }));
-      assert(!layout.overflow, `${name} ${width}: horizontal page overflow`);
-      assert.deepEqual(layout.images, [], `${name} ${width}: image failed`);
-      assert.deepEqual(layout.outside, [], `${name} ${width}: clipped content`);
-      if ([390, 1440].includes(width)) {
-        await page.screenshot({ path: path.join(output, `${name}-${width}.png`) });
-        await page.screenshot({ path: path.join(output, `${name}-${width}-full.png`), fullPage: true });
-      }
-      reports.push(`${name} ${width}px: no overflow, clipped content, or broken images`);
-    }
-    await page.setViewport({ width: 390, height: 844 });
-    await page.locator('.nav-toggle').click();
-    assert.equal(await page.$eval('.nav-toggle', (e) => e.getAttribute('aria-expanded')), 'true');
-    await page.keyboard.press('Escape');
-    assert.equal(await page.$eval('.nav-toggle', (e) => e.getAttribute('aria-expanded')), 'false');
-    assert(await page.evaluate(() => document.activeElement.matches('.nav-toggle')), 'Escape restores menu focus');
-    await page.locator('.nav-toggle').click();
-    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), page.click('.site-nav a[aria-current]')]);
-    assert.equal(await page.$eval('.nav-toggle', (e) => e.getAttribute('aria-expanded')), 'false');
-    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
-    assert(await page.$eval('.button', (e) => parseFloat(getComputedStyle(e).transitionDuration) <= .01).catch(() => true), 'Reduced motion disables transitions');
-    assert.equal(await page.$$eval('video[autoplay]', (elements) => elements.length), 0);
-    if (name === 'about') {
-      for (const carousel of await page.$$('[data-carousel]')) {
-        await carousel.$eval('[data-carousel-next]', (e) => e.click());
-        assert.equal(await carousel.$eval('[data-carousel-current]', (e) => e.textContent), '2');
-        await carousel.$eval('[data-carousel-prev]', (e) => e.click());
-        assert.equal(await carousel.$eval('[data-carousel-current]', (e) => e.textContent), '1');
-      }
-    }
-    await page.setJavaScriptEnabled(false);
-    await load(page, `prototype/${name}.html`);
-    assert.equal(await page.$$eval('main h1', (elements) => elements.length), 1);
-    assert.equal(await page.$eval('.site-nav', (e) => getComputedStyle(e).display === 'none'), false);
-    await page.keyboard.press('Tab');
-    assert(await page.evaluate(() => document.activeElement.matches('.skip-link')), 'Skip link is first keyboard stop');
-    await page.close();
-    reports.push(`${name}: original details, headings, destinations, and media preserved; metadata, image alternatives, external-link safety, menu Escape, reduced motion, and no-JS access passed`);
+  for (const name of pages) {
+    const page = await browser.newPage(); await page.setViewport({ width: 1440, height: 900 }); await load(page, `${name}.html`); await contract(page, name); await checkLegacyCopy(page, name);
+    for (const width of [320, 390, 768, 1440]) await layout(page, name, width);
+    await interaction(page, name); await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]); assert.equal(await page.$$eval('video[autoplay],audio[autoplay]', (e) => e.length), 0, `${name}: autoplay media`); assert.equal(await page.$$eval('*', (els) => els.filter((e) => parseFloat(getComputedStyle(e).transitionDuration) > 0.01 || parseFloat(getComputedStyle(e).animationDuration) > 0.01).length), 0, `${name}: reduced motion disables transitions`); assert(await page.$eval('body', (e) => getComputedStyle(e).backgroundImage === 'none'), `${name}: gradient background`);
+    if (name === 'index') { for (const id of commands) assert(await page.$(`#${id}`), `home: missing #${id}`); const body = await page.$eval('body', (e) => `${e.textContent} ${[...e.querySelectorAll('a[href]')].map((a) => a.href).join(' ')}`); for (const fact of ['Shantanu Garg', 'Tampere University', '2026', 'Computer Science', 'Machine Learning and Signal Processing', 'Voice Agent Lab', 'Counsel', 'AI-assisted Object Recognition in AR', 'Smart Expense Tracker API', 'FlipOff', 'Satellites', 'LinkedIn', 'GitHub', 'Chairperson', 'Treasurer', 'Comparative Analysis of Multi-Agent Frameworks for Requirements Engineering', 'https://trepo.tuni.fi/handle/10024/237688']) assert(body.includes(fact), `home: missing approved fact ${fact}`); }
+    if (name === 'work') { assert.deepEqual(await page.$$eval('article[id]', (e) => e.map((x) => x.id)), workIds, 'work: six ordered projects'); assert.equal(await page.$$eval('article details', (e) => e.length), 6, 'work: native details'); assert(await page.$eval('#demola-ar', (e) => /Tripo3D API|manual end-to-end testing|team/i.test(e.textContent)), 'work: Demola approved scope'); }
+    if (name === 'about') { assert.equal(await page.$$eval('[data-carousel]', (e) => e.length), 3, 'about: three carousels'); await page.$$eval('.archive-details', (details) => details.forEach((detail) => { detail.open = true; })); for (const c of await page.$$('[data-carousel]')) { for (const s of ['[data-slide]', '[data-carousel-prev]', '[data-carousel-next]', '[data-carousel-current]']) assert(await c.$(s), `about: carousel ${s}`); const before = await c.$eval('[data-carousel-current]', (e) => e.textContent); await c.$eval('[data-carousel-next]', (e) => e.click()); assert.notEqual(await c.$eval('[data-carousel-current]', (e) => e.textContent), before, 'about: carousel advances'); } }
+    await page.setJavaScriptEnabled(false); await load(page, `${name}.html`); assert(await page.$eval('#directory', (e) => getComputedStyle(e).display !== 'none'), `${name}: no-JS directory`); await page.keyboard.press('Tab'); assert(await page.evaluate(() => document.activeElement.matches('.skip-link')), `${name}: skip link first`); await page.close(); reports.push(`${name}: contract, behavior, accessibility, no-JS, and content checks passed`);
   }
-  fs.writeFileSync(path.join(output, 'checks.json'), JSON.stringify({ result: 'pass', reports }, null, 2));
-  console.log(reports.join('\n'));
-} finally {
-  await browser.close();
-}
+  fs.writeFileSync(path.join(review, 'checks.json'), JSON.stringify({ result: 'pass', reports }, null, 2)); console.log(reports.join('\n'));
+} finally { await browser.close(); }

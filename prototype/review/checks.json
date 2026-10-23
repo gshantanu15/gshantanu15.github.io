@@ -1,20 +1,20 @@
 {
   "result": "pass",
   "reports": [
-    "index 320px: no overflow, clipped content, or broken images",
-    "index 390px: no overflow, clipped content, or broken images",
-    "index 768px: no overflow, clipped content, or broken images",
-    "index 1440px: no overflow, clipped content, or broken images",
-    "index: original details, headings, destinations, and media preserved; metadata, image alternatives, external-link safety, menu Escape, reduced motion, and no-JS access passed",
-    "work 320px: no overflow, clipped content, or broken images",
-    "work 390px: no overflow, clipped content, or broken images",
-    "work 768px: no overflow, clipped content, or broken images",
-    "work 1440px: no overflow, clipped content, or broken images",
-    "work: original details, headings, destinations, and media preserved; metadata, image alternatives, external-link safety, menu Escape, reduced motion, and no-JS access passed",
-    "about 320px: no overflow, clipped content, or broken images",
-    "about 390px: no overflow, clipped content, or broken images",
-    "about 768px: no overflow, clipped content, or broken images",
-    "about 1440px: no overflow, clipped content, or broken images",
-    "about: original details, headings, destinations, and media preserved; metadata, image alternatives, external-link safety, menu Escape, reduced motion, and no-JS access passed"
+    "index 320px: layout and media passed",
+    "index 390px: layout and media passed",
+    "index 768px: layout and media passed",
+    "index 1440px: layout and media passed",
+    "index: contract, behavior, accessibility, no-JS, and content checks passed",
+    "work 320px: layout and media passed",
+    "work 390px: layout and media passed",
+    "work 768px: layout and media passed",
+    "work 1440px: layout and media passed",
+    "work: contract, behavior, accessibility, no-JS, and content checks passed",
+    "about 320px: layout and media passed",
+    "about 390px: layout and media passed",
+    "about 768px: layout and media passed",
+    "about 1440px: layout and media passed",
+    "about: contract, behavior, accessibility, no-JS, and content checks passed"
   ]
 }
