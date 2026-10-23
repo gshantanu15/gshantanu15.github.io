@@ -51,13 +51,25 @@
 <section class="identity" id="overview" tabindex="-1" aria-labelledby="identity-title">
 <h1 id="identity-title">Shantanu Garg</h1>
 <p class="identity-lead">Computer Science graduate building practical AI, web applications, and APIs.</p>
-<div class="identity-actions">
-<a class="action" href="#projects">View projects</a>
-<a href="mailto:g.shantanu15@gmail.com">Email me</a>
+<form class="command-form" data-command-form hidden>
+<label for="command-input">Navigate by command</label>
+<div class="command-line">
+<span aria-hidden="true">$</span>
+<input id="command-input" name="command" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="command-hint command-message" placeholder="help" value="whoami">
+<button type="submit">Run</button>
 </div>
-<div class="identity-session">
-<div class="session-readout">
-<p class="session-command"><span aria-hidden="true">$ </span>whoami</p>
+<p id="command-hint" class="command-hint">Try projects, education, tascien or contact.</p>
+<p id="command-message" role="status" aria-live="polite">
+</p>
+<nav id="command-help" aria-label="Available commands" hidden>
+<a href="#overview">whoami</a>
+<a href="#education">education</a>
+<a href="#projects">projects</a>
+<a href="#experience">experience</a>
+<a href="#tascien">tascien</a>
+<a href="#contact">contact</a>
+</nav>
+</form>
 <dl class="identity-output">
 <div>
 <dt>based in</dt>
@@ -76,37 +88,10 @@
 <dd>Machine Learning and Signal Processing</dd>
 </div>
 </dl>
-<form class="command-form" data-command-form hidden>
-<label for="command-input">Navigate by command</label>
-<div class="command-line">
-<span aria-hidden="true">$</span>
-<input id="command-input" name="command" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="command-hint command-message" placeholder="help" value="whoami">
-<button type="submit">Run</button>
+<div class="identity-actions">
+<a class="action" href="#projects">View projects</a>
+<a href="mailto:g.shantanu15@gmail.com">Email me</a>
 </div>
-<p id="command-hint" class="command-hint">Try projects or education. <a href="#command-help">Command reference</a></p>
-<p id="command-message" role="status" aria-live="polite">
-</p>
-</form>
-</div>
-<figure class="glyph-portrait">
-<div class="portrait-visual" data-glyph-portrait>
-<img src="assets/portrait-glyph.webp" width="780" height="777" alt="Portrait of Shantanu Garg rendered in green text characters" fetchpriority="high">
-<canvas width="780" height="777" aria-hidden="true" hidden></canvas>
-</div>
-<figcaption><a href="../assets/images/profile.webp">View original portrait</a></figcaption>
-</figure>
-</div>
-</section>
-<section class="record-section command-reference" aria-labelledby="commands-title">
-<h2 id="commands-title">Command reference</h2>
-<nav id="command-help" aria-label="Available commands" tabindex="-1">
-<a class="command-row" href="#overview"><code>whoami</code><span>Identity and graduation</span></a>
-<a class="command-row" href="#education"><code>education</code><span>University and published thesis</span></a>
-<a class="command-row" href="#projects"><code>projects</code><span>Selected project records</span></a>
-<a class="command-row" href="#experience"><code>experience</code><span>Professional experience</span></a>
-<a class="command-row" href="#tascien"><code>tascien</code><span>Positions and responsibilities</span></a>
-<a class="command-row" href="#contact"><code>contact</code><span>Email, LinkedIn and GitHub</span></a>
-</nav>
 </section>
 <section class="record-section" id="education" tabindex="-1" aria-labelledby="education-title">
 <h2 id="education-title">Education & published thesis</h2>
@@ -227,6 +212,10 @@
 <p>Semantic HTML, CSS, and a little JavaScript.</p>
 </footer>
 </main>
+</div>
+<div class="banyan-art" data-banyan aria-hidden="true">
+<img src="assets/banyan-glyph.webp" width="480" height="1421" alt="" decoding="async">
+<canvas width="480" height="1421" hidden></canvas>
 </div>
 </body>
 </html>

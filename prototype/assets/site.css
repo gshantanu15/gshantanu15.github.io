@@ -1,11 +1,12 @@
 /* Hallmark · shape: Session Ledger · genre: atmospheric · theme: Terminal (by request) · redesign: full · copy: verbatim (source records); overview condensed by request
- * hero: identity session and glyph portrait · nav: persistent command directory and reference rows · footer: terminal colophon · signature: the approved portrait printed in Martian Mono
- * axes: dark/mono/phosphor-green · posture: committed · imagery: approved portrait rendered in glyphs, original project media inside records · v2.0.0 */
+ * hero: concise identity record · nav: persistent command directory · footer: terminal colophon · signature: a quiet banyan glyph in the outer gutter, roots growing with reading progress
+ * axes: dark/mono/phosphor-green · posture: committed · imagery: procedural banyan and original project media · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V5 · weakest: density; native disclosures hold full project evidence while the overview names the six requested subjects. */
 /* Hallmark · waive 77 · Two TaSciEn roles, two employers, three contact methods and six project articles are the complete record · Compact terminal sections retain the real portfolio entries without manufacturing extra content. */
-/* Hallmark · waive 44c · Work and About introduce complete long-form records; Home retains a full identity composition · Compact document headers keep the real project and background records directly accessible. */
+/* Hallmark · waive 44c · Work and About introduce complete long-form records · Compact document headers keep the real project and background records directly accessible. */
 /* Hallmark · hero-review: subagent, fix; command field moved above identity output and prefilled with whoami; name and factual copy retained. */
-/* Hallmark · finish-review: subagent, ship; glyph portrait, responsive identity session, permanent command reference and accessible static fallbacks reviewed. */
+/* Hallmark · motion by request: curved aerial roots follow scroll progress; a small caret blinks five times and holds; reduced motion shows static final states. */
+/* Hallmark · finish-review: subagent, ship; tree stays outside reading content, mobile placement follows all records, finite cursor preserves portfolio hierarchy. */
 @import url("./tokens.css");
 @import url("./base.css");
 
@@ -27,7 +28,7 @@
 .directory-end { margin-top: var(--space-2xl); font-size: 11px; color: var(--color-muted); }
 .directory-end > a { display: inline-block; padding-block: var(--space-sm); }
 .output { min-width: 0; }
-.identity { padding-block: var(--space-lg) calc(var(--space-2xl) - var(--space-xs)); }
+.identity { padding-block: var(--space-2xl); }
 .identity-lead { margin-top: var(--space-lg); color: var(--color-ink-2); max-width: 56ch; font-size: 18px; line-height: 1.7; }
 .identity-output { display: grid; gap: var(--space-xs); margin-block: 32px; }
 .identity-output > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: var(--space-lg); }
@@ -47,12 +48,8 @@
 .command-line button:hover { background: var(--color-accent-wash); }
 .command-hint, #command-message { margin-top: var(--space-xs); font-size: 12px; color: var(--color-muted); }
 #command-message { min-height: 1lh; }
-#command-help { margin: 0; border-top: 1px solid var(--color-rule-2); }
-#command-help .command-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: center; gap: var(--space-lg); padding: var(--space-lg) var(--space-sm); min-height: 72px; border-bottom: 1px solid var(--color-rule); text-decoration: none; }
-.command-row code { font-family: var(--font-body); font-size: var(--text-title); color: var(--color-ink); }
-.command-row span { font-size: var(--text-sm); color: var(--color-muted); }
-.command-row:hover { background: var(--color-accent-wash); }
-.command-row:hover code { color: var(--color-accent); }
+#command-help { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); margin-top: var(--space-sm); font-size: var(--text-sm); }
+#command-help a { display: inline-flex; align-items: center; min-height: 44px; }
 .record-section { padding-block: var(--space-2xl); border-top: 1px solid var(--color-rule-2); }
 .record-section > h2 { margin-bottom: 32px; }
 .record-section > p, .record-body p, .prose p { max-width: 65ch; }
@@ -212,35 +209,17 @@ summary:hover { color: var(--color-ink); }
 .review-links a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 760px) { .review-pair { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); } }
 
-/* The image is the complete, local fallback; the canvas only adds a brief reveal. */
-.identity-actions { margin-top: var(--space-lg); }
-.identity-session { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--space-lg); margin-top: 32px; padding: var(--space-lg); border: 1px solid var(--color-rule); background: var(--color-paper-2); }
-.session-readout { min-width: 0; }
-.session-command { font-size: var(--text-title); color: var(--color-ink); }
-.session-command > span { color: var(--color-muted); }
-.identity-session .identity-output { margin-block: var(--space-lg); gap: var(--space-sm); }
-.identity-session .identity-output > div { grid-template-columns: 92px minmax(0, 1fr); gap: var(--space-sm); }
-.identity-session .identity-output dt { font-size: 12px; }
-.identity-session .identity-output dd { font-size: 14px; }
-.identity-session .command-form { margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--color-rule); }
-.identity-session .command-line input { padding-inline: var(--space-xs); }
-.identity-session .command-line button { padding-inline: var(--space-md); }
-.command-hint a { display: inline-flex; align-items: center; min-height: 44px; }
-.glyph-portrait { align-self: center; min-width: 0; margin: 0; }
-.portrait-visual { position: relative; aspect-ratio: 780 / 777; }
-.portrait-visual img, .portrait-visual canvas { display: block; width: 100%; height: auto; }
-.portrait-visual canvas { position: absolute; inset: 0; }
-.portrait-visual[data-rendered] img { opacity: 0; }
-.glyph-portrait figcaption { margin-top: var(--space-xs); text-align: right; font-size: 11px; }
-.glyph-portrait figcaption a { display: inline-flex; align-items: center; min-height: 44px; }
-@media (max-width: 1100px) {
-  .identity-session { grid-template-columns: minmax(0, 1fr); }
-  .glyph-portrait { width: min(100%, 360px); justify-self: center; }
+/* Decoration occupies its own gutter or a quiet end mark after the page. */
+.banyan-art { position: fixed; top: 112px; right: max(var(--space-md), calc((100% - var(--container)) / 2 - 256px)); width: min(240px, calc((100% - var(--container)) / 2 - 32px)); height: calc(100% - 144px); opacity: .46; pointer-events: none; user-select: none; contain: layout paint; }
+.banyan-art img, .banyan-art canvas { display: block; width: 100%; height: 100%; }
+.banyan-art canvas { position: absolute; inset: 0; }
+.banyan-art[data-growing] img { opacity: 0; }
+.identity h1::after, .record-intro h1::after { content: ""; display: inline-block; width: .48em; height: .8em; margin-left: .22em; background: var(--color-accent); vertical-align: -.02em; animation: terminal-caret 900ms steps(1, end) 5; }
+@keyframes terminal-caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@media (max-width: 1439px) {
+  .banyan-art { position: relative; inset: auto; width: min(200px, 50%); height: 360px; margin: var(--space-lg) auto var(--space-xl); opacity: .4; }
 }
-@media (max-width: 760px) {
-  .identity-session { padding: var(--space-md); }
-  .identity-session .identity-output > div { grid-template-columns: 76px minmax(0, 1fr); }
-  .identity-session .identity-output dt { font-size: 11px; }
-  .identity-session .identity-output dd { font-size: 13px; }
-  #command-help .command-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); padding-inline: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .identity h1::after, .record-intro h1::after { animation: none; opacity: 1; }
 }
+@media print { .banyan-art { display: none; } }

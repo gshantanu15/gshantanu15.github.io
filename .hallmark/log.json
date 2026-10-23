@@ -2,6 +2,30 @@
  {
   "date": "2026-10-23",
   "mode": "refine",
+  "scope": "prototype portfolio-first identity and decorative art",
+  "theme": "terminal (by request)",
+  "shape": "Session Ledger",
+  "hero": "Restored simple identity, optional compact command form, facts and portfolio actions",
+  "signature": "Generic glyph banyan in the outer gutter; staggered curved aerial roots develop with reading progress",
+  "entry": "prototype/index.html",
+  "imagery": "Original procedural banyan, local point data and matching static glyph WebP; no personal portrait displayed",
+  "prompt": "Undo latest identity session and descriptive command-reference changes; prioritize recruiters; add generic banyan roots developing with scroll, without blocking content, and a terminal cursor",
+  "kept": "All verified facts, content, public links, existing form and directory, shared buildless runtime, production unchanged",
+  "removed": "Identity panel, permanent descriptive command-reference section, visible glyph portrait and portrait reveal runtime",
+  "adaptations": [
+   "Art remains outside content: desktop outer gutter; compact mobile end mark after all records",
+   "Roots paint once along curved paths, never wipe across text or replay upward",
+   "Reduced motion, no JS, save-data, asset and canvas failures use static tree",
+   "Decorative cursor blinks5times over4.5seconds then holds; reduced motion disables blinking"
+  ],
+  "reviews": {
+   "finish": "subagent: ship; art does not compete with content, mobile safe placement, cursor appropriate"
+  },
+  "checks": "Seven responsive widths, progressive glyph counts, no overlaps/interception/replay, fallback modes, finite cursor and static site validation passed"
+ },
+ {
+  "date": "2026-10-23",
+  "mode": "refine",
   "scope": "prototype identity and command reference",
   "theme": "terminal (by request)",
   "shape": "Session Ledger",

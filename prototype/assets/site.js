@@ -12,6 +12,80 @@ menu?.addEventListener("click", () => {
   menu.setAttribute("aria-expanded", String(open));
   directory?.classList.toggle("is-open", open);
 });
+
+// Roots are painted once in path order; scroll never moves or obscures the document.
+const banyan = document.querySelector("[data-banyan]");
+if (banyan) {
+  const canvas = banyan.querySelector("canvas");
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let context, roots = [], painted = 0, progress = 0, frame = 0, loading;
+  const staticTree = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    canvas.hidden = true;
+    banyan.removeAttribute("data-growing");
+  };
+  const readingProgress = () => {
+    if (getComputedStyle(banyan).position === "fixed") {
+      const distance = document.documentElement.scrollHeight - innerHeight;
+      return distance > 0 ? scrollY / distance : 1;
+    }
+    const box = banyan.getBoundingClientRect();
+    return (innerHeight - box.top) / box.height;
+  };
+  const glyphs = "banyan/roots/branches/leaves/";
+  let colors, family;
+  const paint = (point, index) => {
+    context.fillStyle = colors[point[2]];
+    context.font = `400 ${point[2] < 3 ? 6.8 : 10}px ${family}`;
+    context.fillText(glyphs[index % glyphs.length], point[0], point[1], 5.3);
+  };
+  const update = () => {
+    frame = 0;
+    if (!context || motion.matches || navigator.connection?.saveData || document.hidden) return;
+    progress = Math.max(progress, Math.min(1, Math.max(0, readingProgress())));
+    while (painted < roots.length && roots[painted].point[3] <= progress) {
+      const root = roots[painted++];
+      paint(root.point, root.index);
+    }
+    canvas.hidden = false;
+    banyan.setAttribute("data-growing", "");
+  };
+  const schedule = () => { if (!frame && context && !motion.matches) frame = requestAnimationFrame(update); };
+  const enhance = async () => {
+    if (motion.matches || navigator.connection?.saveData) { staticTree(); return; }
+    if (context) { schedule(); return; }
+    if (loading) return;
+    loading = true;
+    try {
+      const response = await fetch("assets/banyan-glyph.json");
+      if (!response.ok) throw new Error("Tree asset unavailable");
+      const data = await response.json();
+      if (data.width !== 480 || data.height !== 1421 || !Array.isArray(data.points) || !data.points.every(point => point.length === 4 && point.every(Number.isFinite) && point[0] >= 0 && point[0] < data.width && point[1] >= 0 && point[1] < data.height && Number.isInteger(point[2]) && point[2] >= 0 && point[2] <= 7 && point[3] >= -1 && point[3] <= 1)) throw new Error("Invalid tree asset");
+      await document.fonts.load('10px "Martian Mono"');
+      if (!document.fonts.check('10px "Martian Mono"')) throw new Error("Tree font unavailable");
+      const drawing = canvas.getContext("2d");
+      if (!drawing) return;
+      context = drawing;
+      colors = Array.from({ length: 8 }, (_, index) => getComputedStyle(document.documentElement).getPropertyValue("--glyph-" + index).trim());
+      family = getComputedStyle(document.body).fontFamily;
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      data.points.forEach((point, index) => {
+        if (point[3] < 0) paint(point, index);
+        else roots.push({ point, index });
+      });
+      roots.sort((a, b) => a.point[3] - b.point[3]);
+      update();
+    } catch { context = null; staticTree(); }
+  };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  canvas.addEventListener("contextlost", () => { context = null; staticTree(); });
+  document.addEventListener("visibilitychange", () => { if (document.hidden) staticTree(); else schedule(); });
+  motion.addEventListener("change", () => { if (motion.matches) staticTree(); else enhance(); });
+  enhance();
+}
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && menu?.getAttribute("aria-expanded") === "true") closeDirectory(true);
 });
@@ -41,9 +115,8 @@ if (form && input && message && help) {
     const command = input.value.trim().toLowerCase();
     input.removeAttribute("aria-invalid");
     if (command === "help") {
+      help.hidden = false;
       message.textContent = "Available commands: whoami, education, projects, experience, tascien, contact.";
-      help.focus({ preventScroll: true });
-      help.scrollIntoView({ block: "start" });
       return;
     }
     // The command field resolves only this fixed navigation map.
@@ -97,52 +170,3 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   previous.addEventListener("click", () => show(activeIndex - 1));
   next.addEventListener("click", () => show(activeIndex + 1));
 });
-
-// The static portrait survives disabled scripts, failed decoding, or missing canvas support.
-const portrait = document.querySelector("[data-glyph-portrait]");
-if (portrait) {
-  const image = portrait.querySelector("img");
-  const canvas = portrait.querySelector("canvas");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let frame = 0;
-  const restorePortrait = () => {
-    cancelAnimationFrame(frame);
-    portrait.removeAttribute("data-rendered");
-    canvas.hidden = true;
-  };
-  const revealPortrait = async () => {
-    if (reducedMotion.matches || navigator.connection?.saveData || document.hidden) return;
-    try {
-      await image.decode();
-      const context = canvas.getContext("2d");
-      if (!context || reducedMotion.matches || document.hidden) return;
-      const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--dur-short"));
-      if (!Number.isFinite(duration) || duration <= 0) return;
-      const draw = (progress) => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.globalAlpha = .45;
-        context.drawImage(image, 0, 0, canvas.width, canvas.height);
-        context.globalAlpha = 1;
-        const rows = Math.ceil(progress * 70);
-        const height = Math.min(canvas.height, rows * canvas.height / 70);
-        if (height > 0) context.drawImage(image, 0, 0, image.naturalWidth, height, 0, 0, canvas.width, height);
-      };
-      draw(0);
-      canvas.hidden = false;
-      portrait.setAttribute("data-rendered", "");
-      let start;
-      const reveal = (now) => {
-        if (reducedMotion.matches || document.hidden) { restorePortrait(); return; }
-        start ??= now;
-        const progress = Math.min(1, (now - start) / duration);
-        try { draw(progress); } catch { restorePortrait(); return; }
-        if (progress < 1) frame = requestAnimationFrame(reveal);
-        else restorePortrait();
-      };
-      frame = requestAnimationFrame(reveal);
-    } catch { restorePortrait(); }
-  };
-  reducedMotion.addEventListener("change", restorePortrait);
-  document.addEventListener("visibilitychange", () => { if (document.hidden) restorePortrait(); });
-  revealPortrait();
-}

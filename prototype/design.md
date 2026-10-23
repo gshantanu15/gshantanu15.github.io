@@ -7,9 +7,9 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Theme: Hallmark Terminal, requested by the user.
 - Genre: atmospheric; material: monospace terminal output.
 - Shape: Session Ledger, with a persistent command directory and readable document outputs.
-- Signature: the approved portrait printed as a 130-column Martian Mono glyph image beside a `whoami` identity session.
+- Signature: a generic glyph banyan in the outer gutter, with curved aerial roots developing as the visitor reads. Identity and portfolio records remain the main visual path.
 - Navigation: overview, projects, background; direct section links remain available without JavaScript.
-- Overview order: identity session and portrait; command reference; education and published thesis; six projects; experience; TaSciEn; contact.
+- Overview order: simple identity, optional command navigation, and facts; education and published thesis; six projects; experience; TaSciEn; contact. There is no identity session panel, portrait, or descriptive command-reference section.
 - Project catalogue: six independent records with native disclosures, original media, attribution, and public links.
 - Background order: profile; education and thesis; TaSciEn; experience; earlier activities and hardware; contact.
 
@@ -26,22 +26,24 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Content width: 1120px, centered and capped. A 176px desktop directory sits beside the document.
 - Tags: blue tool/platform chips, amber practice chips, and green principle chips. These restrained secondary hues were added at the user’s request; labels remain meaningful without color.
 - Project detail headings use consistent spacing across flat content groups; public actions have a separate link row.
-- Corners: square. No shadows, gradients, decorative browser windows, scanlines, or blinking text.
+- Corners: square. No shadows, gradients, decorative browser windows, or scanlines. Only a small heading caret blinks, five times, then holds.
 
 ## Interaction
 
 - `whoami`, `education`, `projects`, `experience`, `tascien`, and `contact` navigate to real sections.
-- `help` focuses the permanent command reference, whose descriptive section links also work without JavaScript; unknown input produces an accessible error message.
+- `help` reveals a compact set of section links within the optional command form; unknown input produces an accessible error message. The permanent section directory works without JavaScript.
 - Commands use a fixed mapping. There is no shell, network request, or dynamic code execution.
 - Valid commands focus their destination and update the fragment.
 - The mobile directory closes with Escape and returns focus to its button.
 - Project stories and the earlier-work archive use native details/summary controls.
 - Hardware photographs retain their manual controls and position announcements.
 - Media playback is user initiated; reduced motion disables interface transitions.
-- The glyph portrait is derived locally from the existing approved `../assets/images/profile.webp`, using only the self-hosted Martian Mono font and eight Terminal glyph tokens. The static WebP has descriptive alt text and links to the original photograph.
-- A canvas enhances the image with one 180ms row reveal from a dim complete image. There is no noise, flashing, repeated caret, scroll trigger, or resize replay. The canvas is hidden from assistive technology; the image provides the accessible name throughout.
-- Disabled JavaScript, reduced motion, save-data, unavailable canvas, or a decoding failure retain the complete static image. A motion-preference or visibility change cancels the pending frame and restores that image immediately.
-- `scripts/make-glyph-portrait.mjs` is an optional local authoring tool, not a site build step. It makes no external requests and introduces no visitor-side dependency, camera permission, upload, or image processing service. The linked Glyph Matrix Image Maker informed the local-processing approach; none of its code, fonts, icons, or branding is included.
+- The banyan is an original deterministic glyph drawing: a broad canopy, arched limbs, twisted trunk, and staggered cubic aerial roots. No personal photo, stock image, external converter, camera or upload is involved.
+- At 1440px and above, the tree occupies only the outer right gutter, at least 16px clear of the portfolio. At smaller widths it becomes a compact decorative end mark after all content. It is hidden from assistive technology and printing, has no focusable elements, and never intercepts pointers.
+- A static WebP is visible by default. Supported browsers load the local glyph data and paint newly reached root characters once, in order along the curves, using passive scroll events coalesced into animation frames. There is no horizontal wipe, scroll hijacking, text movement, erasing when scrolling up, or continuing animation while reading pauses.
+- Reduced motion, save-data, disabled JavaScript, missing canvas, lost canvas context or failed glyph data retain the complete static tree. Changing the motion preference immediately restores the static image.
+- The CSS caret uses five 900ms cycles (4.5 seconds total), then stays visible. Reduced motion shows the stationary caret immediately. Its occupied width never changes during blinking.
+- `scripts/make-banyan.mjs` is an optional local authoring tool, not a build step. It generates the point data and matching static WebP from the self-hosted Martian Mono font and the Terminal glyph tokens.
 
 ## Content and evidence
 
