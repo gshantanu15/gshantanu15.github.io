@@ -1,21 +1,19 @@
 {
   "scanned": "2026-10-23",
   "findings": {
-    "fonts": "system sans and mono, assets/css/site.css:10",
-    "palette": "Nordic editorial, assets/css/site.css:1",
-    "framework": "semantic static HTML, AGENTS.md:13",
-    "content": "existing index.html, work.html, about.html; docs/site-content.md still marked awaiting approval"
+    "branch": "showcase/hallmark-studio; clean before terminal revision",
+    "content": "AGENTS.md:22-57 and docs/site-content.md; current public-safe project and background records",
+    "stack": "AGENTS.md:13-20: semantic HTML/CSS/minimal JavaScript and GitHub Pages relative links",
+    "prior_system": "prototype/design.md: Studio; explicitly superseded by user's Terminal overhaul request"
   },
   "preserve": [
-    "All portfolio facts, links, media and interactions",
-    "Root production pages"
+    "Verified identity, Tampere University graduation2026, public projects, published thesis, contact and TaSciEn records",
+    "Root production files, original media and external destinations"
   ],
   "introduce": [
-    "Studio theme adapted to offline system serif and sans",
-    "Open project index and typographic hierarchy in prototype only"
+    "Named Terminal theme, self-hosted Martian Mono and phosphor tokens",
+    "New command directory, working command shortcuts and native project disclosures",
+    "Education and published thesis together on the overview"
   ],
-  "overrides": {
-    "design": "User requests completely different design philosophy",
-    "approval": "Prototype review remains required by AGENTS.md:88"
-  }
+  "authorization": "User explicitly requests complete Terminal overhaul, new elements, new structure, same branch; prior Studio lock and Nordic design do not constrain this prototype revision"
 }

@@ -1,49 +1,48 @@
-# Design: Shantanu Garg, Studio showcase
+# Design: Shantanu Garg, Terminal
 
-This system applies only to the branch prototype. Production remains governed by the root instructions until this design is approved.
+This replaces the previous Studio prototype system at the user’s explicit request. It applies to the prototype on `showcase/hallmark-studio`; root production files are unchanged.
 
 ## System
 
-- Genre: editorial.
-- Shape: a personal nameplate followed by an open project index; detailed Work stories and an About record.
-- Theme: Studio, selected from Hallmark's three-theme deal.
-- Material: cool paper, blue-black ink, serif headlines, square controls, and one orange action.
-- Signature: the oversized Shantanu Garg nameplate.
-- Scope: Home, Work, and About share these tokens and chrome.
+- Theme: Hallmark Terminal, requested by the user.
+- Genre: atmospheric; material: monospace terminal output.
+- Shape: Session Ledger, with a persistent command directory and readable document outputs.
+- Signature: a working `whoami` command field followed by the actual identity record.
+- Navigation: overview, projects, background; direct section links remain available without JavaScript.
+- Overview order: identity; education and published thesis; six projects; experience; TaSciEn; contact.
+- Project catalogue: six independent records with native disclosures, original media, attribution, and public links.
+- Background order: profile; education and thesis; TaSciEn; experience; earlier activities and hardware; contact.
 
 ## Tokens
 
-The source of truth is `assets/tokens.css`.
+`assets/tokens.css` is the source of truth. All page colours and typography consume its role tokens.
 
-- Paper: `#f0f4f5`; secondary paper: `#e4ebed`; strongest neutral: `#d5dfe2`.
-- Ink: `#142129`; body ink: `#344750`; muted: `#50616a`.
-- Rule: `#bbc8cc`.
-- Accent: `#f28a3c`, paired with ink; focus: `#a54313`.
-- Display: Palatino Linotype, Book Antiqua, Palatino, Georgia, serif.
-- Body: Segoe UI, system sans.
-- Code only: Consolas, monospace.
-- Content width: 1120px, centered and capped.
-- Columns: 40px gap on desktop; stacked on small screens.
-- Radius: 4px. No shadows, gradients, generated art, or decorative mockups.
+- Ground: near-black with a green cast, `oklch(12.5% 0.012 150)`.
+- Raised surfaces: `oklch(16% 0.016 150)` and `oklch(20.5% 0.022 150)`.
+- Ink: pale phosphor, `oklch(94% 0.03 140)`.
+- Body ink: `oklch(82% 0.05 142)`; muted: `oklch(64% 0.06 145)`.
+- Signal and focus: `oklch(87% 0.2 142)`; paired dark signal ink.
+- Type: self-hosted Martian Mono, variable width and weight. Its SIL Open Font License is retained in `assets/fonts/OFL.txt`.
+- Content width: 1120px, centered and capped. A 176px desktop directory sits beside the document.
+- Corners: square. No shadows, gradients, decorative browser windows, scanlines, or blinking text.
 
-## Controls and access
+## Interaction
 
-- Primary: orange fill, ink text, 48px minimum height.
-- Secondary: ink outline with transparent paper.
-- All interactive elements have an instant focus ring.
-- Existing mobile menu supports Escape and restores trigger focus.
-- Original hardware carousels retain their controls and live position announcements.
-- Video uses native controls and a static poster; playback is user initiated.
-- Navigation and content remain available without JavaScript.
+- `whoami`, `education`, `projects`, `experience`, `tascien`, and `contact` navigate to real sections.
+- `help` reveals the command links; unknown input produces an accessible error message.
+- Commands use a fixed mapping. There is no shell, network request, or dynamic code execution.
+- Valid commands focus their destination and update the fragment.
+- The mobile directory closes with Escape and returns focus to its button.
+- Project stories and the earlier-work archive use native details/summary controls.
+- Hardware photographs retain their manual controls and position announcements.
+- Media playback is user initiated; reduced motion disables interface transitions.
 
-## Motion
+## Content and evidence
 
-Only brief interface transitions, 180ms. Reduced motion disables them. No entrance or scroll animation.
+Facts, public destinations, and original media are retained. Overview copy is condensed and reorganized under the user’s six priorities. Demola contribution wording is narrowed to the approved Tripo3D integration, manual E2E testing, teamwork, and delivery scope.
 
-## Adaptations
-
-System fonts keep the site offline-capable. The theme's ornamental measuring guides, dot grid, and crop marks are omitted. Existing headings and substantive copy remain intact; decorative punctuation and label casing are normalized. The source portrait has a circular cutout, displayed within a square frame.
+No new dates, qualification names, metrics, private screenshots, or resume link are introduced. The verified graduation date is the year 2026; no month is supplied.
 
 ## Exports
 
-The three pages consume `assets/site.css`, which imports `tokens.css` and `base.css`. There is no build step or third-party runtime dependency.
+`assets/site.css` imports `tokens.css` and `base.css`. All pages share `assets/site.js`. The runtime remains buildless HTML, CSS, and vanilla JavaScript.

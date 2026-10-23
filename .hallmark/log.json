@@ -4,6 +4,46 @@
   "mode": "redesign",
   "depth": "full",
   "scope": "site",
+  "shape": "Session Ledger",
+  "theme": "terminal (by request)",
+  "axes": "dark/mono/phosphor-green",
+  "hero": "Banner with working whoami command and identity output",
+  "nav": "persistent command directory and route links",
+  "footer": "terminal colophon",
+  "imagery": "original project media inside native disclosures; original hardware photographs in archive",
+  "photos": [],
+  "entry": "prototype/index.html",
+  "fingerprint": "monospace directory/command form/identity output/native record disclosures/education first/manual media",
+  "sections": [
+   "Identity command output",
+   "Education and published thesis",
+   "Six projects",
+   "Experience",
+   "TaSciEn roles",
+   "Contact"
+  ],
+  "signature": "Working fixed-map navigation via whoami,education,projects,experience,tascien,contact and help",
+  "waived": [
+   "77: complete compact records of two roles, two employers, three contact methods and six project articles"
+  ],
+  "prompt": "Complete Terminal-style overhaul on the same branch with no previous design structure; show identity, graduation, projects, contact, TaSciEn responsibilities and published thesis",
+  "kept": "Verified facts and full public-safe project/background records; homepage condensed and reordered",
+  "replaced": "All previous prototype chrome, classes, typography, palette, section structure, portrait hero and decorative mockups",
+  "adaptations": [
+   "No fictional shell output or decorative terminal window",
+   "Original media remains in expandable records",
+   "Demola contribution narrowed to approved integration/testing/team delivery"
+  ],
+  "reviews": {
+   "hero": "subagent: command field moved above identity metadata and prefilled whoami",
+   "finish": "subagent: ship; no required fixes"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
   "shape": "Portfolio Index",
   "theme": "studio",
   "axes": "light/roman-serif/cadmium-orange",
