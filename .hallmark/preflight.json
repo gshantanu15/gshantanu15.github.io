@@ -1,0 +1,21 @@
+{
+  "scanned": "2026-10-23",
+  "findings": {
+    "fonts": "system sans and mono, assets/css/site.css:10",
+    "palette": "Nordic editorial, assets/css/site.css:1",
+    "framework": "semantic static HTML, AGENTS.md:13",
+    "content": "existing index.html, work.html, about.html; docs/site-content.md still marked awaiting approval"
+  },
+  "preserve": [
+    "All portfolio facts, links, media and interactions",
+    "Root production pages"
+  ],
+  "introduce": [
+    "Studio theme adapted to offline system serif and sans",
+    "Open project index and typographic hierarchy in prototype only"
+  ],
+  "overrides": {
+    "design": "User requests completely different design philosophy",
+    "approval": "Prototype review remains required by AGENTS.md:88"
+  }
+}

@@ -1,0 +1,41 @@
+[
+ {
+  "date": "2026-10-23",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Portfolio Index",
+  "theme": "studio",
+  "axes": "light/roman-serif/cadmium-orange",
+  "hero": "Ledge home, Banner work, Long Document about",
+  "nav": "edge-aligned",
+  "footer": "colophon",
+  "imagery": "original portrait, project audio and video, original hardware photographs",
+  "photos": [],
+  "entry": "prototype/index.html",
+  "fingerprint": "serif nameplate/open index/hairline rules/square orange action/original media/still",
+  "sections": [
+   "Nameplate",
+   "Selected work",
+   "Recent experience",
+   "Education",
+   "Contact",
+   "Colophon"
+  ],
+  "signature": "Shantanu Garg oversized proof-sheet nameplate",
+  "waived": [
+   "77: six Work article stories and compact two-role TaSciEn record"
+  ],
+  "prompt": "Redesign personal portfolio with a different design philosophy on a separate branch, preserving details",
+  "adaptations": [
+   "System serif and sans for offline operation",
+   "No proof-sheet ornament",
+   "Theme helper CRLF parser failed; palette taken from Studio reference using scaffold brand fallback"
+  ],
+  "reviews": {
+   "hero": "subagent: mobile portrait corrected, credential retained as requested",
+   "finish": "subagent: ship, no required fixes"
+  },
+  "validation": "0 FAIL, 0 WARN, 2 WAIVED, 11 preserved-copy NOTE; 320,390,768,1440 browser checks pass"
+ }
+]
