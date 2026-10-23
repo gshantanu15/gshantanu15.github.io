@@ -1,11 +1,13 @@
 http://127.0.0.1:8001/prototype/about.html
+  WAIVED 44c :1 [1440px] hero ends at 499px of a 900px screen
   WAIVED 77 :1 [1440px] 2 thin sections: "TaSciEn" (99% wide, no mass); "Earlier work & activities" (83% wide, no mass)
   NOTE 58 :1 [1440px] 139 words on one screen (from y=250) | fix: One idea per screen: cut to about 80 words, make the section an object
   NOTE 58 :1 [1440px] hero carries 3 text blocks before its actions | fix: Headline, one sentence, actions; delete the rest
-http://127.0.0.1:8001/prototype/index.html
-  WAIVED 77 :1 [1440px] 3 thin sections: "Experience" (97% wide, no mass); "TaSciEn" (99% wide, no mass); "Contact" (61% wide)
-  NOTE 58 :1 [1440px] 86 words on one screen (from y=2300) | fix: Close to the 80-word screen budget
 http://127.0.0.1:8001/prototype/work.html
+  WAIVED 44c :1 [1440px] hero ends at 407px of a 900px screen
   WAIVED 77 :1 [1440px] 4 sections, hero and footer included
   NOTE 58 :1 [1440px] hero carries 3 text blocks before its actions
-sloplint: 0 FAIL, 0 WARN, 3 WAIVED, 4 NOTE across 3 file(s) and 3 URL(s).
+http://127.0.0.1:8001/prototype/index.html
+  WAIVED 77 :1 [1440px] 4 thin sections: "Command reference" (72% wide, no mass); "Experience" (97% wide, no mass); "TaSciEn" (99% wid…
+  NOTE 58 :1 [1440px] 88 words on one screen (from y=3100) | fix: Close to the 80-word screen budget
+sloplint: 0 FAIL, 0 WARN, 5 WAIVED, 4 NOTE across 3 file(s) and 3 URL(s).

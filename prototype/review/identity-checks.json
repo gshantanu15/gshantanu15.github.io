@@ -1,0 +1,13 @@
+{
+  "result": "pass",
+  "reports": [
+    "One-time reveal, seven responsive widths including 640px reflow, no resize replay, command help focus: passed",
+    "reduce: static portrait and command links passed without third-party requests",
+    "no-js: static portrait and command links passed without third-party requests",
+    "canvas-missing: static portrait and command links passed without third-party requests",
+    "canvas-error: static portrait and command links passed without third-party requests",
+    "decode-error: static portrait and command links passed without third-party requests",
+    "save-data: static portrait and command links passed without third-party requests",
+    "Reduced motion switched on mid-reveal: pending frame canceled and static portrait restored"
+  ]
+}
