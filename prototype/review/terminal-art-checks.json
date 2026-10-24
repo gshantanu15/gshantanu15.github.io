@@ -2,7 +2,8 @@
   "result": "pass",
   "reports": [
     "Curved root growth: 1955 < 2529 < 4210 glyphs at top, midpoint and bottom; no erase/replay on upward scroll or resize",
-    "320–1920px: no content overlap, pointer interception or overflow; narrow screens use a decorative end mark after the content",
+    "320–1920px: tree fills the viewport behind the page at every width, lower opacity on tablet/mobile, no pointer interception or overflow",
+    "Lowest text contrast over the brightest possible background glyph: 5.06:1",
     "Caret blinks five times in 4.5 seconds, then holds",
     "reduce: static tree retained without third-party requests",
     "no-js: static tree retained without third-party requests",
@@ -10,6 +11,6 @@
     "canvas-error: static tree retained without third-party requests",
     "asset-error: static tree retained without third-party requests",
     "save-data: static tree retained without third-party requests",
-    "Mobile end mark completes at page bottom (initial 1955 glyphs); canvas loss restores static tree"
+    "Mobile background roots complete at page bottom (initial 1955 glyphs); canvas loss restores static tree"
   ]
 }

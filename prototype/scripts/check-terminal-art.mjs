@@ -61,15 +61,30 @@ try {
   await page.evaluate(() => scrollTo(0, 0));
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)));
   assert.equal(await page.evaluate(() => window.treePaints), counts[2], 'upward scrolling never erases or replays roots');
-  for (const width of [320, 390, 768, 1280, 1440, 1600, 1920]) {
+  let minimumContrast = Infinity;
+  for (const width of [320, 390, 768, 1024, 1280, 1440, 1600, 1920]) {
     await page.setViewport({ width, height: 900 });
     await page.evaluate(() => scrollTo(0, 0));
     assert(await page.evaluate(() => {
       const art = document.querySelector('[data-banyan]');
-      const box = art.getBoundingClientRect(), main = document.querySelector('main').getBoundingClientRect();
-      return document.documentElement.scrollWidth <= innerWidth && box.left >= 0 && box.right <= innerWidth && (getComputedStyle(art).position === 'fixed' ? box.left - main.right >= 8 : box.top >= main.bottom);
-    }), `${width}px: art stays outside content and viewport bounds`);
-    if ([390, 1440].includes(width)) {
+      const box = art.getBoundingClientRect(), style = getComputedStyle(art);
+      const link = document.querySelector('.identity-actions a'), target = link.getBoundingClientRect();
+      const hit = document.elementFromPoint(target.left + target.width / 2, target.top + target.height / 2);
+      return document.documentElement.scrollWidth <= innerWidth && box.left === 0 && box.top === 0 && Math.abs(box.width - innerWidth) <= 1 && Math.abs(box.height - innerHeight) <= 1 && style.position === 'fixed' && Number(style.opacity) <= .1 && Number(getComputedStyle(document.querySelector('.terminal-layout')).zIndex) > Number(style.zIndex) && (!hit || hit.closest('a') === link);
+    }), `${width}px: full-page background stays beneath content without capturing controls or adding overflow`);
+    const contrast = await page.evaluate(() => {
+      const context = document.createElement('canvas').getContext('2d');
+      const rgb = color => { context.clearRect(0, 0, 1, 1); context.fillStyle = color; context.fillRect(0, 0, 1, 1); return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3); };
+      const luminance = color => color.map(channel => { const value = channel / 255; return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4; }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+      const paper = rgb(getComputedStyle(document.body).backgroundColor);
+      const brightest = rgb(getComputedStyle(document.documentElement).getPropertyValue('--glyph-7'));
+      const opacity = Number(getComputedStyle(document.querySelector('[data-banyan]')).opacity);
+      const background = luminance(paper.map((channel, index) => channel * (1 - opacity) + brightest[index] * opacity));
+      return Math.min(...['body', '.identity-lead', '.identity-output dt', '.command-hint', '.directory-end'].map(selector => (luminance(rgb(getComputedStyle(document.querySelector(selector)).color)) + .05) / (background + .05)));
+    });
+    minimumContrast = Math.min(minimumContrast, contrast);
+    assert(contrast >= 4.5, `${width}px: text contrast over the brightest possible tree glyph (${contrast.toFixed(2)}:1)`);
+    if ([390, 768, 1024, 1440].includes(width)) {
       await page.screenshot({ path: path.join(review, `index-${width}.png`) });
       await page.screenshot({ path: path.join(review, `index-${width}-full.png`), fullPage: true });
     }
@@ -80,7 +95,8 @@ try {
   await page.evaluate(() => document.getAnimations().forEach(animation => animation.finish()));
   assert.equal(await page.$eval('h1', heading => getComputedStyle(heading, '::after').opacity), '1', 'caret holds its final state');
   reports.push(`Curved root growth: ${counts.join(' < ')} glyphs at top, midpoint and bottom; no erase/replay on upward scroll or resize`);
-  reports.push('320–1920px: no content overlap, pointer interception or overflow; narrow screens use a decorative end mark after the content');
+  reports.push('320–1920px: tree fills the viewport behind the page at every width, lower opacity on tablet/mobile, no pointer interception or overflow');
+  reports.push(`Lowest text contrast over the brightest possible background glyph: ${minimumContrast.toFixed(2)}:1`);
   reports.push('Caret blinks five times in 4.5 seconds, then holds');
   await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
   await page.waitForFunction(() => !document.querySelector('[data-banyan]').hasAttribute('data-growing'));
@@ -105,7 +121,7 @@ try {
   await mobile.$eval('[data-banyan] canvas', canvas => canvas.dispatchEvent(new Event('contextlost')));
   await fallback(mobile, 'lost canvas context');
   await mobile.close();
-  reports.push(`Mobile end mark completes at page bottom (initial ${before} glyphs); canvas loss restores static tree`);
+  reports.push(`Mobile background roots complete at page bottom (initial ${before} glyphs); canvas loss restores static tree`);
   fs.writeFileSync(path.join(review, 'terminal-art-checks.json'), JSON.stringify({ result: 'pass', reports }, null, 2) + '\n');
   console.log(reports.join('\n'));
 } finally { await browser.close(); }

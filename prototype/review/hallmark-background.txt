@@ -1,0 +1,4 @@
+http://127.0.0.1:8001/prototype/index.html
+  WAIVED 77 :1 [1440px] 3 thin sections: "Experience" (97% wide, no mass); "TaSciEn" (99% wide, no mass); "Contact" (61% wide)
+  NOTE 58 :1 [1440px] 86 words on one screen (from y=2300) | fix: Close to the 80-word screen budget
+sloplint: 0 FAIL, 0 WARN, 1 WAIVED, 1 NOTE across 3 file(s) and 1 URL(s).
