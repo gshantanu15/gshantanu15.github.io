@@ -1,19 +1,49 @@
 {
-  "scanned": "2026-10-23",
-  "findings": {
-    "branch": "showcase/hallmark-studio; clean before terminal revision",
-    "content": "AGENTS.md:22-57 and docs/site-content.md; current public-safe project and background records",
-    "stack": "AGENTS.md:13-20: semantic HTML/CSS/minimal JavaScript and GitHub Pages relative links",
-    "prior_system": "prototype/design.md: Studio; explicitly superseded by user's Terminal overhaul request"
-  },
-  "preserve": [
-    "Verified identity, Tampere University graduation2026, public projects, published thesis, contact and TaSciEn records",
-    "Root production files, original media and external destinations"
+  "date": "2026-10-24",
+  "scope": "banyan background component redesign",
+  "page": "prototype/index.html",
+  "genre": "atmospheric",
+  "theme": "Terminal (locked, by request)",
+  "evidence": [
+    {
+      "file": "prototype/assets/site.css:217",
+      "finding": "Original image and canvas were forced to width100% andheight100% with defaultobject-fitfill"
+    },
+    {
+      "file": "prototype/scripts/make-banyan.mjs:11",
+      "finding": "Old master480x1421was a tall procedural vine drawing, not a natural banyan silhouette"
+    },
+    {
+      "file": "prototype/assets/site.js:55",
+      "finding": "Existing progressive root growth and static fallbacks can be retained with new source and metadata"
+    }
   ],
-  "introduce": [
-    "Named Terminal theme, self-hosted Martian Mono and phosphor tokens",
-    "New command directory, working command shortcuts and native project disclosures",
-    "Education and published thesis together on the overview"
+  "preserved": [
+    "Portfolio facts, routes, links, layout, cursor and semantic structure",
+    "Local-only runtime and no third-party requests"
   ],
-  "authorization": "User explicitly requests complete Terminal overhaul, new elements, new structure, same branch; prior Studio lock and Nordic design do not constrain this prototype revision"
+  "introduced": [
+    "Generated botanical source transformed locally into a 3:2 glyph master",
+    "Aspect-preserving contain/cover compositions with coordinated image/canvas crops",
+    "DPR-capped canvas rendering and explicit no-stretch regression checks"
+  ],
+  "files": {
+    "edit": [
+      "prototype/scripts/make-banyan.mjs",
+      "prototype/assets/banyan-glyph.json",
+      "prototype/assets/banyan-glyph.webp",
+      "prototype/assets/site.css",
+      "prototype/assets/site.js",
+      "prototype/index.html",
+      "prototype/scripts/check-terminal-art.mjs",
+      "prototype/design.md",
+      "prototype/README.md",
+      "prototype/review.html"
+    ],
+    "create": [
+      "prototype/artwork/banyan-source-v2.png",
+      "prototype/artwork/README.md"
+    ],
+    "delete": []
+  }
 }

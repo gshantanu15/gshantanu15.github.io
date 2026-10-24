@@ -24,16 +24,17 @@ if (banyan) {
     frame = 0;
     canvas.hidden = true;
     banyan.removeAttribute("data-growing");
+    banyan.removeAttribute("data-preparing");
   };
   const readingProgress = () => {
     const distance = document.documentElement.scrollHeight - innerHeight;
     return distance > 0 ? scrollY / distance : 1;
   };
-  const glyphs = "banyan/roots/branches/leaves/";
+  let glyphs;
   let colors, family;
   const paint = (point, index) => {
     context.fillStyle = colors[point[2]];
-    context.font = `400 ${point[2] < 3 ? 6.8 : 10}px ${family}`;
+    context.font = `400 ${point[2] < 3 ? 6.8 : 11}px ${family}`;
     context.fillText(glyphs[index % glyphs.length], point[0], point[1], 5.3);
   };
   const update = () => {
@@ -45,6 +46,7 @@ if (banyan) {
       paint(root.point, root.index);
     }
     canvas.hidden = false;
+    banyan.removeAttribute("data-preparing");
     banyan.setAttribute("data-growing", "");
   };
   const schedule = () => { if (!frame && context && !motion.matches) frame = requestAnimationFrame(update); };
@@ -53,16 +55,23 @@ if (banyan) {
     if (context) { schedule(); return; }
     if (loading) return;
     loading = true;
+    banyan.setAttribute("data-preparing", "");
     try {
       const response = await fetch("assets/banyan-glyph.json");
       if (!response.ok) throw new Error("Tree asset unavailable");
       const data = await response.json();
-      if (data.width !== 480 || data.height !== 1421 || !Array.isArray(data.points) || !data.points.every(point => point.length === 4 && point.every(Number.isFinite) && point[0] >= 0 && point[0] < data.width && point[1] >= 0 && point[1] < data.height && Number.isInteger(point[2]) && point[2] >= 0 && point[2] <= 7 && point[3] >= -1 && point[3] <= 1)) throw new Error("Invalid tree asset");
+      if (data.version !== 2 || data.width !== 1800 || data.height !== 1200 || typeof data.glyphs !== "string" || !data.glyphs.length || !Array.isArray(data.points) || !data.points.every(point => point.length === 4 && point.every(Number.isFinite) && point[0] >= 0 && point[0] < data.width && point[1] >= 0 && point[1] < data.height && Number.isInteger(point[2]) && point[2] >= 0 && point[2] <= 7 && point[3] >= -1 && point[3] <= 1)) throw new Error("Invalid tree asset");
       await document.fonts.load('10px "Martian Mono"');
       if (!document.fonts.check('10px "Martian Mono"')) throw new Error("Tree font unavailable");
       const drawing = canvas.getContext("2d");
-      if (!drawing) return;
+      if (!drawing) { staticTree(); return; }
       context = drawing;
+      // Render glyphs sharply, then fit the whole 3:2 composition with one scale.
+      const density = Math.min(Math.ceil(devicePixelRatio || 1), 2);
+      canvas.width = data.width * density;
+      canvas.height = data.height * density;
+      context.setTransform(density, 0, 0, density, 0, 0);
+      glyphs = data.glyphs;
       colors = Array.from({ length: 8 }, (_, index) => getComputedStyle(document.documentElement).getPropertyValue("--glyph-" + index).trim());
       family = getComputedStyle(document.body).fontFamily;
       context.textAlign = "center";

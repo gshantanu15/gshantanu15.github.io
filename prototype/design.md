@@ -7,7 +7,7 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Theme: Hallmark Terminal, requested by the user.
 - Genre: atmospheric; material: monospace terminal output.
 - Shape: Session Ledger, with a persistent command directory and readable document outputs.
-- Signature: a generic glyph banyan spanning the page background, with curved aerial roots developing as the visitor reads. Identity and portfolio records remain the main visual path.
+- Signature: a natural 3:2 botanical glyph banyan spanning the page background, with curved aerial roots developing as the visitor reads. Identity and portfolio records remain the main visual path.
 - Navigation: overview, projects, background; direct section links remain available without JavaScript.
 - Overview order: simple identity, optional command navigation, and facts; education and published thesis; six projects; experience; TaSciEn; contact. There is no identity session panel, portrait, or descriptive command-reference section.
 - Project catalogue: six independent records with native disclosures, original media, attribution, and public links.
@@ -38,12 +38,12 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Project stories and the earlier-work archive use native details/summary controls.
 - Hardware photographs retain their manual controls and position announcements.
 - Media playback is user initiated; reduced motion disables interface transitions.
-- The banyan is an original deterministic glyph drawing: a broad canopy, arched limbs, twisted trunk, and staggered cubic aerial roots. No personal photo, stock image, external converter, camera or upload is involved.
-- At every viewport, the tree fills a fixed background layer behind the entire page. Content and navigation occupy a higher stacking layer. Opacity is 10% on desktop, 8% on tablet, and 6.5% on mobile; there is no side rail, footer end mark, or extra document height. It is hidden from assistive technology and printing, has no focusable elements, and never intercepts pointers.
-- A static WebP is visible by default. Supported browsers load the local glyph data and paint newly reached root characters once, in order along the curves, using passive scroll events coalesced into animation frames. There is no horizontal wipe, scroll hijacking, text movement, erasing when scrolling up, or continuing animation while reading pauses.
+- The banyan is a locally converted glyph picture from an original generated botanical source: an irregular broad canopy, gnarled branching trunk, prop roots, and hanging aerial roots. It is generic artwork, not a personal photo or a claim about a specific real tree. Source, prompt, and conversion notes are in `artwork/README.md`.
+- At every viewport, the tree occupies a fixed background layer behind the page. Its master and canvas are always 1800×1200 (3:2); the canvas can render at up to 2× pixel density. Desktop shows the complete tree with `contain`; tablet/mobile use a deliberate `cover` crop, preserving anatomy and glyph proportions. Image and canvas share fitting, positioning, and masthead clearance. Neither uses `fill`. Content and navigation occupy a higher stacking layer. Opacity is 10% on desktop, 8% on tablet, and 6.5% on mobile; there is no side rail, footer end mark, or extra document height. It is hidden from assistive technology and printing, has no focusable elements, and never intercepts pointers.
+- A matching static WebP is visible by default. Supported browsers prepare the local glyph canvas without flashing mature roots, then softly reveal the canopy. They paint newly reached root characters once in staggered root families, using passive scroll events coalesced into animation frames. There is no horizontal wipe, scroll hijacking, text movement, erasing when scrolling up, or continuing animation while reading pauses.
 - Reduced motion, save-data, disabled JavaScript, missing canvas, lost canvas context or failed glyph data retain the complete static tree. Changing the motion preference immediately restores the static image.
 - The CSS caret uses five 900ms cycles (4.5 seconds total), then stays visible. Reduced motion shows the stationary caret immediately. Its occupied width never changes during blinking.
-- `scripts/make-banyan.mjs` is an optional local authoring tool, not a build step. It generates the point data and matching static WebP from the self-hosted Martian Mono font and the Terminal glyph tokens.
+- `scripts/make-banyan.mjs` is an optional local authoring tool, not a build step. It converts the local alpha source into 300×108 glyph samples and a matching WebP, using self-hosted Martian Mono and the Terminal glyph tokens. The source PNG is not fetched by the website.
 
 ## Content and evidence
 

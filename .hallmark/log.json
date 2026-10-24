@@ -1,6 +1,31 @@
 [
  {
   "date": "2026-10-24",
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "banyan background component",
+  "theme": "terminal (locked, by request)",
+  "shape": "Existing portfolio retained",
+  "entry": "prototype/index.html",
+  "signature": "Natural 3:2 botanical glyph banyan with a broad crown and aerial-root families",
+  "material": "Original built-in imagegen botanical source converted locally into Martian Mono glyphs; no personal imagery",
+  "files": "Edit existing generator, glyph assets, background runtime/styles and aspect checks; create local artwork source and provenance notes; delete none",
+  "kept": "21/21 links,1/1 fields,11/11 headings,5/5 figures; all portfolio facts and routes remain; production unchanged",
+  "fixed": [
+   "Replaced480x1421 procedural pillar with1800x1200 botanical master",
+   "Independent width/height stretching replaced by contain/cover with coordinated responsive crops and masthead clearance",
+   "Glyph-cell aspect1.85 and fresh DPR2 buffer3600x2400 verified",
+   "Permuted glyph sequence removes readable repeated-word clutter; preparation state prevents mature-root flash"
+  ],
+  "checks": "Background suite passed at320–1920px plus landscape andRetina; reducedmotion/noJS/saveData/asset/canvasfailures; contrastminimum5.06:1; complete prototype suite andstaticproductionchecks passed",
+  "sweep": "Component render0FAIL0REFLEX0WARN; kept-check passed all original structure",
+  "reviews": {
+   "finish": "fresh-context subagent: ship; natural anatomy, responsive cropping, visual hierarchy and restrained opacity accepted; no unresolved findings"
+  },
+  "prompt": "Hallmark redesign of the stretched banyan background; do not finish until high quality is met"
+ },
+ {
+  "date": "2026-10-24",
   "mode": "refine",
   "scope": "prototype background across desktop tablet and mobile",
   "theme": "terminal (by request)",
