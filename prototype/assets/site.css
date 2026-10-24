@@ -1,12 +1,13 @@
 /* Hallmark · shape: Session Ledger · genre: atmospheric · theme: Terminal (by request) · redesign: full · copy: verbatim (source records); overview condensed by request
- * hero: concise identity record · nav: persistent command directory · footer: terminal colophon · signature: a quiet banyan glyph in the outer gutter, roots growing with reading progress
+ * hero: concise identity record · nav: persistent command directory · footer: terminal colophon · signature: a quiet full-page banyan background, roots growing with reading progress
  * axes: dark/mono/phosphor-green · posture: committed · imagery: procedural banyan and original project media · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V5 · weakest: density; native disclosures hold full project evidence while the overview names the six requested subjects. */
 /* Hallmark · waive 77 · Two TaSciEn roles, two employers, three contact methods and six project articles are the complete record · Compact terminal sections retain the real portfolio entries without manufacturing extra content. */
 /* Hallmark · waive 44c · Work and About introduce complete long-form records · Compact document headers keep the real project and background records directly accessible. */
 /* Hallmark · hero-review: subagent, fix; command field moved above identity output and prefilled with whoami; name and factual copy retained. */
 /* Hallmark · motion by request: curved aerial roots follow scroll progress; a small caret blinks five times and holds; reduced motion shows static final states. */
-/* Hallmark · finish-review: subagent, ship; tree stays outside reading content, mobile placement follows all records, finite cursor preserves portfolio hierarchy. */
+/* Hallmark · prior finish-review: subagent, ship; revised by request to a low-contrast full-page background at every viewport. */
+/* Hallmark · current review: in-thread; desktop, tablet and mobile captures inspected, conservative text contrast above 5:1 and background/foreground stacking verified. */
 @import url("./tokens.css");
 @import url("./base.css");
 
@@ -209,15 +210,20 @@ summary:hover { color: var(--color-ink); }
 .review-links a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 760px) { .review-pair { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); } }
 
-/* Decoration occupies its own gutter or a quiet end mark after the page. */
-.banyan-art { position: fixed; top: 112px; right: max(var(--space-md), calc((100% - var(--container)) / 2 - 256px)); width: min(240px, calc((100% - var(--container)) / 2 - 32px)); height: calc(100% - 144px); opacity: .46; pointer-events: none; user-select: none; contain: layout paint; }
+/* A background layer, shared across viewport sizes; content always paints above it. */
+.has-banyan { isolation: isolate; }
+.has-banyan > .masthead, .has-banyan > .terminal-layout { position: relative; z-index: 1; }
+.banyan-art { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; opacity: .1; pointer-events: none; user-select: none; contain: layout paint; }
 .banyan-art img, .banyan-art canvas { display: block; width: 100%; height: 100%; }
 .banyan-art canvas { position: absolute; inset: 0; }
 .banyan-art[data-growing] img { opacity: 0; }
 .identity h1::after, .record-intro h1::after { content: ""; display: inline-block; width: .48em; height: .8em; margin-left: .22em; background: var(--color-accent); vertical-align: -.02em; animation: terminal-caret 900ms steps(1, end) 5; }
 @keyframes terminal-caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@media (max-width: 1439px) {
-  .banyan-art { position: relative; inset: auto; width: min(200px, 50%); height: 360px; margin: var(--space-lg) auto var(--space-xl); opacity: .4; }
+@media (max-width: 1100px) {
+  .banyan-art { opacity: .08; }
+}
+@media (max-width: 760px) {
+  .banyan-art { opacity: .065; }
 }
 @media (prefers-reduced-motion: reduce) {
   .identity h1::after, .record-intro h1::after { animation: none; opacity: 1; }

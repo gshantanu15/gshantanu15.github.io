@@ -13,7 +13,7 @@ menu?.addEventListener("click", () => {
   directory?.classList.toggle("is-open", open);
 });
 
-// Roots are painted once in path order; scroll never moves or obscures the document.
+// Roots grow behind the document, once in path order, without moving the content.
 const banyan = document.querySelector("[data-banyan]");
 if (banyan) {
   const canvas = banyan.querySelector("canvas");
@@ -26,12 +26,8 @@ if (banyan) {
     banyan.removeAttribute("data-growing");
   };
   const readingProgress = () => {
-    if (getComputedStyle(banyan).position === "fixed") {
-      const distance = document.documentElement.scrollHeight - innerHeight;
-      return distance > 0 ? scrollY / distance : 1;
-    }
-    const box = banyan.getBoundingClientRect();
-    return (innerHeight - box.top) / box.height;
+    const distance = document.documentElement.scrollHeight - innerHeight;
+    return distance > 0 ? scrollY / distance : 1;
   };
   const glyphs = "banyan/roots/branches/leaves/";
   let colors, family;

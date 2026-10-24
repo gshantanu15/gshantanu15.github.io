@@ -2,7 +2,7 @@
 
 Branch: `showcase/hallmark-studio` (retained as requested).
 
-The earlier editorial design has been replaced with a terminal-style portfolio: dark phosphor colours, locally served monospace type, a simple identity record, a working command field, and expandable project records. A generic glyph banyan develops curved aerial roots in the outer gutter as the visitor reads. The portrait, identity panel, and permanent command-reference rows have been removed at the user’s request.
+The earlier editorial design has been replaced with a terminal-style portfolio: dark phosphor colours, locally served monospace type, a simple identity record, a working command field, and expandable project records. A generic glyph banyan develops curved aerial roots across a faint full-page background as the visitor reads. The portrait, identity panel, and permanent command-reference rows have been removed at the user’s request.
 
 ## Preview
 
@@ -41,13 +41,13 @@ Hallmark’s final source and browser sweeps report zero FAIL and zero WARN. Gat
 
 Expanded-project regression checks also cover heading separation, distinct tag boundaries and wrapping at all four widths. Colored tags meet at least 11:1 text contrast in the saved browser measurement (`review/tag-contrast.json`). Close-up screenshots of Voice Agent Lab and Demola and full expanded desktop/mobile records are in `review/`.
 
-Art checks cover seven widths from 320px to 1920px; root growth at the top, midpoint and bottom; content separation; pointer and focus exclusion; no root replay on upward scrolling or resizing; the finite cursor; no-JavaScript, reduced-motion, save-data, missing/throwing/lost canvas and failed-data fallbacks. They block and assert the absence of third-party requests. Results are in `review/terminal-art-checks.json`.
+Art checks cover eight widths from 320px to 1920px; root growth at the top, midpoint and bottom; background coverage and stacking; worst-case text contrast; pointer and focus exclusion; no root replay on upward scrolling or resizing; the finite cursor; no-JavaScript, reduced-motion, save-data, missing/throwing/lost canvas and failed-data fallbacks. They block and assert the absence of third-party requests. Results are in `review/terminal-art-checks.json`.
 
 ## Banyan and cursor
 
 `assets/banyan-glyph.json` describes an original, deterministic tree made of Martian Mono characters and the eight Terminal glyph colors. The static `assets/banyan-glyph.webp` uses the same data. This is a generic illustration, not a photograph or personal image.
 
-On wide screens, the decorative tree lives outside the portfolio’s reading column. Below 1440px, it follows all portfolio content as a compact end mark. It never captures clicks, receives focus, moves text, or hijacks scrolling. Aerial roots grow in staggered order along curved paths as the visitor approaches the bottom; scrolling back up does not erase or restart them. The reduced-motion and no-JavaScript versions show a complete static tree.
+On desktop, tablet and mobile, the decorative tree spans a fixed background layer behind the page. Content and navigation stay in front. The tree is progressively quieter on smaller screens (10%, 8%, and 6.5% opacity). It adds no footer block or document height. Conservative contrast checks against the brightest possible glyph measure 5.06:1 at minimum (rounded) for the dimmest sampled body/label text. It never captures clicks, receives focus, moves text, or hijacks scrolling. Aerial roots grow in staggered order along curved paths as the visitor approaches the bottom; scrolling back up does not erase or restart them. The reduced-motion and no-JavaScript versions show a complete static tree.
 
 The heading cursor blinks five times over 4.5 seconds, then holds. Reduced motion shows it stationary. There is no continuous blinking animation.
 

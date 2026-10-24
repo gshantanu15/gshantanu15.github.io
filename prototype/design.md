@@ -7,7 +7,7 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Theme: Hallmark Terminal, requested by the user.
 - Genre: atmospheric; material: monospace terminal output.
 - Shape: Session Ledger, with a persistent command directory and readable document outputs.
-- Signature: a generic glyph banyan in the outer gutter, with curved aerial roots developing as the visitor reads. Identity and portfolio records remain the main visual path.
+- Signature: a generic glyph banyan spanning the page background, with curved aerial roots developing as the visitor reads. Identity and portfolio records remain the main visual path.
 - Navigation: overview, projects, background; direct section links remain available without JavaScript.
 - Overview order: simple identity, optional command navigation, and facts; education and published thesis; six projects; experience; TaSciEn; contact. There is no identity session panel, portrait, or descriptive command-reference section.
 - Project catalogue: six independent records with native disclosures, original media, attribution, and public links.
@@ -39,7 +39,7 @@ This replaces the previous Studio prototype system at the user’s explicit requ
 - Hardware photographs retain their manual controls and position announcements.
 - Media playback is user initiated; reduced motion disables interface transitions.
 - The banyan is an original deterministic glyph drawing: a broad canopy, arched limbs, twisted trunk, and staggered cubic aerial roots. No personal photo, stock image, external converter, camera or upload is involved.
-- At 1440px and above, the tree occupies only the outer right gutter, at least 16px clear of the portfolio. At smaller widths it becomes a compact decorative end mark after all content. It is hidden from assistive technology and printing, has no focusable elements, and never intercepts pointers.
+- At every viewport, the tree fills a fixed background layer behind the entire page. Content and navigation occupy a higher stacking layer. Opacity is 10% on desktop, 8% on tablet, and 6.5% on mobile; there is no side rail, footer end mark, or extra document height. It is hidden from assistive technology and printing, has no focusable elements, and never intercepts pointers.
 - A static WebP is visible by default. Supported browsers load the local glyph data and paint newly reached root characters once, in order along the curves, using passive scroll events coalesced into animation frames. There is no horizontal wipe, scroll hijacking, text movement, erasing when scrolling up, or continuing animation while reading pauses.
 - Reduced motion, save-data, disabled JavaScript, missing canvas, lost canvas context or failed glyph data retain the complete static tree. Changing the motion preference immediately restores the static image.
 - The CSS caret uses five 900ms cycles (4.5 seconds total), then stays visible. Reduced motion shows the stationary caret immediately. Its occupied width never changes during blinking.

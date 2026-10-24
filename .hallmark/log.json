@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-10-24",
+  "mode": "refine",
+  "scope": "prototype background across desktop tablet and mobile",
+  "theme": "terminal (by request)",
+  "signature": "Full-page low-contrast banyan behind the portfolio, curved roots following reading progress",
+  "entry": "prototype/index.html",
+  "prompt": "Move right-side banyan to a non-intrusive whole-page background; follow the same pattern on tablet and mobile",
+  "kept": "Content, layout, keyboard behavior, finite cursor, root growth and all static fallbacks",
+  "changed": "Shared fixed background layer at every size, lower opacity on narrow screens, no side rail or end mark",
+  "checks": "320–1920px coverage, stacking, pointer exclusion, overflow, conservative text contrast >=5.06:1, scroll growth and fallback checks passed; complete prototype suite passed"
+ },
+ {
   "date": "2026-10-23",
   "mode": "refine",
   "scope": "prototype portfolio-first identity and decorative art",
