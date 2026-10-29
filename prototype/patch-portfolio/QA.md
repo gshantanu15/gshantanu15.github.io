@@ -44,3 +44,7 @@ Production static validation (`node scripts/check-site.mjs`) still passes. Root 
 - `review/hallmark.txt`; `compare.html` for before/after viewing
 
 Preliminary `first-*` screenshots are diagnostic captures, not final review evidence. Approved patch hashes match the saved baseline. Source and QA changes are saved separately from the original design snapshot.
+
+## Annotated component revision
+
+The full responsive checker and focused scroll/zoom checker pass after this revision. `check-components.cjs` additionally passes portrait pointer/keyboard behavior, particle completion, footer scrambling/restoration, six-row mobile ordering, no-JavaScript/reduced-motion fallbacks, page errors and overflow at 320/390/788/1440px. Captures decode lazy images before saving. See review/component-checks.json, component-footer-*.png, component-home-hero-788.png, component-home-particles.png and component-home-portrait.png. The current Hallmark report is review/components-hallmark.txt: 0 FAIL, 0 open REFLEX. Independent footer/component audit returned ship, no fixes.

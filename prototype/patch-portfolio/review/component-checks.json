@@ -1,0 +1,10 @@
+{
+  "portrait": true,
+  "heroParticles": true,
+  "footer": true,
+  "workAlternation": true,
+  "basicWidths": true,
+  "noJs": true,
+  "reducedMotion": true,
+  "screenshots": true
+}
