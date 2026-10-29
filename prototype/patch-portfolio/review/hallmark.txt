@@ -1,0 +1,40 @@
+index.html
+  WARN F4 :27 two filled buttons side by side in the hero: "View selected work" and "About and experience" | fix: One filled primary per screen; the second action is outlined or a typographic link
+  WARN F19 :1 [1440px] 4 font weights in running use (400, 600, 700, 800) | fix: Three weights at most, display and body together, picked as extremes
+  WAIVED 44c :1 [1440px] hero ends at 374px of a 900px screen
+  WAIVED 59 :1 [1440px] smallest gap between sections is 101px (gaps: 101, 133, 145, 152, 256, 105)
+  WAIVED 77 :1 [1440px] 1 thin section: section.bio-note (68% wide, no mass)
+  NOTE 19 :14 dash "—" in copy | fix: A comma, a colon, a full stop or parentheses; never a dash
+  NOTE 58 :1 [1440px] 97 words on one screen (from y=1900) | fix: One idea per screen: cut to about 80 words, make the section an object
+assets\site.css
+  WARN F15 :1 4 different column gaps across multi-column sections (24px, 40px, 64px, 48px) | fix: One column gap for every multi-column section
+  WAIVED 7b :13 pure #fff: background: var(--paper) (body)
+  WAIVED 7b :14 pure #fff: color: var(--paper) (::selection)
+  WAIVED 7b :35 pure #fff: background: var(--paper) (.skip-link)
+  WAIVED 7b :43 pure #fff: color: var(--paper) (.site-nav a[aria-current])
+  WAIVED 7b :44 pure #fff: background: var(--paper) (.nav-toggle)
+  WAIVED 7b :50 pure #fff: color: var(--paper) (.button-primary)
+  WAIVED 7b :52 pure #fff: background: var(--paper) (.button-secondary)
+  WAIVED 7b :155 pure #fff: background: var(--paper) (.hardware-controls button)
+  WAIVED 7b :246 pure #fff: color: var(--paper) (video)
+  NOTE waive :1 6 reflex gates waived (7b, 80, 44c, 59, 77, 71): that is a house style,… | fix: Lock it into a design.md so later pages inherit it instead of re-arguing it
+about.html
+  WARN F19 :1 [1440px] 5 font weights in running use (400, 600, 700, 800, 900)
+  WAIVED 77 :1 [1440px] 1 thin section: "Student leadership" (99% wide, no mass)
+  NOTE 19 :14 dash "—" in copy
+  NOTE 58 :1 645 visible words on the page (450 at most) | fix: Cut copy: one idea per screen, sections become objects
+  NOTE 58 :1 [1440px] 191 words on one screen (from y=3950)
+  NOTE 58 :1 [1440px] hero carries 4 text blocks before its actions | fix: Headline, one sentence, actions; delete the rest
+  NOTE 58 :22 h1 runs 9 words ("I learn by building, testing, and worki…") | fix: Seven words or fewer, 50 characters or fewer
+  NOTE 58 :23 hero paragraph runs 32 words | fix: One sentence, twelve words or fewer
+work.html
+  WARN F19 :1 [1440px] 5 font weights in running use (400, 600, 700, 800, 900)
+  WAIVED 44c :1 [1440px] hero ends at 620px of a 900px screen
+  WAIVED 59 :1 [1440px] smallest gap between sections is 109px (gaps: 109, 225, 107)
+  WAIVED 71 :1 [1440px] heads nearer what precedes them than what they head: h3 "" 0px over, 12px under; h3 "" 0px over, 18px under
+  WAIVED 77 :1 [1440px] 4 sections, hero and footer included
+  NOTE 19 :14 dash "—" in copy
+  NOTE 58 :1 969 visible words on the page (450 at most)
+  NOTE 58 :1 [1440px] 251 words on one screen (from y=5200)
+  NOTE 58 :22 hero paragraph runs 26 words
+sloplint: 0 FAIL, 5 WARN, 17 WAIVED, 13 NOTE across 5 file(s).

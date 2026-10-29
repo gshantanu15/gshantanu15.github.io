@@ -1,0 +1,9 @@
+{
+  "normalScroll": true,
+  "pauseAndMouseHold": true,
+  "completion": true,
+  "focusSettles": true,
+  "preferenceChange": true,
+  "shortLandscape": true,
+  "zoom200": true
+}
