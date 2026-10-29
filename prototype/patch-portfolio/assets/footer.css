@@ -1,0 +1,28 @@
+/* Hallmark v2.0.0 | footer: quiet sewn editorial contact */
+/* Critique: keep the wave atmospheric; identity and labels carry the footer. */
+:root {
+  --footer-surface: rgba(255, 255, 255, .78);
+  --footer-line: rgba(17, 17, 17, .22);
+  --footer-icon-size: 24px;
+  --footer-target: 44px;
+  --footer-gap: 16px;
+  --footer-radius: 12px;
+  --footer-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.ascii-footer { position: relative; isolation: isolate; overflow: clip; padding-block: 48px 40px; border-top: 1px solid var(--rule); }
+.ascii-field { position: absolute; inset: 0 0 0 28%; z-index: -1; overflow: clip; color: var(--muted); opacity: .14; pointer-events: none; }
+.ascii-field pre { margin: 0; padding: 8px; font: 14px/1.25 var(--footer-mono); white-space: pre; transform: rotate(-2deg) scale(1.12); transform-origin: center; }
+.ascii-footer .footer-inner { position: relative; }
+.ascii-footer .brand { color: var(--ink); font-weight: 800; text-decoration: none; }
+.ascii-footer .footer-inner p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+.ascii-footer .footer-links, .contact-links.icon-links { display: flex; flex-wrap: wrap; gap: var(--footer-gap); }
+.contact-links.icon-links { margin: 0; }
+.icon-link { display: inline-flex; min-height: var(--footer-target); align-items: center; gap: 8px; color: var(--ink); font-size: 15px; font-weight: 700; text-decoration: none; }
+.icon-surface { display: inline-grid; width: var(--footer-target); height: var(--footer-target); place-items: center; border: 1px solid var(--footer-line); border-radius: var(--footer-radius); background: var(--footer-surface); transform: translate(-2px, -2px); transition: transform 180ms ease, background-color 180ms ease; }
+.icon-link svg { width: var(--footer-icon-size); height: var(--footer-icon-size); fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.icon-link svg text { fill: currentColor; stroke: none; font: 700 11px/1 var(--font); }
+.icon-link:hover .icon-surface { transform: translate(0, 0); background: var(--soft); }
+.icon-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+@media (max-width: 600px) { .ascii-footer .footer-inner { align-items: flex-start; } .ascii-footer .footer-links, .contact-links.icon-links { gap: 12px; } }
+@media (prefers-reduced-motion: reduce) { .icon-surface { transition: none; } }

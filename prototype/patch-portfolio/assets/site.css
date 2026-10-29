@@ -1,5 +1,5 @@
 /* Hallmark v2.0.0 | redesign: full | theme: approved Sewn portfolio | genre: editorial | job: hire | hero: identity and portrait (Home), project index (Work), editorial biography (About) | nav: plain name and directory | footer: identity and direct contact | surface: absolute | copy: verbatim */
-/* Critique: patches identify the work; summaries and real evidence establish the contribution. Biography, experience and education remain still. */
+/* Critique: patches identify the work; summaries and real evidence establish the contribution. Requested one-time entrances settle into stationary biography, experience and education. */
 /* Hallmark · waive 7b · surface: absolute requested by user · white Home Work and About backgrounds match the approved patch design */
 /* Hallmark · waive 80 · user approved all seven illustrated patches · project artwork carries the portfolio's specific identity */
 /* Hallmark · waive 44c · hero: approved compact identity and project index · Home puts biography within the first screen and Work leads directly into project evidence */
@@ -7,6 +7,7 @@
 /* Hallmark · waive 77 · retained biography and two TaSciEn roles · Home prose and About leadership preserve real content without adding decorative material */
 /* Hallmark · waive 71 · native closed project details have zero-sized descendant boxes · Work headings inside unopened disclosures are not visible crowded content */
 @import url('tokens.css');
+@import url('footer.css');
 * { box-sizing: border-box; }
 html, body { overflow-x: clip; }
 html { scroll-padding-top: 24px; }
@@ -247,3 +248,19 @@ video { color: var(--paper); }
 .star-grid { grid-template-columns: minmax(0,1fr); gap: 28px; }
 
 .comparison img { width: 100%; height: auto; display: block; }
+/* Requested component refinements share the original white editorial system. */
+.portrait-patch { border: 0; padding: 0; background: var(--clear); color: inherit; cursor: pointer; }
+.portrait-patch:disabled { opacity: 1; cursor: default; }
+.portrait-patch .patch-assembly { transform: none; }
+.portrait-patch .patch-back { pointer-events: none; }
+.hero-name { position: relative; }
+.hero-name-text { position: relative; }
+.hero-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.particle-active .hero-name-text { opacity: .78; }
+@media(min-width:761px) {
+ .case-study:nth-child(even) .project-intro { grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); }
+ .case-study:nth-child(even) .project-intro > .patch-frame { grid-column: 2; grid-row: 1; }
+ .case-study:nth-child(even) .project-intro > .case-heading { grid-column: 1; grid-row: 1; }
+}
+@media(prefers-reduced-motion:reduce) { .hero-particles { display: none; } .particle-active .hero-name-text { opacity: 1; } }
+@media print { .hero-particles { display: none; } .particle-active .hero-name-text { opacity: 1; } }

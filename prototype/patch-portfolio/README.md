@@ -39,3 +39,7 @@ Root production HTML supplied existing identity, facts, links, media and origina
 See `QA.md`, `review/hallmark.txt`, `review/motion-checks.json` and the final six desktop/mobile captures. Run `BASE_URL=http://127.0.0.1:8000/prototype/patch-portfolio node check-prototype.cjs` with the platform-appropriate environment syntax, plus `node check-motion.cjs` for the focused HTTP animation/zoom checks. These authoring checks use installed Playwright and Chrome paths in their source. No packages are needed to view the website.
 
 The next step is user review of this complete prototype. Production implementation and deployment remain separate gates.
+
+## Latest component revision
+
+The user requested a locally interactive portrait peel, particle hero name, brief content entrances, ASCII footer, labelled glass-like contact icons, and alternating Work rows. These are implemented and recorded in `COMPONENT-REFINEMENTS.md`. Earlier static-portrait/stationary-content descriptions above describe the previous review stage; reading content now receives a brief one-time entrance and then stays stationary. The original approved SVG art and project scroll-sewing strategy remain unchanged. Current captures have the `component-` prefix.
