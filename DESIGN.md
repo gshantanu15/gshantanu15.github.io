@@ -163,3 +163,11 @@ Portrait orientation correction: the Graduate 2026 patch is vertically elongated
 ## 14. Full prototype authorized
 
 The user approved all seven final SVG designs and the diagonal peel/sew strategy. Approved asset hashes are recorded in prototype/patch-study/content-patches/APPROVED.json. The next phase implements Home, Work and About under prototype/patch-portfolio/, preserving root production pages and the earlier studies. Project artwork is paired with summaries and real evidence. Biography, education and experience remain stationary. Responsive layout, keyboard behavior, reduced motion, no-JavaScript and media playback are verified before the prototype approval gate. This supersedes the earlier artwork-only scope; content and deployment approvals remain separate.
+
+## 15. Full prototype implementation record
+
+The complete Home, Work and About pages now live in prototype/patch-portfolio/. Shared runtime files are assets/tokens.css, assets/site.css and assets/site.js; approved art copies match the original SHA-256 records. Home uses a static vertical portrait patch and four selected project patches with summaries. Work uses all six patches with native contribution disclosures, user-controlled real demos and source links. About retains static editorial reading and manual original-photo carousels.
+
+The integrated scroll adapter reads each native SVG viewBox and edge contour, excludes text/images/symbols from the plain backing, and contains its paint inside the artwork box. Lazy observers prepare nearby assets, offscreen states are skipped, and scroll work is coalesced with no continuous animation loop. Short landscape screens have an adapted reachable completion point. Focus and pointer activation finish decoration without delaying links.
+
+Full responsive, accessibility and motion results, content deltas, advisory Hallmark findings and before/after evidence are recorded in prototype/patch-portfolio/QA.md and README.md. Independent hero and finish reviewers both returned ship. Production remains at the prior approved gate until this complete prototype is reviewed.

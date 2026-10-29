@@ -1,0 +1,13 @@
+:root {
+ --paper: #ffffff;
+ --soft: #f3f3ef;
+ --ink: #111111;
+ --hover-ink: #353535;
+ --muted: #555550;
+ --rule: #d7d7d1;
+ --focus: #234dc7;
+ --clear: transparent;
+ --backing: #e5e4de;
+ --font: Arial, Helvetica, sans-serif;
+ --content: 1120px;
+}
