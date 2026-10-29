@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "voice-agent-lab",
+    "title": "Voice Agent Lab",
+    "description": "Voice waveform, microphone and the official Sarvam wordmark. Sarvam refers to the conversational evaluations."
+  },
+  {
+    "slug": "counsel",
+    "title": "Counsel",
+    "description": "An open book, student figures and a checked academic planner. Generic symbols only; no product screen or private data."
+  },
+  {
+    "slug": "demola-ar",
+    "title": "AI-assisted Object Recognition in AR",
+    "description": "AR framing corners around an object outline, with API and Unity references. A team-project badge, not a project screenshot or architecture diagram."
+  },
+  {
+    "slug": "expense-tracker-api",
+    "title": "Smart Expense Tracker API",
+    "description": "Expense ledger lines, a euro currency sign, API braces and a FastAPI label. No invented balances or transaction examples."
+  },
+  {
+    "slug": "flipoff",
+    "title": "FlipOff",
+    "description": "A graphic split-flap board with center hinges, warm white letters and orange accents drawn from the existing project screenshot. Enhanced fork attribution stays outside the artwork."
+  },
+  {
+    "slug": "satellites",
+    "title": "Satellites - Parallel Programming Simulation",
+    "description": "A large circular crop of the actual simulation fills the patch, with Satellites and OpenMP / OpenCL lettering over the image. Performance labels are excluded."
+  },
+  {
+    "slug": "graduate-2026",
+    "title": "Graduate portrait, 2026",
+    "description": "A vertically elongated white patch with black binding, a large portrait above lighter Graduate / 2026 lettering."
+  }
+]

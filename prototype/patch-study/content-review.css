@@ -1,0 +1,16 @@
+/* Hallmark v2.0.0 | scope: component | theme: inherited patch study | surface: absolute | signature: individually illustrated graphic project patches */
+/* Critique: recognizable project cues, restrained color, bound rims; no fabric rendering or generated product screens. */
+@import url('study.css');
+.patch-index { border-block: 1px solid var(--rule); padding-block: 20px; margin-bottom: 48px; }
+.patch-index a { font-weight: 400; }
+.patch-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 64px 24px; }
+.patch-gallery article { min-width: 0; border-top: 1px solid var(--rule); padding-top: 24px; scroll-margin-top: 24px; }
+.patch-gallery h2 { font-size: 28px; line-height: 1.15; min-height: 64px; letter-spacing: -.03em; }
+.art-link { display: block; padding-block: 24px; }
+.art-link img { display: block; width: 100%; height: auto; }
+.patch-gallery p { font-size: 16px; color: var(--muted); }
+.patch-gallery .credit { margin-top: 12px; font-size: 14px; }
+.file-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-size: 16px; }
+@media(max-width:700px) { .patch-gallery { grid-template-columns: minmax(0,1fr); gap: 48px; } .patch-gallery h2 { min-height: 0; } }
+
+#graduate-2026 .art-link img { max-width: 300px; margin-inline: auto; }

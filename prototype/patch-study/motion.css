@@ -1,0 +1,46 @@
+/* Hallmark v2.0.0 | scope: component | theme: inherited patch study | surface: absolute | signature: scroll-controlled running stitch */
+/* Critique: stylized bound edges and individual stitches replace the dashed outline; content stays stationary. */
+@import url('study.css');
+:root { --patch-blue: #2345ad; --binding-blue: #183583; --fiber-blue: #5275cf; --thread-light: #fff7df; --patch-green: #d9e9de; --binding-green: #68816e; --fiber-green: #a6bca9; --thread-dark: #263d2d; --patch-black: #232629; --binding-black: #101214; --fiber-black: #60666a; }
+.review-note { max-width: 680px; border-top: 1px solid var(--rule); padding-top: 24px; color: var(--muted); font-size: 16px; }
+.review-note p + p { margin-top: 12px; }
+.specimens { max-width: 720px; margin-inline: auto; padding-top: 400px; }
+.specimen { margin-bottom: 240px; }
+.specimen-heading { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; }
+.specimen h2 { font-size: 28px; letter-spacing: -.03em; }
+.specimen output { font-size: 16px; color: var(--muted); }
+.specimen p { max-width: 460px; font-size: 16px; color: var(--muted); margin-top: 24px; }
+.motion-stage { padding-block: 36px; display: grid; place-items: center; }
+.motion-patch { --face: var(--patch-blue); --binding: var(--binding-blue); --fiber: var(--fiber-blue); --thread: var(--thread-light); position: relative; width: 100%; max-width: 480px; aspect-ratio: 3 / 2; display: grid; place-items: center; color: var(--thread-light); }
+.motion-patch svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.patch-face { fill: var(--face); }
+.bound-edge { fill: none; stroke: var(--binding); stroke-width: 10px; stroke-linejoin: round; }
+.rim-fibers line { stroke: var(--fiber); stroke-width: 1.2px; stroke-linecap: round; opacity: .7; }
+.seam-guide { fill: none; stroke: var(--binding); stroke-width: 1px; opacity: .25; }
+.stitches line { stroke: var(--thread); stroke-width: 2.3px; stroke-linecap: round; }
+.motion-patch strong { position: relative; max-width: 260px; padding: 24px; font-size: clamp(24px,4vw,42px); font-weight: 900; line-height: 1; letter-spacing: -.03em; text-align: center; }
+.hex-motion { --face: var(--patch-green); --binding: var(--binding-green); --fiber: var(--fiber-green); --thread: var(--thread-dark); color: var(--thread-dark); }
+.circle-motion { --face: var(--patch-black); --binding: var(--binding-black); --fiber: var(--fiber-black); }
+.circle-motion strong { font-size: clamp(23px,3.5vw,36px); max-width: 240px; }
+@media(max-width:600px) { .specimens { padding-top: 240px; } .specimen { margin-bottom: 180px; } .motion-stage { padding-block: 24px; } }
+@media(prefers-reduced-motion:reduce) { .stitches line { opacity: 1 !important; } }
+@media print { .stitches line { opacity: 1 !important; } .specimens { padding-top: 32px; } .specimen { margin-bottom: 32px; } }
+
+.static-seam { fill: none; stroke: var(--thread); stroke-width: 2.3px; stroke-dasharray: 5.6 3.4; stroke-linecap: round; }
+.has-stitches .static-seam { display: none; }
+
+.voice-motion strong { max-width: 340px; }
+:root { --backing-blue: #aab8d8; --backing-green: #bdccbf; --backing-black: #9b9fa3; }
+/* Stable measurements; diagonal clipping and reflection drive the peel. */
+.patch-assembly { position: absolute; inset: 0; transform: rotate(-2deg); }
+.hex-motion .patch-assembly { transform: rotate(1.5deg); }
+.circle-motion .patch-assembly { transform: rotate(-1deg); }
+.patch-art { position: absolute; inset: 0; display: grid; place-items: center; }
+.peel-back { transform-origin: 0 0; }
+.peel-back .patch-face { fill: var(--backing-blue); }
+.hex-motion .peel-back .patch-face { fill: var(--backing-green); }
+.circle-motion .peel-back .patch-face { fill: var(--backing-black); }
+.peel-back .bound-edge { stroke: var(--fiber); }
+.peel-back .rim-fibers { opacity: .45; }
+@media(prefers-reduced-motion:reduce) { .peel-front { clip-path: none !important; } .peel-back { display: none; } }
+@media print { .peel-front { clip-path: none !important; } .peel-back { display: none; } }

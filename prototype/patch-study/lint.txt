@@ -1,0 +1,13 @@
+prototype\patch-study\study.css
+  WARN 3 :78 3 equal icon-tile columns on .board | fix: Vary column widths or drop the icon tiles
+  WAIVED 7b :10 pure #fff: background: var(--paper) (body)
+  WAIVED 7b :16 pure #fff: background: var(--paper) (.skip)
+  WAIVED 7b :22 pure #fff: color: var(--paper) (nav a[aria-current])
+  WAIVED 7b :31 pure #fff: color: var(--paper) (.button)
+  WAIVED 7b :46 pure #fff: color: var(--paper) (.voice)
+  WAIVED 7b :48 pure #fff: color: var(--paper) (.satellites)
+  WAIVED 7b :53 pure #fff: color: var(--paper) (.flipoff)
+  WAIVED 7b :82 pure #fff: background: var(--paper) (.mono .patch)
+prototype\patch-study\background.html
+  WARN 58 :1 h1 runs 9 words ("I learn by building, testing, and worki…") | fix: Seven words or fewer, 50 characters or fewer
+sloplint: 0 FAIL, 2 WARN, 8 WAIVED across 6 file(s).

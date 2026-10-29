@@ -1,0 +1,13 @@
+:root {
+  --paper: #ffffff;
+  --soft: #f3f3ef;
+  --ink: #111111;
+  --muted: #555550;
+  --rule: #d7d7d1;
+  --blue: #234dc7;
+  --yellow: #f1d65c;
+  --green: #d9e9de;
+  --clear: transparent;
+  --font: Arial, Helvetica, sans-serif;
+  --content: 1120px;
+}
