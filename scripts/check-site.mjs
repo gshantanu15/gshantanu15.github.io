@@ -212,17 +212,17 @@ if (!/>View all projects\s*</i.test(homeHtml)) fail('Home selected-work action m
 if (/Selected work\s*·\s*2025—2026/i.test(workHtml)) fail("Work eyebrow contains the stale date range");
 
 const homeSatellitesVideo = homeHtml.match(/<video\b[^>]*data-satellites-preview[^>]*>/i)?.[0] || "";
-if (!homeSatellitesVideo || !/muted/i.test(homeSatellitesVideo) || !/loop/i.test(homeSatellitesVideo) || /\sautoplay(?:\s|=|>)/i.test(homeSatellitesVideo)) {
+if (homeSatellitesVideo && (!/muted/i.test(homeSatellitesVideo) || !/loop/i.test(homeSatellitesVideo) || /\sautoplay(?:\s|=|>)/i.test(homeSatellitesVideo))) {
   fail("Home Satellites preview must be muted and looping without HTML autoplay");
 }
 if (!/<video\b[^>]*controls[^>]*poster="assets\/media\/satellites-comparison-poster\.webp"/i.test(satellites)) {
   fail("Work Satellites demo must expose controls and its poster");
 }
-if (!/satellites-comparison\.mp4/i.test(homeHtml) || !/satellites-comparison\.mp4/i.test(satellites)) {
-  fail("Satellites comparison video is not referenced from both Home and Work");
+if (!/satellites-comparison\.mp4/i.test(satellites)) {
+  fail("Satellites comparison video is not referenced from Work");
 }
 
-const sharedScript = exists("assets/js/site.js") ? read("assets/js/site.js") : "";
+const sharedScript = exists("assets/patch-portfolio/site.js") ? read("assets/patch-portfolio/site.js") : "";
 if (!/prefers-reduced-motion/i.test(sharedScript) || !/IntersectionObserver/i.test(sharedScript)) {
   fail("Shared script is missing reduced-motion or viewport-aware Satellites playback");
 }

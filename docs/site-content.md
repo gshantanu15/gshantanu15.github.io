@@ -1,6 +1,6 @@
 # Portfolio Site Content Draft
 
-Status: **Awaiting user approval. Do not use in production yet.**
+Status: **The user approved the prototype on 2 November 2026 and authorized local production integration. The production pages represent the accepted copy; reconcile any remaining differences against those pages before publication.**
 
 This document is the editorial source of truth for the portfolio rebuild. Text in editorial notes is not public website copy.
 
