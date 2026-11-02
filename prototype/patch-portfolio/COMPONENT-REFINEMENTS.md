@@ -1,5 +1,7 @@
 # Annotated component refinements
 
+**Historical record:** the earlier particle name and footer below are superseded by [APPROVED-NAME-INTEGRATION.md](APPROVED-NAME-INTEGRATION.md).
+
 This prototype revision implements the user's five annotated component requests and alternating Work summaries. It supersedes the earlier static-portrait and strictly stationary-content directions only where the user requested local interaction or brief entrances. Production pages and approved SVG artwork are unchanged.
 
 ## Reference interpretation

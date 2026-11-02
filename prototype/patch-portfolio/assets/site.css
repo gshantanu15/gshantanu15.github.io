@@ -253,14 +253,15 @@ video { color: var(--paper); }
 .portrait-patch:disabled { opacity: 1; cursor: default; }
 .portrait-patch .patch-assembly { transform: none; }
 .portrait-patch .patch-back { pointer-events: none; }
-.hero-name { position: relative; }
-.hero-name-text { position: relative; }
-.hero-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.particle-active .hero-name-text { opacity: .78; }
+.hero .hero-name { position: relative; height: clamp(192px,20vw,260px); margin-bottom: 0; display: grid; align-items: center; }
+.ascii-name-label { display: block; max-width: 100%; }
+.hero-name canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; touch-action: pan-y; }
+.hero-name.rendered canvas { opacity: 1; }
+.hero-name.rendered .ascii-name-label { opacity: 0; }
 @media(min-width:761px) {
  .case-study:nth-child(even) .project-intro { grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); }
  .case-study:nth-child(even) .project-intro > .patch-frame { grid-column: 2; grid-row: 1; }
  .case-study:nth-child(even) .project-intro > .case-heading { grid-column: 1; grid-row: 1; }
 }
-@media(prefers-reduced-motion:reduce) { .hero-particles { display: none; } .particle-active .hero-name-text { opacity: 1; } }
-@media print { .hero-particles { display: none; } .particle-active .hero-name-text { opacity: 1; } }
+@media(prefers-reduced-motion:reduce) { .hero-name canvas { display: none; } .hero-name.rendered .ascii-name-label { opacity: 1; } }
+@media print { .hero-name canvas { display: none; } .hero-name.rendered .ascii-name-label { opacity: 1; } }

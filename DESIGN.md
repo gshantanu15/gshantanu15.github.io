@@ -179,3 +179,30 @@ The latest annotated feedback authorizes local interaction on the portrait, part
 The portrait stays fully readable at rest and uses a native button for a small pointer/keyboard/touch corner peel. The h1 remains real HTML with at most 1,800 decorative particles during a bounded 800ms assembly/pointer response. Reduced motion, printing and no-JavaScript preserve complete content. The footer uses an author-time monochrome ASCII wave and pointer-local character changes, with no idle render loop; contact links have 24px SVGs, 44px surfaces, visible labels and focus states. Duplicate contact rows are omitted on Home/About. Work alternates patch/summary sides above 760px while retaining patch-first mobile order.
 
 Full reference links, interpretation, source files, reproduction steps, performance bounds, screenshots and Hallmark audit findings are recorded in prototype/patch-portfolio/COMPONENT-REFINEMENTS.md. The footer/component audit returned ship; the page-level render audit has zero hard failures and zero open Reflex findings. These are prototype changes only.
+
+## 17. Approved ASCII name and component corrections
+
+On 29 October 2026 the user approved the isolated `prototype/name-text-demo/` treatment and explicitly authorized its prototype integration. This supersedes the particle name in section 16. The original demo is preserved; its APPROVED.json records approval and reference/integration SHA-256 hashes.
+
+Home renders the exact semantic h1 **Shantanu Garg.** through the supplied React Bits ASCIIText shader adapted to vanilla JavaScript and fitted to the two-line hero. Its glyph density, chromatic accents, tilt, scramble, intro, ripple and idle behavior follow the approved demo. Pause/Resume stops rendering. Reduced motion, printing, unavailable WebGL2 and JavaScript disabled retain an HTML name. Rendering is capped near 30fps and DPR 1.5 and stops offscreen/hidden. Only Home loads assets/ascii-name.js; particles are removed.
+
+The footer retains existing identity, qualification and destinations. Larger identity and three labelled contact links sit above a separate ASCII contour. Home/About move their existing contact row to this shared footer; each page has one row. Existing contact headings, copy and anchors remain. Desktop uses two columns, stacking at 760px with three equal mobile contact targets.
+
+Portrait hover measures the lower-right corner in the rotated patch's own coordinates and uses one frame loop instead of restarting on every pointer event. The center stays complete. Exit, blur, Escape, reduced motion and hidden documents restore the patch. Keyboard/touch toggle remains. Approved SVG artwork, seams and project scroll motion are unchanged.
+
+These are prototype integrations/corrections, not production or deployment approval. Reproduction, evidence and audit findings: prototype/patch-portfolio/APPROVED-NAME-INTEGRATION.md.
+
+## 18. Item-level entrances and full-footer ASCII review
+
+30 October 2026 feedback supersedes the pause-control and separate-contour choices in section 17 within the prototype. Home removes the Pause control. The ASCII name retains its intro, pointer tilt/scramble and click ripple, with idle drift disabled and no render loop for a stationary pointer. Intro/interaction rendering is bounded, with the existing reduced-motion, no-JavaScript, no-WebGL and print fallbacks.
+
+Reading content enters by individual heading, paragraph, list item, definition, caption, disclosure summary or isolated action. Parent sections remain stationary. One shared observer runs each item's 280ms translate/opacity entrance once, with 65ms stagger capped at 195ms per visible batch. No text splitting or layout-property animation; patch peel/sewing remains separate. Focus cancels animation around the focused control, and reduced motion, print and hidden documents settle active entrances.
+
+The requested footer experiment expands the monochrome ASCII density gradient across the full footer, including behind real text and labelled contact icons. It uses low-opacity ink at .16 over white, preserving readable opaque text. A ResizeObserver fits the character grid to the footer; no idle animation loop. Pointer-local scrambling remains optional; no-JavaScript uses author-time ASCII. This is a review experiment, not a production approval.
+
+Checks and captures are in prototype/patch-portfolio/review/granular/. The focused checker verifies three routes, item-level stagger, stationary parents, full-footer coverage at 320/390/768/1440/1920px, no overflow, name settling with/without a stationary pointer, reduced motion and no-JavaScript. Production remains unchanged.
+
+
+## Prototype approval, 2 November 2026
+
+The user approved the current prototype, including the ASCII hero without a pause control, granular content entrances and full-footer ASCII treatment. This supersedes the pending-review status of section 18. The approved source snapshot is recorded with SHA-256 hashes in prototype/patch-portfolio/APPROVED.json. Production implementation and deployment remain separate steps; no production files or publishing settings changed.

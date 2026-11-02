@@ -1,5 +1,5 @@
-/* Hallmark v2.0.0 | footer: quiet sewn editorial contact */
-/* Critique: keep the wave atmospheric; identity and labels carry the footer. */
+/* Hallmark v2.0.0 | scope: component | genre: editorial | theme: approved Sewn portfolio | footer: identity and contact over a full ASCII density field | surface: absolute */
+/* Critique: the requested full-footer ASCII remains low contrast behind solid, readable text and links. */
 :root {
   --footer-surface: rgba(255, 255, 255, .78);
   --footer-line: rgba(17, 17, 17, .22);
@@ -10,19 +10,29 @@
   --footer-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
-.ascii-footer { position: relative; isolation: isolate; overflow: clip; padding-block: 48px 40px; border-top: 1px solid var(--rule); }
-.ascii-field { position: absolute; inset: 0 0 0 28%; z-index: -1; overflow: clip; color: var(--muted); opacity: .14; pointer-events: none; }
-.ascii-field pre { margin: 0; padding: 8px; font: 14px/1.25 var(--footer-mono); white-space: pre; transform: rotate(-2deg) scale(1.12); transform-origin: center; }
-.ascii-footer .footer-inner { position: relative; }
-.ascii-footer .brand { color: var(--ink); font-weight: 800; text-decoration: none; }
-.ascii-footer .footer-inner p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+.site-footer.ascii-footer { position: relative; isolation: isolate; overflow: clip; min-height: 240px; padding-block: 48px; border-top: 1px solid var(--rule); }
+.ascii-field { position: absolute; inset: 0; z-index: -1; overflow: clip; color: var(--ink); opacity: .16; pointer-events: none; }
+.ascii-field pre { width: max-content; margin: 0; font: 12px/12px var(--footer-mono); white-space: pre; }
+.ascii-footer .footer-inner { position: relative; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: start; gap: 48px; }
+.ascii-footer .brand { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-size: 32px; line-height: 1.15; font-weight: 800; letter-spacing: -.04em; text-decoration: none; }
+.ascii-footer .footer-inner p { max-width: 36ch; margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
 .ascii-footer .footer-links, .contact-links.icon-links { display: flex; flex-wrap: wrap; gap: var(--footer-gap); }
 .contact-links.icon-links { margin: 0; }
+.ascii-footer .contact-links { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-self: center; }
 .icon-link { display: inline-flex; min-height: var(--footer-target); align-items: center; gap: 8px; color: var(--ink); font-size: 15px; font-weight: 700; text-decoration: none; }
 .icon-surface { display: inline-grid; width: var(--footer-target); height: var(--footer-target); place-items: center; border: 1px solid var(--footer-line); border-radius: var(--footer-radius); background: var(--footer-surface); transform: translate(-2px, -2px); transition: transform 180ms ease, background-color 180ms ease; }
 .icon-link svg { width: var(--footer-icon-size); height: var(--footer-icon-size); fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 .icon-link svg text { fill: currentColor; stroke: none; font: 700 11px/1 var(--font); }
 .icon-link:hover .icon-surface { transform: translate(0, 0); background: var(--soft); }
+.icon-link:active .icon-surface { transform: translateY(1px); background: var(--soft); }
 .icon-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
-@media (max-width: 600px) { .ascii-footer .footer-inner { align-items: flex-start; } .ascii-footer .footer-links, .contact-links.icon-links { gap: 12px; } }
+@media (max-width: 1000px) { .ascii-footer .icon-link { flex-direction: column; align-items: flex-start; gap: 8px; } }
+@media (max-width: 760px) {
+ .ascii-footer .footer-inner { grid-template-columns: minmax(0,1fr); gap: 28px; }
+ .ascii-footer .contact-links { width: min(100%,360px); gap: 12px; }
+ .ascii-footer .brand { font-size: 28px; }
+ .site-footer.ascii-footer { min-height: 300px; padding-block: 32px; }
+ .ascii-field pre { font-size: 10px; line-height: 10px; }
+}
 @media (prefers-reduced-motion: reduce) { .icon-surface { transition: none; } }
+@media print { .ascii-field { display: none; } }

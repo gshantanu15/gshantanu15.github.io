@@ -48,3 +48,13 @@ Preliminary `first-*` screenshots are diagnostic captures, not final review evid
 ## Annotated component revision
 
 The full responsive checker and focused scroll/zoom checker pass after this revision. `check-components.cjs` additionally passes portrait pointer/keyboard behavior, particle completion, footer scrambling/restoration, six-row mobile ordering, no-JavaScript/reduced-motion fallbacks, page errors and overflow at 320/390/788/1440px. Captures decode lazy images before saving. See review/component-checks.json, component-footer-*.png, component-home-hero-788.png, component-home-particles.png and component-home-portrait.png. The current Hallmark report is review/components-hallmark.txt: 0 FAIL, 0 open REFLEX. Independent footer/component audit returned ship, no fixes.
+
+## Approved ASCII name and responsive component correction
+
+User-approved ASCII name replaces particles on prototype Home. Approval/hashes: ../name-text-demo/APPROVED.json. The footer now has one shared contact row and separate ASCII contour, with no text overlap. Portrait hover uses real rotated coordinates and one frame loop.
+
+Full prototype and existing component checks pass; the focused refinement checker covers 320–1920px, actual corner hover/restore/re-entry/keyboard, name pause, contact targets, fallbacks and overflow. Seven approved SVG hashes still match. Hallmark's component render audit produced 15 captures with 0 FAIL and 0 open REFLEX. Three inherited F19 font-weight Finish advisories are recorded without changing the approved page typography. Details: APPROVED-NAME-INTEGRATION.md; evidence: review/refinement/.
+
+## 30 October granular motion and footer experiment
+
+The hero pause control is removed; its idle loop and stationary-pointer loop are disabled. Content now enters by individual item, once, with a bounded stagger, rather than by whole section. The monochrome ASCII density field spans the entire footer behind real text and links. Focused three-route checks at 320/390/768/1440/1920px pass, including bounded hero rendering, reduced motion, no-JavaScript, coverage and overflow. Evidence: review/granular/checks.json and footer/entrance captures. Existing component/full-prototype regressions are rerun for this revision.

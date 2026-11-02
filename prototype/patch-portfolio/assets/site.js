@@ -119,32 +119,38 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
     } finally { loading.delete(box); }
   }
   function setupPortrait(state) {
-    let animation = 0, held = false;
+    let animation = 0, held = false, target = 1, last = 0;
     const box=state.box;
     box.disabled=false;
     function move(to) {
-      cancelAnimationFrame(animation);
       if(preference.matches) { paint(state,1); return; }
-      const from=state.progress, start=performance.now();
+      target=to;
+      if(animation)return;
+      last=performance.now();
       function step(now) {
-        const t=Math.min(1,(now-start)/180), eased=1-Math.pow(1-t,3);
-        paint(state,from+(to-from)*eased);
-        if(t<1 && !document.hidden) animation=requestAnimationFrame(step);
+        animation=0;
+        const follow=1-Math.exp(-Math.min(now-last,50)/35);last=now;
+        const next=state.progress+(target-state.progress)*follow;
+        paint(state,Math.abs(target-next)<.001?target:next);
+        if(state.progress!==target && !document.hidden) animation=requestAnimationFrame(step);
       }
       animation=requestAnimationFrame(step);
     }
     box.addEventListener('pointermove',event=>{
       if(held || event.pointerType==='touch' || preference.matches) return;
-      const rect=box.getBoundingClientRect();
-      const distance=Math.hypot(rect.right-event.clientX,rect.bottom-event.clientY);
-      move(distance<150 ? .76+.2*distance/150 : 1);
+      // Invert the patch rotation: its screen bounding box is not its local corner.
+      const rect=box.getBoundingClientRect(),matrix=new DOMMatrix(getComputedStyle(box).transform).inverse();
+      const point=new DOMPoint(event.clientX-rect.left-rect.width/2,event.clientY-rect.top-rect.height/2).matrixTransform(matrix);
+      const x=point.x+box.offsetWidth/2,y=point.y+box.offsetHeight/2;
+      const proximity=clamp(1-((box.offsetWidth-x)+(box.offsetHeight-y))/(Math.min(box.offsetWidth,box.offsetHeight)*.65));
+      move(1-.42*proximity);
     });
     box.addEventListener('pointerleave',()=>{if(!held)move(1);});
-    box.addEventListener('click',()=>{if(preference.matches)return;held=!held;box.setAttribute('aria-pressed',String(held));move(held ? .74 : 1);});
+    box.addEventListener('click',()=>{if(preference.matches)return;held=!held;box.setAttribute('aria-pressed',String(held));move(held ? .58 : 1);});
     box.addEventListener('blur',()=>{held=false;box.setAttribute('aria-pressed','false');move(1);});
     document.addEventListener('keydown',event=>{if(event.key==='Escape'){held=false;box.setAttribute('aria-pressed','false');move(1);}});
-    preference.addEventListener('change',()=>{cancelAnimationFrame(animation);held=false;box.disabled=preference.matches;box.setAttribute('aria-pressed','false');paint(state,1);});
-    document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(animation);paint(state,1);}});
+    preference.addEventListener('change',()=>{cancelAnimationFrame(animation);animation=0;target=1;held=false;box.disabled=preference.matches;box.setAttribute('aria-pressed','false');paint(state,1);});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(animation);animation=0;target=1;held=false;box.setAttribute('aria-pressed','false');paint(state,1);}});
   }
   function candidate(box) {
     const rect=box.getBoundingClientRect();
@@ -168,86 +174,54 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
   preference.addEventListener('change',()=>{if(preference.matches)states.forEach(finish);else frames.forEach(enhance);});
   addEventListener('beforeprint',()=>states.forEach(finish));
 })();
-/* Brief, one-shot introductions. Resting HTML is always fully visible. */
+/* Stagger individual reading items once; their parent sections stay still. */
 (() => {
   if(!('IntersectionObserver' in window) || typeof Element.prototype.animate!=='function')return;
   const preference=matchMedia('(prefers-reduced-motion: reduce)');
   const active=new Set();
-  const targets=document.querySelectorAll('.bio-note,.section-heading,.timeline-preview article,.education-layout,.contact-inner,.about-hero-copy,.about-at-glance,.experience-entry,.education-summary,.thesis-card,.leadership-grid article,.activity-panel,.hardware-heading,.hardware-card,.case-heading,.voice-demo,.case-image,.satellites-demo,.case-footer,.project-story');
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  const selector='h2,h3,h4,p,dt,dd,li,figcaption,summary,a.text-link,.section-action,.hardware-controls';
+  const targets=[...document.querySelectorAll('main '+selector.split(',').join(',main '))].filter(target=>!target.closest('.hero,.project-jump')&&!target.parentElement.closest(selector));
+  const observer=new IntersectionObserver(entries=>entries.filter(entry=>entry.isIntersecting).forEach((entry,index)=>{
     if(!entry.isIntersecting)return;
     observer.unobserve(entry.target);
     if(preference.matches)return;
-    const animation=entry.target.animate([{transform:'translateY(10px)',opacity:.72},{transform:'none',opacity:1}],{duration:180,easing:'cubic-bezier(.2,0,0,1)'});
+    const animation=entry.target.animate([{transform:'translateY(18px)',opacity:.45},{transform:'none',opacity:1}],{duration:280,delay:Math.min(index,3)*65,easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'});
     active.add(animation);animation.finished.then(()=>active.delete(animation)).catch(()=>active.delete(animation));
-  }),{threshold:.12});
-  targets.forEach(target=>observer.observe(target));
+  }),{threshold:.15,rootMargin:'0px 0px -20px 0px'});
+  targets.forEach(target=>{target.dataset.contentEntrance='';observer.observe(target);});
   function settle(){active.forEach(a=>a.cancel());active.clear();}
   preference.addEventListener('change',()=>{if(preference.matches)settle();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)settle();});
   addEventListener('beforeprint',settle);
+  document.addEventListener('focusin',event=>active.forEach(animation=>{if(animation.effect.target.contains(event.target)){animation.cancel();active.delete(animation);}}));
 })();
-/* Particle-letter treatment: a short assembly, then real HTML text at rest. */
-(() => {
-  const heading=document.querySelector('.hero-name');
-  if(!heading)return;
-  const preference=matchMedia('(prefers-reduced-motion: reduce)');
-  if(preference.matches || !document.createElement('canvas').getContext('2d'))return;
-  const label=document.createElement('span');label.className='hero-name-text';label.textContent=heading.textContent;heading.replaceChildren(label);
-  const canvas=document.createElement('canvas');canvas.className='hero-particles';canvas.setAttribute('aria-hidden','true');heading.append(canvas);
-  let points=[],animation=0,start=0,pointer=null;
-  const context=canvas.getContext('2d');
-  function sample(){
-    const rect=heading.getBoundingClientRect(),style=getComputedStyle(heading);
-    const mask=document.createElement('canvas');mask.width=Math.ceil(rect.width);mask.height=Math.ceil(rect.height);
-    canvas.width=mask.width;canvas.height=mask.height;
-    const ink=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim();
-    const c=mask.getContext('2d');c.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;c.fillStyle=ink;c.textBaseline='top';
-    const node=label.firstChild;if(!node)return;
-    for(let i=0;i<node.length;i++){
-      const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+1);const r=range.getBoundingClientRect();
-      c.fillText(node.textContent[i],r.left-rect.left,r.top-rect.top+Number.parseFloat(style.fontSize)*.1);
-    }
-    const pixels=c.getImageData(0,0,mask.width,mask.height).data;
-    points=[];const step=innerWidth<600?5:4;
-    for(let y=0;y<mask.height;y+=step)for(let x=0;x<mask.width;x+=step)if(pixels[(y*mask.width+x)*4+3]>120){
-      const seed=Math.sin(x*12.9898+y*78.233)*43758.5453;points.push({x,y,dx:(seed%1)*32,dy:Math.cos(seed)*22});
-    }
-    // Bound canvas work independently of heading size or pixel density.
-    if(points.length>1800)points=points.filter((_,i)=>i%Math.ceil(points.length/1800)===0);
-    context.fillStyle=ink;
-  }
-  function finish(){cancelAnimationFrame(animation);animation=0;context.clearRect(0,0,canvas.width,canvas.height);heading.classList.remove('particle-active');}
-  function draw(now){
-    if(preference.matches || document.hidden){finish();return;}
-    const progress=Math.min(1,(now-start)/800),strength=1-progress;
-    context.clearRect(0,0,canvas.width,canvas.height);
-    for(const point of points){
-      let x=point.x+point.dx*strength,y=point.y+point.dy*strength;
-      if(pointer){const dx=point.x-pointer.x,dy=point.y-pointer.y,d=Math.hypot(dx,dy);if(d<90&&d>0){x+=dx/d*(90-d)*.35*strength;y+=dy/d*(90-d)*.35*strength;}}
-      context.globalAlpha=progress>.8?(1-progress)/.2:1;context.fillRect(x,y,2,2);
-    }
-    if(progress<1)animation=requestAnimationFrame(draw);else finish();
-  }
-  function play(position=null){if(preference.matches)return;pointer=position;start=performance.now();heading.classList.add('particle-active');if(!animation)animation=requestAnimationFrame(draw);}
-  sample();play();
-  heading.addEventListener('pointermove',event=>{if(event.pointerType==='touch')return;const r=heading.getBoundingClientRect();play({x:event.clientX-r.left,y:event.clientY-r.top});});
-  heading.addEventListener('pointerleave',()=>{pointer=null;});
-  preference.addEventListener('change',()=>{if(preference.matches)finish();});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)finish();});
-  addEventListener('resize',()=>{finish();sample();});addEventListener('beforeprint',finish);
-})();
-/* ASCII responds only to pointer events; no background render loop. */
+/* Fit the static ASCII density gradient to the footer; no idle render loop. */
 (() => {
   const footer=document.querySelector('.ascii-footer'),field=footer?.querySelector('pre');
   if(!field)return;
-  const original=field.textContent,rows=original.split('\n'),preference=matchMedia('(prefers-reduced-motion: reduce)');
-  let pending=0,point=null;
+  const preference=matchMedia('(prefers-reduced-motion: reduce)'),ramp=' .:-=+*#';
+  let original=field.textContent,rows=original.split('\n'),columns=270,pending=0,point=null;
+  function fit(){
+    cancelAnimationFrame(pending);pending=0;
+    const style=getComputedStyle(field),context=document.createElement('canvas').getContext('2d');
+    if(!context)return;
+    context.font=style.font;
+    columns=Math.ceil(footer.clientWidth/Math.max(1,context.measureText('M').width));
+    const height=Math.ceil(footer.clientHeight/parseFloat(style.lineHeight));
+    rows=Array.from({length:height},(_,y)=>Array.from({length:columns},(_,x)=>{
+      const u=x/Math.max(1,columns-1),v=y/Math.max(1,height-1);
+      const density=.08+.48*u+.26*v+.18*(.5+.5*Math.sin(u*Math.PI*2+v*3));
+      return ramp[Math.min(ramp.length-1,Math.floor(density*7))];
+    }).join('').trimEnd());
+    original=rows.join('\n');field.textContent=original;
+  }
+  fit();
+  if('ResizeObserver' in window){const observer=new ResizeObserver(fit);observer.observe(footer);addEventListener('pagehide',()=>observer.disconnect(),{once:true});}
   footer.addEventListener('pointermove',event=>{
     if(preference.matches || event.pointerType==='touch')return;
-    const r=field.getBoundingClientRect();point={x:(event.clientX-r.left)/r.width*rows[0].length,y:(event.clientY-r.top)/r.height*rows.length};
+    const r=field.getBoundingClientRect();point={x:(event.clientX-r.left)/r.width*columns,y:(event.clientY-r.top)/r.height*rows.length};
     if(pending)return;
-    pending=requestAnimationFrame(()=>{pending=0;const ramp=' .:-=+*#';field.textContent=rows.map((row,y)=>[...row].map((char,x)=>Math.hypot(x-point.x,(y-point.y)*2)<7?ramp[(x+y+Math.floor(point.x))%ramp.length]:char).join('')).join('\n');});
+    pending=requestAnimationFrame(()=>{pending=0;field.textContent=rows.map((row,y)=>[...row].map((char,x)=>Math.hypot(x-point.x,(y-point.y)*2)<7?ramp[(x+y+Math.floor(point.x))%ramp.length]:char).join('')).join('\n');});
   });
   function restore(){cancelAnimationFrame(pending);pending=0;field.textContent=original;}
   footer.addEventListener('pointerleave',restore);preference.addEventListener('change',restore);

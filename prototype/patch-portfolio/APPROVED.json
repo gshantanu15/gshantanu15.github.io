@@ -1,0 +1,48 @@
+{
+  "status": "user-approved prototype",
+  "date": "2026-11-02",
+  "approval": "approved",
+  "scope": [
+    "current Home, Work and About prototype",
+    "ASCII hero without pause control or idle loop",
+    "granular one-time content entrances",
+    "full-footer ASCII density background",
+    "previously reviewed patch artwork and interactions"
+  ],
+  "productionImplemented": false,
+  "deploymentAuthorized": false,
+  "files": [
+    {
+      "file": "index.html",
+      "sha256": "392b080d3e7a2b8c1b3496e624032ccb78ee7cd78032f2019ff9bc498b8cd2a8"
+    },
+    {
+      "file": "work.html",
+      "sha256": "cbaa0029bbf9d4ce4d16e42c127dd599bd46b080c9674aef88171979af9c47c9"
+    },
+    {
+      "file": "about.html",
+      "sha256": "fb055df3f9db97743fe5ff85ac06f77129bc12b9b19722b4b32ab9e843d5b6ad"
+    },
+    {
+      "file": "assets/site.css",
+      "sha256": "ef4205bc12f9d7b8c85e3dd5c4a20b658a3658f7fd9ab6533f5cbca46f9b4d4a"
+    },
+    {
+      "file": "assets/footer.css",
+      "sha256": "37c5d7568ae4e7450fd36270ac19949a89a4259a5f4b8cb7bd8600e47a2f13fc"
+    },
+    {
+      "file": "assets/tokens.css",
+      "sha256": "63a71390cbc3784bdf6511579d840abe7d1bf77cc0645b77a7cc0d2a2f56b134"
+    },
+    {
+      "file": "assets/site.js",
+      "sha256": "46959289662690de11548a59c76be21ce6c652d759cff4d933cde2c3cabd6b2a"
+    },
+    {
+      "file": "assets/ascii-name.js",
+      "sha256": "1d5d206f1951fe2a39833195a7ba3124f02dcd991f6e1b21c326fb8a0ca5244c"
+    }
+  ]
+}

@@ -4,11 +4,12 @@ const icon = {
   github: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 19.2c-3.2 1-3.7-1.4-3.7-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.1-3.1-.1-.3-.5-1.5.1-3.1 0 0 .9-.3 3.2 1.2a11.2 11.2 0 0 1 5.8 0c2.2-1.5 3.1-1.2 3.1-1.2.6 1.6.2 2.8.1 3.1.7.8 1.1 1.8 1.1 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.7 1.1.7 2.1v3.1"/></svg>'
 };
 
-function asciiWave(width = 120, height = 16) {
+function asciiWave(width = 270, height = 32) {
   const ramp = ' .:-=+*#';
   return Array.from({ length: height }, (_, row) => Array.from({ length: width }, (_, col) => {
-    const distance = Math.abs(Math.sin(col / 11) * 3.2 - (row - height / 2) * .78);
-    return ramp[Math.min(ramp.length - 1, Math.floor(distance * 1.6))];
+    const u=col/(width-1),v=row/(height-1);
+    const density=.08+.48*u+.26*v+.18*(.5+.5*Math.sin(u*Math.PI*2+v*3));
+    return ramp[Math.min(ramp.length - 1, Math.floor(density * 7))];
   }).join('').trimEnd()).join('\n');
 }
 
@@ -19,8 +20,7 @@ const contactLinks = `<div class="contact-links icon-links" aria-label="Contact 
 </div>`;
 
 function footer(page = 'work') {
-  const links = page === 'index' || page === 'about' ? '' : contactLinks;
-  return `<footer class="site-footer ascii-footer"><div class="ascii-field" aria-hidden="true"><pre>${asciiWave()}</pre></div><div class="shell footer-inner"><div><a class="brand" href="index.html">Shantanu Garg</a><p>Graduate Professional from Tampere University</p></div>${links}</div></footer>`;
+  return `<footer class="site-footer ascii-footer"><div class="shell footer-inner"><div class="footer-identity"><a class="brand" href="index.html">Shantanu Garg</a><p>Graduate Professional from Tampere University</p></div>${contactLinks}</div><div class="ascii-field" aria-hidden="true"><pre>${asciiWave()}</pre></div></footer>`;
 }
 
 module.exports = { footer, contactLinks };

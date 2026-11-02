@@ -1,0 +1,16 @@
+{
+  "webgl2": true,
+  "pause": true,
+  "idleOffStops": true,
+  "keyboardRipple": true,
+  "widths": [
+    320,
+    390,
+    788,
+    1440
+  ],
+  "reducedMotion": true,
+  "noJavaScript": true,
+  "noWebglFallback": true,
+  "pageErrors": []
+}

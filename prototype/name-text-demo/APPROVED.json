@@ -1,0 +1,39 @@
+{
+  "status": "approved",
+  "date": "2026-10-29",
+  "approvedBy": "user",
+  "instruction": "Great implement name-text demo into protoype, record as approved.",
+  "scope": "ASCII name treatment and integration into prototype/patch-portfolio Home; production/deployment excluded",
+  "reference": [
+    {
+      "file": "index.html",
+      "sha256": "5fef5e047f2dbc708b46c5a60af3ef8d2de83a780b7657bebb96ee368bd47a8e"
+    },
+    {
+      "file": "demo.css",
+      "sha256": "9c74c5aa648793c02268c96d0a79a0de52d9418cf8273051fd4c24447b97b6d8"
+    },
+    {
+      "file": "ascii-name.js",
+      "sha256": "ea28cdbcfb7153d1046b757dfe8eb3d43b72bb926a85900ee034652231fe97c4"
+    }
+  ],
+  "integration": {
+    "file": "../patch-portfolio/assets/ascii-name.js",
+    "sha256": "1d5d206f1951fe2a39833195a7ba3124f02dcd991f6e1b21c326fb8a0ca5244c",
+    "adaptations": [
+      "two-line fit within existing hero",
+      "CSS color/font tokens",
+      "production-style Pause/Resume control instead of review-only controls"
+    ],
+    "latestRequestedRevision": {
+      "date": "2026-10-30",
+      "instruction": "Remove the pause button on the hero on the home page.",
+      "changes": [
+        "pause control removed",
+        "idle drift disabled",
+        "stationary pointer no longer sustains a render loop"
+      ]
+    }
+  }
+}

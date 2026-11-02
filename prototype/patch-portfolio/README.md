@@ -43,3 +43,5 @@ The next step is user review of this complete prototype. Production implementati
 ## Latest component revision
 
 The user requested a locally interactive portrait peel, particle hero name, brief content entrances, ASCII footer, labelled glass-like contact icons, and alternating Work rows. These are implemented and recorded in `COMPONENT-REFINEMENTS.md`. Earlier static-portrait/stationary-content descriptions above describe the previous review stage; reading content now receives a brief one-time entrance and then stays stationary. The original approved SVG art and project scroll-sewing strategy remain unchanged. Current captures have the `component-` prefix.
+
+Current revision: the approved ASCII name integration and portrait/footer corrections are documented in [APPROVED-NAME-INTEGRATION.md](APPROVED-NAME-INTEGRATION.md). Earlier particle-name and footer descriptions are superseded.

@@ -1,3 +1,6 @@
+/* Hallmark v2.0.0 | theme: approved Sewn portfolio | scope: component */
+/* Critique: retain the approved system face and palette for all shared components. */
+/* Hallmark · waive 1 · approved system face in DESIGN.md section 8 · Arial preserves the supplied ASCII name mask and the approved portfolio typography without a font dependency. */
 :root {
  --paper: #ffffff;
  --soft: #f3f3ef;
@@ -9,5 +12,11 @@
  --clear: transparent;
  --backing: #e5e4de;
  --font: Arial, Helvetica, sans-serif;
+ --font-display: var(--font);
+ --font-glyph: ui-monospace, SFMono-Regular, Consolas, monospace;
+ --ascii-mask: #ffffff;
+ --ascii-color-1: #ffffff;
+ --ascii-color-2: #eeeeee;
+ --ascii-color-3: #d9e2ed;
  --content: 1120px;
 }
